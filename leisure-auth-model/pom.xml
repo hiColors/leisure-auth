@@ -11,5 +11,12 @@
 
     <artifactId>leisure-auth-model</artifactId>
 
+    <dependencies>
 
+        <dependency>
+            <groupId>com.github.hicolors</groupId>
+            <artifactId>common-model</artifactId>
+        </dependency>
+
+    </dependencies>
 </project>
