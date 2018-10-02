@@ -1,13 +1,12 @@
 package com.github.hicolors.leisure.auth.model.persistence;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
@@ -24,6 +23,8 @@ import javax.validation.constraints.Null;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Where(clause = "delete_flag = 0")
+@ToString(of = {"id","name"})
 public class RolePermission extends BaseJpaModel {
     @Null(
             message = "id 必须为空",
@@ -38,6 +39,7 @@ public class RolePermission extends BaseJpaModel {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("role_permissions")
     private Role role;
 
     @Column(name = "ant_path")

@@ -3,12 +3,7 @@ package com.github.hicolors.leisure.auth.model.persistence;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+import lombok.*;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -27,6 +22,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(of = {"id","name"})
 @Where(clause = "delete_flag = 0")
 public class Role extends BaseJpaModel {
 
@@ -48,7 +44,6 @@ public class Role extends BaseJpaModel {
     private String comment;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-    @OrderBy("sort desc")
-    @JsonIgnoreProperties("role_permissions")
+    @JsonIgnoreProperties("role")
     private List<RolePermission> rolePermissions;
 }

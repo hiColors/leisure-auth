@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.auth.application.repository;
 
+import com.github.hicolors.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +17,15 @@ public class RoleRepositoryTest {
 
     @Autowired
     private RoleRepository repository;
+    @Autowired
+    private RolePermissionRepository permissionRepository;
 
     @Test
-    public void test01(){
-        log.info("[{}]",repository.count());
+    public void test01() {
+        log.info("[{}]", repository.count());
+
+        log.info("{}", JsonUtils.serialize(repository.findById(1L).get()));
+
+        log.info("{}", permissionRepository.findById(1L));
     }
 }
