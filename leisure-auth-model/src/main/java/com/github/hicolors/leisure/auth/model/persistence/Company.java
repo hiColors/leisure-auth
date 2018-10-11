@@ -1,5 +1,7 @@
 package com.github.hicolors.leisure.auth.model.persistence;
 
+import com.github.hicolors.leisure.auth.model.consts.EnumCompanyStatus;
+import com.github.hicolors.leisure.auth.model.persistence.converter.CompanyStatusConverter;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
@@ -45,7 +47,8 @@ public class Company extends BaseJpaModel {
     /**
      * 状态[0:禁用;1:审核中;2:启用]
      */
-    private Integer status;
+    @Convert(converter = CompanyStatusConverter.class)
+    private EnumCompanyStatus status;
 
     /**
      * varchar ( 255 ) null comment 备注

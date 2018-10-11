@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.auth.application.repository;
 
+import com.github.hicolors.leisure.auth.model.consts.EnumCompanyStatus;
 import com.github.hicolors.leisure.auth.model.persistence.Company;
 import com.github.hicolors.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +24,9 @@ public class CompanyRepositoryTest {
     @Test
     public void test01() {
         Company company = new Company();
-        company.setName("中国");
-        company.setStatus(2);
-        company.setComment("中华人民共和国");
+        company.setName("中国1");
+        company.setStatus(EnumCompanyStatus.DISABLE);
+        company.setComment("中华人民共和国1");
         companyRepository.save(company);
         log.info("{}", JsonUtils.serialize(company));
         log.info("{}", companyRepository.count());
