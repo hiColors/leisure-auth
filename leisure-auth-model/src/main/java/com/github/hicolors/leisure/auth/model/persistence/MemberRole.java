@@ -8,55 +8,48 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
-import java.util.List;
 
 /**
- * 角色信息
+ * 成员角色关联关系
  *
  * @author weichao.li (liweichao0102@gmail.com)
- * @date 2018/10/2
+ * @date 2018/10/10
  */
+
 @Entity
-@Table(name = "role")
+@Table(name = "member_role")
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(of = {"id", "name"})
 @Where(clause = "delete_flag = 0")
-public class Role extends BaseJpaModel {
+@ToString(of = {"id", "status"})
+public class MemberRole extends BaseJpaModel {
 
+    /**
+     * 主键
+     */
     @Null(
             message = "id 必须为空",
             groups = {ValidatorGroup.Post.class, ValidatorGroup.Put.class, ValidatorGroup.Patch.class}
     )
-
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    /**
-     * 名称
-     */
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("member")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("role")
+    private Role role;
 
     /**
      * 状态[0:未启用;1:启用]
      */
     private Boolean status;
-
-    /**
-     * 说明
-     */
-    private String explain;
-
-    /**
-     * varchar ( 255 ) null comment 备注
-     */
-    private String comment;
-
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-    @JsonIgnoreProperties("role")
-    private List<RolePermission> rolePermissions;
 }

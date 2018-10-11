@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -24,8 +22,9 @@ import javax.validation.constraints.Null;
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
-@ToString(of = {"id","name"})
+@ToString(of = {"id", "name"})
 public class RolePermission extends BaseJpaModel {
+
     @Null(
             message = "id 必须为空",
             groups = {ValidatorGroup.Post.class, ValidatorGroup.Put.class, ValidatorGroup.Patch.class}
@@ -35,6 +34,9 @@ public class RolePermission extends BaseJpaModel {
     @Id
     private Long id;
 
+    /**
+     * 名称
+     */
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
@@ -42,13 +44,25 @@ public class RolePermission extends BaseJpaModel {
     @JsonIgnoreProperties("role_permissions")
     private Role role;
 
+    /**
+     * 路径匹配规则
+     */
     @Column(name = "ant_path")
     private String antPath;
 
+    /**
+     * 状态[0:未启用;1:启用]
+     */
     private Boolean status;
 
+    /**
+     * 说明
+     */
     private String explain;
 
+    /**
+     * varchar ( 255 ) null comment 备注
+     */
     private String comment;
 
 }

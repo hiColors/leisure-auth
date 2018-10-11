@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.function.Consumer;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
@@ -24,7 +26,9 @@ public class RoleRepositoryTest {
     public void test01() {
         log.info("[{}]", repository.count());
 
-        log.info("{}", JsonUtils.serialize(repository.findById(1L).get()));
+      repository.findById(11L).ifPresent((e)->{
+            System.out.println(e.getName());
+        });
 
         log.info("{}", permissionRepository.findById(1L));
     }

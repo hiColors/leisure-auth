@@ -28,6 +28,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         basePackages = "com.github.hicolors.leisure.auth",
         repositoryBaseClass = ColorsComplexRepository.class
 )
-@EntityScan(basePackages = "com.github.hicolors.leisure.auth")
+@EntityScan({"com.github.hicolors.leisure.auth"})
 public class JpaLeisureAuthConfiguration {
 }
