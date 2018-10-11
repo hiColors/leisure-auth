@@ -15,14 +15,14 @@ import javax.validation.constraints.Null;
  * @date 2018/10/10
  */
 @Entity
-@Table(name = "group")
+@Table(name = "company")
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
 @ToString(of = {"id", "name", "status"})
-public class Group extends BaseJpaModel {
+public class Company extends BaseJpaModel {
 
     /**
      * 主键

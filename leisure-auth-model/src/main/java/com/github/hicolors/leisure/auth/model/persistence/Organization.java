@@ -43,9 +43,9 @@ public class Organization extends BaseJpaModel {
      * 集团 id
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "group_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JsonIgnoreProperties("group")
-    private Group group;
+    @JoinColumn(name = "company_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("company")
+    private Company company;
 
     /**
      * 父级节点
