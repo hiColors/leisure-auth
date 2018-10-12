@@ -17,14 +17,14 @@ import javax.validation.constraints.Null;
  * @date 2018/10/10
  */
 @Entity
-@Table(name = "company")
+@Table(name = "platform")
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
 @ToString(of = {"id", "name", "status"})
-public class Company extends BaseJpaModel {
+public class Platform extends BaseJpaModel {
 
     /**
      * 主键

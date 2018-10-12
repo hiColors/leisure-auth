@@ -1,7 +1,7 @@
 package com.github.hicolors.leisure.auth.application.repository;
 
 import com.github.hicolors.leisure.auth.model.consts.EnumCompanyStatus;
-import com.github.hicolors.leisure.auth.model.persistence.Company;
+import com.github.hicolors.leisure.auth.model.persistence.Platform;
 import com.github.hicolors.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -15,15 +15,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @Slf4j
 @ActiveProfiles("dev")
-public class CompanyRepositoryTest {
+public class PlatformRepositoryTest {
 
     @Autowired
-    private CompanyRepository companyRepository;
+    private PlatformRepository companyRepository;
 
 
     @Test
     public void test01() {
-        Company company = new Company();
+        Platform company = new Platform();
         company.setName("中国1");
         company.setStatus(EnumCompanyStatus.DISABLE);
         company.setComment("中华人民共和国1");

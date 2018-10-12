@@ -1,6 +1,6 @@
 package com.github.hicolors.leisure.auth.application.repository;
 
-import com.github.hicolors.leisure.auth.model.persistence.Company;
+import com.github.hicolors.leisure.auth.model.persistence.Platform;
 import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @date 2018/10/2
  */
 @Repository
-public interface CompanyRepository extends ColorsRepository<Company, Long> {
+public interface PlatformRepository extends ColorsRepository<Platform, Long> {
 }

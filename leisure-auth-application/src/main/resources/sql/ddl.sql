@@ -32,7 +32,7 @@ CREATE TABLE `role_permission` (
   KEY `idx_create_time` ( `create_time` ) USING BTREE
 ) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '角色权限信息';
 
-CREATE TABLE `company` (
+CREATE TABLE `platform` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` VARCHAR ( 100 ) NOT NULL COMMENT '名称',
   `status` INTEGER ( 3 ) UNSIGNED NOT NULL DEFAULT 0 COMMENT '状态[0:禁用;1:审核中;2:启用]',
@@ -45,11 +45,11 @@ CREATE TABLE `company` (
   PRIMARY KEY ( `id` ) USING BTREE,
   UNIQUE KEY `uk_name` ( `name` ) USING BTREE,
   KEY `idx_create_time` ( `create_time` ) USING BTREE
-) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '集团信息';
+) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '平台信息';
 
 CREATE TABLE `organization` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `company_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '集团',
+  `platform_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '平台',
   `parent_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '父级节点',
   `name` VARCHAR ( 100 ) NOT NULL COMMENT '名称',
   `level` INTEGER ( 4 ) NOT NULL DEFAULT 1 COMMENT '层级',
@@ -60,13 +60,13 @@ CREATE TABLE `organization` (
   `modifier` BIGINT ( 20 ) UNSIGNED NOT NULL DEFAULT 1 COMMENT '修改人',
   `delete_flag` bit ( 1 ) NOT NULL DEFAULT 0 COMMENT '删除状态[0:未删除;1:已删除]',
   PRIMARY KEY ( `id` ) USING BTREE,
-  UNIQUE KEY `uk_company_name` ( `company_id`, `name` ) USING BTREE,
+  UNIQUE KEY `uk_platform_name` ( `platform_id`, `name` ) USING BTREE,
   KEY `idx_create_time` ( `create_time` ) USING BTREE
 ) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '组织机构信息';
 
 CREATE TABLE `member` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `company_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '集团 id',
+  `platform_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '平台 id',
   `organization_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '组织机构 id',
   `nick_name` VARCHAR ( 64 ) NOT NULL DEFAULT '' COMMENT '昵称',
   `username` VARCHAR ( 32 ) NOT NULL COMMENT '用户名',
@@ -83,7 +83,7 @@ CREATE TABLE `member` (
   PRIMARY KEY ( `id` ) USING BTREE,
   UNIQUE KEY `uk_username` ( `username` ),
   KEY `idx_create_time` ( `create_time` ) USING BTREE
-) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '职工信息';
+) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '人员信息';
 
 CREATE TABLE `member_detail` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '主键',
@@ -103,11 +103,11 @@ CREATE TABLE `member_detail` (
   UNIQUE KEY `uk_email` ( `email` ),
   UNIQUE KEY `uk_mobile` ( `mobile` ),
 KEY `idx_create_time` ( `create_time` ) USING BTREE
-) ENGINE = INNODB COMMENT = '职工详细信息';
+) ENGINE = INNODB COMMENT = '人员详细信息';
 
 CREATE TABLE `member_role` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `member_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '职工 id',
+  `member_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '人员 id',
   `role_id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '角色 id',
   `status` bit ( 1 ) NOT NULL DEFAULT 1 COMMENT '状态[0:未启用;1:启用]',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -118,4 +118,4 @@ CREATE TABLE `member_role` (
   PRIMARY KEY ( `id` ) USING BTREE,
   UNIQUE KEY `uk_member_role` ( `member_id`,`role_id`) USING BTREE,
   KEY `idx_create_time` ( `create_time` ) USING BTREE
-) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '职工角色信息';
+) ENGINE = INNODB AUTO_INCREMENT = 100000 COMMENT = '人员角色信息';
