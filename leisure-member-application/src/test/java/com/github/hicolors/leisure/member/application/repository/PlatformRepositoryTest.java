@@ -18,18 +18,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class PlatformRepositoryTest {
 
     @Autowired
-    private PlatformRepository companyRepository;
+    private PlatformRepository platformRepository;
 
 
     @Test
     public void test01() {
-        Platform company = new Platform();
-        company.setName("中国1");
-        company.setStatus(EnumCompanyStatus.DISABLE);
-        company.setComment("中华人民共和国1");
-        companyRepository.save(company);
-        log.info("{}", JsonUtils.serialize(company));
-        log.info("{}", companyRepository.count());
+        Platform platform = new Platform();
+        platform.setName(" 北方民族大学");
+        platform.setStatus(EnumCompanyStatus.ENABLE);
+        platform.setComment(" Nun ");
+        platformRepository.save(platform);
+        log.info("{}", JsonUtils.serialize(platform));
+        log.info("{}", platformRepository.count());
     }
 
 }
