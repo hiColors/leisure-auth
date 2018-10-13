@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.hicolors.leisure</groupId>
-    <artifactId>leisure-auth</artifactId>
+    <artifactId>leisure-member</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -15,15 +15,15 @@
     </parent>
 
     <modules>
-        <module>leisure-auth-model</module>
-        <module>leisure-auth-api</module>
-        <module>leisure-auth-sdk</module>
-        <module>leisure-auth-application</module>
+        <module>leisure-member-model</module>
+        <module>leisure-member-api</module>
+        <module>leisure-member-sdk</module>
+        <module>leisure-member-application</module>
     </modules>
 
     <properties>
 
-        <leisure-auth.version>1.0-SNAPSHOT</leisure-auth.version>
+        <leisure-member.version>1.0-SNAPSHOT</leisure-member.version>
 
     </properties>
 
