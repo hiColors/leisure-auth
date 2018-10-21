@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,5 +44,5 @@ public interface RoleApi {
 
     @ApiOperation("角色 - 查询（分页筛选）")
     @GetMapping
-    Page<Role> query(Pageable pageable, List<ColorsExpression> filters);
+    Page<Role> query(@PageableDefault(page = 0,size = 10) Pageable pageable, List<ColorsExpression> filters);
 }
