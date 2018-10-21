@@ -67,5 +67,5 @@ public class MemberDetail extends BaseJpaModel {
     /**
      * 头像
      */
-    private String favicon;
+    private String avatar;
 }

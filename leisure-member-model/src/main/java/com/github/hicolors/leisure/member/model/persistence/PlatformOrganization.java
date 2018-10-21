@@ -4,27 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
 
 /**
- * 成员角色关联关系
+ * 组织关系
  *
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/10
  */
-
 @Entity
-@Table(name = "member_role")
+@Table(name = "platform_organization")
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
-@ToString(of = {"id", "status"})
-public class MemberRole extends BaseJpaModel {
+@ToString(of = {"id", "name"})
+public class PlatformOrganization extends BaseJpaModel {
 
     /**
      * 主键
@@ -38,16 +39,34 @@ public class MemberRole extends BaseJpaModel {
     @Id
     private Long id;
 
+    /**
+     * 集团 id
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    private Member member;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    private Role role;
+    @JoinColumn(name = "platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    private Platform platform;
 
     /**
-     * 状态[0:未启用;1:启用]
+     * 父级节点
      */
-    private Boolean status;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "parent_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("parent")
+    @NotFound(action = NotFoundAction.IGNORE)
+    private PlatformOrganization parent;
+
+    /**
+     * 名称
+     */
+    private String name;
+
+    /**
+     * 层级
+     */
+    private Integer level;
+
+    /**
+     * varchar ( 255 ) null comment 备注
+     */
+    private String comment;
 }

@@ -40,21 +40,6 @@ public class Member extends BaseJpaModel {
     private Long id;
 
     /**
-     * 集团 id
-     */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    private Platform platform;
-
-    /**
-     * 组织机构 id
-     */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "organization_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JsonIgnoreProperties("organization")
-    private Organization organization;
-
-    /**
      * 昵称
      */
     @Column(name = "nick_name")

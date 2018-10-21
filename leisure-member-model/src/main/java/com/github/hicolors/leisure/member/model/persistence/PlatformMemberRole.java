@@ -1,15 +1,13 @@
 package com.github.hicolors.leisure.member.model.persistence;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
+import java.util.Date;
 
 /**
  * 组织关系
@@ -18,14 +16,14 @@ import javax.validation.constraints.Null;
  * @date 2018/10/10
  */
 @Entity
-@Table(name = "organization")
+@Table(name = "platform_member_role")
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
-@ToString(of = {"id", "name"})
-public class Organization extends BaseJpaModel {
+@ToString(of = {"id"})
+public class PlatformMemberRole extends BaseJpaModel {
 
     /**
      * 主键
@@ -40,33 +38,17 @@ public class Organization extends BaseJpaModel {
     private Long id;
 
     /**
-     * 集团 id
+     * 平台员工 id
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    private Platform platform;
+    @JoinColumn(name = "platform_member_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    private PlatformMember platformMember;
+
 
     /**
-     * 父级节点
+     * 平台 id
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "parent_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JsonIgnoreProperties("parent")
-    @NotFound(action = NotFoundAction.IGNORE)
-    private Organization parent;
-
-    /**
-     * 名称
-     */
-    private String name;
-
-    /**
-     * 层级
-     */
-    private Integer level;
-
-    /**
-     * varchar ( 255 ) null comment 备注
-     */
-    private String comment;
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    private  Role role;
 }

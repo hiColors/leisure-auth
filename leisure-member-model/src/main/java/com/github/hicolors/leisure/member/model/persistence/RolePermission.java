@@ -22,7 +22,7 @@ import javax.validation.constraints.Null;
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
-@ToString(of = {"id", "name"})
+@ToString(of = {"id"})
 public class RolePermission extends BaseJpaModel {
 
     @Null(
@@ -34,35 +34,12 @@ public class RolePermission extends BaseJpaModel {
     @Id
     private Long id;
 
-    /**
-     * 名称
-     */
-    private String name;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    @JsonIgnoreProperties("role_permissions")
     private Role role;
 
-    /**
-     * 路径匹配规则
-     */
-    @Column(name = "ant_path")
-    private String antPath;
-
-    /**
-     * 状态[0:未启用;1:启用]
-     */
-    private Boolean status;
-
-    /**
-     * 说明
-     */
-    private String explain;
-
-    /**
-     * varchar ( 255 ) null comment 备注
-     */
-    private String comment;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "permission_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    private Permission permission;
 
 }

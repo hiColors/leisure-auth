@@ -1,6 +1,6 @@
 package com.github.hicolors.leisure.member.application.repository;
 
-import com.github.hicolors.leisure.member.model.persistence.Organization;
+import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @date 2018/10/2
  */
 @Repository
-public interface OrganizationRepository extends ColorsRepository<Organization, Long> {
+public interface PlatformOrganizationRepository extends ColorsRepository<PlatformOrganization, Long> {
 }
