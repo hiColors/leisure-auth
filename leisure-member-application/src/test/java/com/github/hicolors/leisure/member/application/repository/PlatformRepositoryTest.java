@@ -1,6 +1,6 @@
 package com.github.hicolors.leisure.member.application.repository;
 
-import com.github.hicolors.leisure.member.model.consts.EnumCompanyStatus;
+import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
 import com.github.hicolors.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-@ActiveProfiles("dev")
 public class PlatformRepositoryTest {
 
     @Autowired
@@ -25,7 +24,7 @@ public class PlatformRepositoryTest {
     public void test01() {
         Platform platform = new Platform();
         platform.setName(" 北方民族大学");
-        platform.setStatus(EnumCompanyStatus.ENABLE);
+        platform.setStatus(EnumPlatformStatus.ENABLE);
         platform.setComment(" Nun ");
         platformRepository.save(platform);
         log.info("{}", JsonUtils.serialize(platform));

@@ -49,7 +49,7 @@ public class Role extends BaseJpaModel {
     /**
      * 说明
      */
-    private String explain;
+    private String description;
 
     /**
      * varchar ( 255 ) null comment 备注
@@ -59,4 +59,5 @@ public class Role extends BaseJpaModel {
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
     @JsonIgnoreProperties("role")
     private List<RolePermission> rolePermissions;
+
 }

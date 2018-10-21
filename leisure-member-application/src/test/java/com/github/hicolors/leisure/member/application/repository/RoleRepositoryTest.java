@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.member.application.repository;
 
+import com.github.hicolors.leisure.member.model.persistence.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,17 @@ public class RoleRepositoryTest {
     private RolePermissionRepository permissionRepository;
 
     @Test
+    public void create() {
+        Role role = new Role();
+        role.setName("xxx");
+        role.setStatus(true);
+        role.setComment("");
+        role.setDescription("");
+        repository.save(role);
+        log.info("{}", repository.findByName("xxx"));
+    }
+
+    @Test
     public void test01() {
         log.info("[{}]", repository.count());
 
@@ -28,5 +40,9 @@ public class RoleRepositoryTest {
         });
 
         log.info("{}", permissionRepository.findById(1L));
+    }
+
+    @Test
+    public void findByName() {
     }
 }

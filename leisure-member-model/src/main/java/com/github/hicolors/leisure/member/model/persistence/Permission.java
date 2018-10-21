@@ -58,7 +58,7 @@ public class Permission extends BaseJpaModel {
     /**
      * 说明
      */
-    private String explain;
+    private String description;
 
     /**
      * varchar ( 255 ) null comment 备注

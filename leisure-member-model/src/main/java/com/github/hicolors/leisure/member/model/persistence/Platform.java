@@ -1,9 +1,9 @@
 package com.github.hicolors.leisure.member.model.persistence;
 
-import com.github.hicolors.leisure.member.model.consts.EnumCompanyStatus;
-import com.github.hicolors.leisure.member.model.persistence.converter.CompanyStatusConverter;
+import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
+import com.github.hicolors.leisure.member.model.persistence.converter.PlatformStatusConverter;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
@@ -47,8 +47,8 @@ public class Platform extends BaseJpaModel {
     /**
      * 状态[0:禁用;1:审核中;2:启用]
      */
-    @Convert(converter = CompanyStatusConverter.class)
-    private EnumCompanyStatus status;
+    @Convert(converter = PlatformStatusConverter.class)
+    private EnumPlatformStatus status;
 
     /**
      * varchar ( 255 ) null comment 备注

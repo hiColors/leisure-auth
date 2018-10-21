@@ -25,6 +25,5 @@ spring:
       hibernate.ejb.interceptor: com.github.hicolors.leisure.common.jpa.customiz.interceptor.BizInterceptor
     open-in-view: true
 
-
 warning:
   dingtalk: https://oapi.dingtalk.com/robot/send?access_token=0bae3cc00e4b1a4a950ce5dedc2bc456b54b9aaa0811d0c43b2a1dac57ef0cec

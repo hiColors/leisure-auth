@@ -6,14 +6,14 @@ package com.github.hicolors.leisure.member.model.consts;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/11
  */
-public enum EnumCompanyStatus {
+public enum EnumPlatformStatus {
 
     /**
      * 状态[0:禁用;1:审核中;2:启用]
      */
 
     DISABLE(0, "禁用"),
-    review(1, "审核中"),
+    REVIEW(1, "审核中"),
     ENABLE(2, "启用"),
     ;
 
@@ -22,7 +22,7 @@ public enum EnumCompanyStatus {
     private final String desc;
 
 
-    EnumCompanyStatus(int value, String desc) {
+    EnumPlatformStatus(int value, String desc) {
         this.value = value;
         this.desc = desc;
     }

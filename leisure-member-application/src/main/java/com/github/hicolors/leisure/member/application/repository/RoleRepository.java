@@ -1,7 +1,8 @@
 package com.github.hicolors.leisure.member.application.repository;
 
-import com.github.hicolors.leisure.member.model.persistence.Role;
 import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsRepository;
+import com.github.hicolors.leisure.member.model.persistence.Role;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,4 +12,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018/10/2
  */
 @Repository
-public interface RoleRepository extends ColorsRepository<Role, Long> {}
+public interface RoleRepository extends ColorsRepository<Role, Long> {
+
+    Role findByName(String name);
+}
