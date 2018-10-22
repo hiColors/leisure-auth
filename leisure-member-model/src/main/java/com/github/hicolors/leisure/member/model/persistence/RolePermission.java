@@ -36,6 +36,7 @@ public class RolePermission extends BaseJpaModel {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("role_permissions")
     private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})

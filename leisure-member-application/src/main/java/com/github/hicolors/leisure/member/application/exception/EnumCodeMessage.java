@@ -1,5 +1,11 @@
 package com.github.hicolors.leisure.member.application.exception;
 
+/**
+ * EnumCodeMessage
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/22
+ */
 public enum EnumCodeMessage {
 
     /**
@@ -20,8 +26,9 @@ public enum EnumCodeMessage {
 
 
     PERMISSION_NAME_EXIST(100001002L, "权限名称已存在"),
-
     PERMISSION_STRATEGY_EXIST(100001003L, "权限策略已存在"),
+    PERMISSION_STRATEGY_NON_EXIST(100001003L, "权限不存在"),
+
     ;
 
     private final Long code;

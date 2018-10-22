@@ -1,10 +1,12 @@
 package com.github.hicolors.leisure.member.application.rest;
 
+import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.api.RoleApi;
 import com.github.hicolors.leisure.member.application.service.RoleService;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
 import com.github.hicolors.leisure.member.model.persistence.Role;
+import com.github.hicolors.leisure.member.model.persistence.RolePermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,8 +16,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * RoleRest
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/22
+ */
 @RestController
 public class RoleRest implements RoleApi {
 
@@ -52,7 +62,21 @@ public class RoleRest implements RoleApi {
         service.delete(get(id));
     }
 
+    @Override
+    public RolePermission createRolePermission(@PathVariable("roleId")Long roleId,@PathVariable("permissionId")Long permissionId) {
+        return service.createRolePermission(get(roleId),permissionId);
+    }
+
+    @Override
+    public void deleteRolePermission(@PathVariable("roleId")Long roleId,@PathVariable("permissionId")Long permissionId) {
+        service.deleteRolePermission(get(roleId),permissionId);
+    }
+
     private Role get(Long id) {
-        return service.queryOne(id);
+        Role role = service.queryOne(id);
+        if (Objects.isNull(role)) {
+            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的角色不存在！", id));
+        }
+        return role;
     }
 }

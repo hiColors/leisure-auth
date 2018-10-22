@@ -21,9 +21,7 @@ import java.util.List;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/21
  */
-
-
-@Api(tags = "permission", description = "对权限的操作")
+@Api(tags = "permission", description = "对权限的相关操作")
 @RequestMapping("permission")
 public interface PermissionApi {
 

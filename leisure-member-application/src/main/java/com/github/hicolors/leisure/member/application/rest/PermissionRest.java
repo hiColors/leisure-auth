@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.member.application.rest;
 
+import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.api.PermissionApi;
 import com.github.hicolors.leisure.member.application.service.PermissionService;
@@ -14,8 +15,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * PermissionRest
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/22
+ */
 @RestController
 public class PermissionRest implements PermissionApi {
 
@@ -53,6 +62,10 @@ public class PermissionRest implements PermissionApi {
     }
 
     private Permission get(Long id) {
-        return service.queryOne(id);
+        Permission permission = service.queryOne(id);
+        if (Objects.isNull(permission)) {
+            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的权限不存在！", id));
+        }
+        return permission;
     }
 }

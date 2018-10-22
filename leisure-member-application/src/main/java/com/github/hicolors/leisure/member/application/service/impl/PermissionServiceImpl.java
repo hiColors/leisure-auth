@@ -25,6 +25,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * PermissionServiceImpl
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/22
+ */
 @Service
 @Slf4j
 public class PermissionServiceImpl implements PermissionService {
@@ -67,11 +73,7 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public Permission queryOne(Long id) {
         Optional<Permission> permission = repository.findById(id);
-        if(permission.isPresent()){
-            return permission.get();
-        }else{
-            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的权限不存在！",id));
-        }
+        return permission.orElse(null);
     }
 
     @Override

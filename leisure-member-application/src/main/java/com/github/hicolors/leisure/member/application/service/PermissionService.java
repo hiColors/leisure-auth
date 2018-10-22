@@ -8,17 +8,23 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+/**
+ * PermissionService
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/22
+ */
 public interface PermissionService {
 
     Permission create(PermissionModel model);
 
-    Permission modify(Permission Permission, PermissionModel model);
+    Permission modify(Permission permission, PermissionModel model);
 
-    Permission modifyAll(Permission Permission, PermissionModel model);
+    Permission modifyAll(Permission permission, PermissionModel model);
 
     Permission queryOne(Long id);
 
     Page<Permission> queryPage(Pageable pageable, List<ColorsExpression> filters);
 
-    void delete(Permission Permission);
+    void delete(Permission permission);
 }

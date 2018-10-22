@@ -16,11 +16,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RolePermissionRepository extends ColorsRepository<RolePermission, Long> {
 
+    RolePermission findByRoleIdAndPermissionId(Long roleId,Long permissionId);
+
     @Query(value = "delete from RolePermission where role.id = :role_id")
     @Modifying
     Integer deleteByRoleId(@Param("role_id") Long roleId);
 
-    @Query(value = "delete from RolePermission where role.id = :permission_id")
+    @Query(value = "delete from RolePermission where permission.id = :permission_id")
     @Modifying
     Integer deleteByPermissionId(@Param("permission_id") Long permissionId);
+
+    @Query(value = "delete from RolePermission where role.id = :role_id and permission.id = :permission_id")
+    @Modifying
+    Integer deleteByRoleIdAndPermissionId(@Param("role_id") Long roleId, @Param("permission_id") Long permissionId);
 }

@@ -5,6 +5,12 @@ import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
 
 import javax.persistence.AttributeConverter;
 
+/**
+ * PlatformStatusConverter
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/22
+ */
 public class PlatformStatusConverter implements AttributeConverter<EnumPlatformStatus, Integer> {
 
     @Override
