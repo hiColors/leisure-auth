@@ -12,4 +12,9 @@ import org.springframework.stereotype.Repository;
  * @date 2018/10/2
  */
 @Repository
-public interface PermissionRepository extends ColorsRepository<Permission, Long> {}
+public interface PermissionRepository extends ColorsRepository<Permission, Long> {
+
+    Permission findByName(String name);
+
+    Permission findByAntPathAndStrategy(String antPath,Boolean strategy);
+}

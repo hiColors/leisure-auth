@@ -1,10 +1,10 @@
 package com.github.hicolors.leisure.member.application.rest;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
-import com.github.hicolors.leisure.member.api.RoleApi;
-import com.github.hicolors.leisure.member.application.service.RoleService;
-import com.github.hicolors.leisure.member.model.model.role.RoleModel;
-import com.github.hicolors.leisure.member.model.persistence.Role;
+import com.github.hicolors.leisure.member.api.PermissionApi;
+import com.github.hicolors.leisure.member.application.service.PermissionService;
+import com.github.hicolors.leisure.member.model.model.role.PermissionModel;
+import com.github.hicolors.leisure.member.model.persistence.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,33 +17,33 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class RoleRest implements RoleApi {
+public class PermissionRest implements PermissionApi {
 
     @Autowired
-    private RoleService service;
+    private PermissionService service;
 
     @Override
-    public Role create(@RequestBody @Validated RoleModel model) {
+    public Permission create(@RequestBody @Validated PermissionModel model) {
         return service.create(model);
     }
 
     @Override
-    public Role modifyAll(@PathVariable("id") Long id, @RequestBody RoleModel model) {
+    public Permission modifyAll(@PathVariable("id") Long id, @RequestBody PermissionModel model) {
         return service.modifyAll(get(id), model);
     }
 
     @Override
-    public Role modify(@PathVariable("id") Long id, @RequestBody RoleModel model) {
+    public Permission modify(@PathVariable("id") Long id, @RequestBody PermissionModel model) {
         return service.modify(get(id), model);
     }
 
     @Override
-    public Role query(@PathVariable("id") Long id) {
+    public Permission query(@PathVariable("id") Long id) {
         return get(id);
     }
 
     @Override
-    public Page<Role> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
+    public Page<Permission> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
         return service.queryPage(pageable, filters);
     }
 
@@ -52,7 +52,7 @@ public class RoleRest implements RoleApi {
         service.delete(get(id));
     }
 
-    private Role get(Long id) {
+    private Permission get(Long id) {
         return service.queryOne(id);
     }
 }

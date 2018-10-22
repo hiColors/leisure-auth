@@ -20,4 +20,6 @@ public interface RoleService {
     Role queryOne(Long id);
 
     Page<Role> queryPage(Pageable pageable, List<ColorsExpression> filters);
+
+    void delete(Role role);
 }

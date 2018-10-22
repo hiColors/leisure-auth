@@ -4,15 +4,16 @@ import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
+import com.github.hicolors.leisure.member.application.repository.RolePermissionRepository;
 import com.github.hicolors.leisure.member.application.repository.RoleRepository;
 import com.github.hicolors.leisure.member.application.service.RoleService;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
 import com.github.hicolors.leisure.member.model.persistence.Role;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +24,14 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleRepository repository;
+
+    @Autowired
+    private RolePermissionRepository rolePermissionRepository;
 
 
     @Override
@@ -67,6 +72,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Page<Role> queryPage(Pageable pageable, List<ColorsExpression> filters) {
         return repository.findPage(pageable,filters);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Role role) {
+        int count = rolePermissionRepository.deleteByRoleId(role.getId());
+        log.info("删除了 [{}] 条角色[{}] 对应的角色权限关联信息",count,role.getName());
+        repository.delete(role);
     }
 
     private void checkName(String name,Long id){
