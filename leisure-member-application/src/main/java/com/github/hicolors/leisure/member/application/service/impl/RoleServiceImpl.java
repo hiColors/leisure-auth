@@ -2,6 +2,7 @@ package com.github.hicolors.leisure.member.application.service.impl;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
+import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.RolePermissionRepository;
@@ -47,7 +48,7 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(rollbackFor = Exception.class)
     public Role modify(Role role, RoleModel model) {
         checkName(model.getName(),role.getId());
-        BeanUtils.copyProperties(model,role);
+        ColorsBeanUtils.copyPropertiesNonNull(model,role);
         return repository.saveAndFlush(role);
     }
 

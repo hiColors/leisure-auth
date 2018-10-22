@@ -2,6 +2,7 @@ package com.github.hicolors.leisure.member.application.service.impl;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
+import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.PermissionRepository;
@@ -50,7 +51,7 @@ public class PermissionServiceImpl implements PermissionService {
     public Permission modify(Permission permission, PermissionModel model) {
         checkName(model.getName(),permission.getId());
         checkStrategy(model.getAntPath(),model.getStrategy(),permission.getId());
-        BeanUtils.copyProperties(model,permission);
+        ColorsBeanUtils.copyPropertiesNonNull(model,permission);
         return repository.saveAndFlush(permission);
     }
 
