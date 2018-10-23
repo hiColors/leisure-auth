@@ -59,6 +59,10 @@ public class PlatformMember extends BaseJpaModel {
     @JoinColumn(name = "member_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     private Member member;
 
+    /**
+     * 员工 姓名
+     */
+    private String name;
 
     /**
      * 工号

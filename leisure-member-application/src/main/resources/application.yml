@@ -26,4 +26,4 @@ spring:
     open-in-view: true
 
 warning:
-  dingtalk: https://oapi.dingtalk.com/robot/send?access_token=0bae3cc00e4b1a4a950ce5dedc2bc456b54b9aaa0811d0c43b2a1dac57ef0cec
+  dingtalk: https://oapi.dingtalk.com/robot/send?access_token=099551a192492077a922a5d1aa7e1a060b0fd18890f021c0e4298013d4dcb5c2
