@@ -34,7 +34,7 @@ public class RoleModel {
     @Length(min = 1, max = 255, message = "说明长度不合法")
     private String description;
 
-    @ApiModelProperty(notes = "备注", required = true)
+    @ApiModelProperty(notes = "备注")
     @Length(min = 1, max = 255, message = "备注长度不合法")
     private String comment;
 }

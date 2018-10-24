@@ -17,26 +17,26 @@ import java.util.Date;
 @Data
 public class MemberModel {
 
-    @ApiModelProperty(notes = "昵称", required = true)
+    @ApiModelProperty(notes = "昵称")
     @Length(max = 64, message = "昵称长度不合法")
     private String nickName;
 
-    @ApiModelProperty(notes = "姓名", required = true)
+    @ApiModelProperty(notes = "姓名")
     @Length(max = 20, message = "姓名长度不合法")
     private String name;
 
-    @ApiModelProperty(notes = "出生日期", required = true)
+    @ApiModelProperty(notes = "出生日期")
     private Date birthday;
 
-    @ApiModelProperty(notes = "描述", required = true)
+    @ApiModelProperty(notes = "描述")
     @Length(max = 255, message = "描述长度不合法")
     private String description;
 
-    @ApiModelProperty(notes = "主页", required = true)
+    @ApiModelProperty(notes = "主页")
     @Length(min = 10, max = 50, message = "主页长度不合法")
     private String website;
 
-    @ApiModelProperty(notes = "头像", required = true)
+    @ApiModelProperty(notes = "头像")
     @Length(max = 255, message = "头像长度不合法")
     private String avatar;
 }
