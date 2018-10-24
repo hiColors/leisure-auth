@@ -77,4 +77,8 @@ public class Member extends BaseJpaModel {
      */
     @Column(name = "credentials_expired_date")
     private Date credentialsExpiredDate;
+
+    @OneToOne
+    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    private MemberDetail memberDetail;
 }

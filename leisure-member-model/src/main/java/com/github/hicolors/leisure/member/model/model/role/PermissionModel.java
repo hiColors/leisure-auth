@@ -22,12 +22,12 @@ public class PermissionModel {
 
     @ApiModelProperty(notes = "名称", required = true)
     @NotBlank(message = "名称不允许为空")
-    @Length(min = 1, max = 100, message = "输入的名称不合法")
+    @Length(min = 1, max = 100, message = "名称长度不合法")
     private String name;
 
     @ApiModelProperty(notes = "路径匹配规则", required = true)
     @NotBlank(message = "路径匹配规则不允许为空")
-    @Length(min = 1, max = 100, message = "输入的路径匹配规则不合法")
+    @Length(min = 1, max = 100, message = "路径匹配规则长度不合法")
     private String antPath;
 
     @ApiModelProperty(notes = "策略[0: 拒绝;1:允许]", required = true)
@@ -40,11 +40,11 @@ public class PermissionModel {
 
     @ApiModelProperty(notes = "说明", required = true)
     @NotBlank(message = "说明不允许为空")
-    @Length(min = 1, max = 255, message = "输入的说明不合法")
+    @Length(min = 1, max = 255, message = "说明长度不合法")
     private String description;
 
     @ApiModelProperty(notes = "备注", required = true)
-    @Length(min = 1, max = 255, message = "输入的备注不合法")
+    @Length(min = 1, max = 255, message = "备注长度不合法")
     private String comment;
 
 }
