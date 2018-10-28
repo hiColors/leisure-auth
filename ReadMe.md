@@ -1,6 +1,6 @@
 # 项目简介
 
-[ 数据库结构 ](https://github.com/life-lab/leisure-member/blob/master/leisure-member-application/src/main/resources/sql/ddl.sql)
+[ 数据库结构 ](./leisure-member-application/src/main/resources/sql/ddl.sql)
 
 
 
