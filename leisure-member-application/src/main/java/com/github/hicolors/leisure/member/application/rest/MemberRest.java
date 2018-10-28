@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * MemberRest
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/28
+ */
 @RestController
 public class MemberRest implements MemberApi {
 

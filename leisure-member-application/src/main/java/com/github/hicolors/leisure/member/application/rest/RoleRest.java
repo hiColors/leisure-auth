@@ -5,6 +5,7 @@ import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.api.RoleApi;
 import com.github.hicolors.leisure.member.application.service.RoleService;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
+import com.github.hicolors.leisure.member.model.model.role.RolePatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Role;
 import com.github.hicolors.leisure.member.model.persistence.RolePermission;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,12 @@ public class RoleRest implements RoleApi {
     }
 
     @Override
-    public Role modifyAll(@PathVariable("id") Long id, @RequestBody RoleModel model) {
+    public Role modifyAll(@PathVariable("id") Long id, @RequestBody RolePatchModel model) {
         return service.modifyAll(get(id), model);
     }
 
     @Override
-    public Role modify(@PathVariable("id") Long id, @RequestBody RoleModel model) {
+    public Role modify(@PathVariable("id") Long id, @RequestBody RolePatchModel model) {
         return service.modify(get(id), model);
     }
 

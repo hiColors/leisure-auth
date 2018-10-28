@@ -16,17 +16,18 @@ import javax.validation.constraints.NotNull;
  * @date 2018/10/21
  */
 
-@ApiModel("角色创建 model")
+@ApiModel("角色补丁 model")
 @Data
-public class RoleModel {
+public class RolePatchModel {
 
     @ApiModelProperty(notes = "名称", required = true)
-    @NotBlank(message = "名称不允许为空")
     @Length(min = 1, max = 100, message = "名称长度不合法")
     private String name;
 
+    @ApiModelProperty(notes = "状态[0:未启用;1:启用]", required = true)
+    private Boolean status;
+
     @ApiModelProperty(notes = "说明", required = true)
-    @NotBlank(message = "说明不允许为空")
     @Length(min = 1, max = 255, message = "说明长度不合法")
     private String description;
 
