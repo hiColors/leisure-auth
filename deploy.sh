@@ -1,0 +1,1 @@
+mvn package && docker login -u liweichao -p liweichao2017 && docker build -t liweichao/leisure-member:0.0.6 . && docker push liweichao/leisure-member:0.0.6
