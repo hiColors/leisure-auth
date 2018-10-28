@@ -9,6 +9,7 @@ import com.github.hicolors.leisure.member.application.repository.RoleRepository;
 import com.github.hicolors.leisure.member.application.service.PermissionService;
 import com.github.hicolors.leisure.member.application.service.RoleService;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
+import com.github.hicolors.leisure.member.model.model.role.RolePatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Permission;
 import com.github.hicolors.leisure.member.model.persistence.Role;
 import com.github.hicolors.leisure.member.model.persistence.RolePermission;
@@ -50,13 +51,15 @@ public class RoleServiceImpl implements RoleService {
     public Role create(RoleModel model) {
         checkName(model.getName(), null);
         Role role = new Role();
+        //刚添加的角色状态 默认开启
+        role.setStatus(true);
         BeanUtils.copyProperties(model, role);
         return repository.save(role);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Role modify(Role role, RoleModel model) {
+    public Role modify(Role role, RolePatchModel model) {
         checkName(model.getName(), role.getId());
         ColorsBeanUtils.copyPropertiesNonNull(model, role);
         return repository.saveAndFlush(role);
@@ -64,7 +67,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Role modifyAll(Role role, RoleModel model) {
+    public Role modifyAll(Role role, RolePatchModel model) {
         checkName(model.getName(), role.getId());
         BeanUtils.copyProperties(model, role);
         return repository.saveAndFlush(role);
@@ -96,8 +99,8 @@ public class RoleServiceImpl implements RoleService {
         if (Objects.isNull(permission)) {
             throw new MemberServerException(EnumCodeMessage.PERMISSION_STRATEGY_NON_EXIST);
         }
-        RolePermission rolePermission = rolePermissionRepository.findByRoleIdAndPermissionId(role.getId(),permission.getId());
-        if(Objects.nonNull(rolePermission)){
+        RolePermission rolePermission = rolePermissionRepository.findByRoleIdAndPermissionId(role.getId(), permission.getId());
+        if (Objects.nonNull(rolePermission)) {
             return rolePermission;
         }
         rolePermission = new RolePermission();

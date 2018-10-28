@@ -2,6 +2,7 @@ package com.github.hicolors.leisure.member.api;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
+import com.github.hicolors.leisure.member.model.model.role.RolePatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Role;
 import com.github.hicolors.leisure.member.model.persistence.RolePermission;
 import io.swagger.annotations.Api;
@@ -31,11 +32,11 @@ public interface RoleApi {
 
     @ApiOperation("角色 - 全部修改（不传字段修改为 null）")
     @PutMapping("/{id}")
-    Role modifyAll(@PathVariable("id") Long id, @RequestBody RoleModel model);
+    Role modifyAll(@PathVariable("id") Long id, @RequestBody RolePatchModel model);
 
     @ApiOperation("角色 - 部分修改")
     @PatchMapping("/{id}")
-    Role modify(@PathVariable("id") Long id, @RequestBody RoleModel model);
+    Role modify(@PathVariable("id") Long id, @RequestBody RolePatchModel model);
 
     @ApiOperation("角色 - 查询")
     @GetMapping("/{id}")
