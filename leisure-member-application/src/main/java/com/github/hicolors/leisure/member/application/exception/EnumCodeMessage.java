@@ -28,7 +28,7 @@ public enum EnumCodeMessage {
     PERMISSION_STRATEGY_EXIST(100001003L, "权限策略已存在"),
     PERMISSION_STRATEGY_NON_EXIST(100001003L, "权限不存在"),
 
-    PLATFORM_NAME_EXIST(100001003L,"平台信息名称已存在"),
+    PLATFORM_NAME_EXIST(100002001L,"平台信息名称已存在"),
 
     ;
 
