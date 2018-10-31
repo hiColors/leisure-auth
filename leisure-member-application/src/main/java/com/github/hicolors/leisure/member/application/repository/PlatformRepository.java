@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PlatformRepository extends ColorsRepository<Platform, Long> {
+
+    Platform findByName(String name);
+
 }
