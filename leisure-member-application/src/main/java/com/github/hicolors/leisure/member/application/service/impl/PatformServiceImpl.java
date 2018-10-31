@@ -29,14 +29,13 @@ public class PatformServiceImpl implements PlatformService {
     @Autowired
     private PlatformRepository repository;
 
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Platform create(PlatformModel model) {
         checkName(model.getName(),null);
         Platform platform = new Platform();
         //刚添加的平台信息状态 默认开启
-        platform.setStatus(EnumPlatformStatus.REVIEW);
+        platform.setStatus(EnumPlatformStatus.ENABLE);
         BeanUtils.copyProperties(model, platform);
         return repository.save(platform);
     }
@@ -58,7 +57,6 @@ public class PatformServiceImpl implements PlatformService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public Platform queryOne(Long id) {
         Optional<Platform> platform = repository.findById(id);
         return platform.orElse(null);
