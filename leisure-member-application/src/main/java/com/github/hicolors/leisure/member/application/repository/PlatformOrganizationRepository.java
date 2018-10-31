@@ -2,6 +2,8 @@ package com.github.hicolors.leisure.member.application.repository;
 
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,4 +14,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PlatformOrganizationRepository extends ColorsRepository<PlatformOrganization, Long> {
+
+    @Query("from PlatformOrganization where platform.id = :platformId and level = 0")
+    PlatformOrganization findByPlatformAndLevelEquals0(@Param("platformId") Long platformId);
 }

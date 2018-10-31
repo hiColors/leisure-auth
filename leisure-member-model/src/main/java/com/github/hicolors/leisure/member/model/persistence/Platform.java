@@ -1,14 +1,16 @@
 package com.github.hicolors.leisure.member.model.persistence;
 
-import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
+import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
 import com.github.hicolors.leisure.member.model.persistence.converter.PlatformStatusConverter;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
+import java.util.List;
 
 /**
  * 集团信息
@@ -54,4 +56,9 @@ public class Platform extends BaseJpaModel {
      * varchar ( 255 ) null comment 备注
      */
     private String comment;
+
+    @OneToMany(mappedBy = "platform", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+    @JsonIgnoreProperties({"platform"})
+    @Where(clause = "level = 0")
+    private List<PlatformOrganization> organizations;
 }

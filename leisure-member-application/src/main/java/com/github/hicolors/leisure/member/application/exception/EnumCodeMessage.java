@@ -30,6 +30,9 @@ public enum EnumCodeMessage {
 
     PLATFORM_NAME_EXIST(100002001L,"平台信息名称已存在"),
 
+
+    MEMBER_NON_EXIST(100003001L,"人员不存在"),
+
     ;
 
     private final Long code;

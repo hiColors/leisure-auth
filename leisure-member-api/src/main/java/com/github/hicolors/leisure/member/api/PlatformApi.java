@@ -3,6 +3,7 @@ package com.github.hicolors.leisure.member.api;
 import com.github.hicolors.leisure.member.model.model.platform.PlatformModel;
 import com.github.hicolors.leisure.member.model.model.platform.PlatformPatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
+import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,10 @@ public interface PlatformApi {
     @PostMapping
     Platform create(@RequestBody PlatformModel model);
 
+    @ApiOperation("平台 - 查询")
+    @GetMapping("/{id}")
+    Platform query(@PathVariable("id") Long id);
+
     @ApiOperation("平台 - 全部修改（不传字段修改为 null）")
     @PutMapping("/{id}")
     Platform modifyAll(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model);
@@ -29,5 +34,9 @@ public interface PlatformApi {
     @ApiOperation("平台 - 部分修改")
     @PatchMapping("/{id}")
     Platform modify(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model);
+
+    @ApiOperation("平台 - 查询组织架构")
+    @GetMapping("/{id}/organization")
+    PlatformOrganization queryOrganization(@PathVariable("id") Long id);
 
 }
