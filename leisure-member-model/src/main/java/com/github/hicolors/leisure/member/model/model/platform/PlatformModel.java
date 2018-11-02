@@ -29,7 +29,7 @@ public class PlatformModel {
     @Length(min = 1, max = 255, message = "备注长度不合法")
     private String comment;
 
-    @ApiModelProperty(notes = "创建人 id")
-    @NotNull(message = "创建人不允许为空")
-    private Long memberId;
+    @ApiModelProperty(notes = "创始人 id")
+    @NotNull(message = "创始人不允许为空")
+    private Long originator;
 }

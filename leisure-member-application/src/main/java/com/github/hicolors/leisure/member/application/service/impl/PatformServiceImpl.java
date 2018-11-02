@@ -49,7 +49,7 @@ public class PatformServiceImpl implements PlatformService {
     @Transactional(rollbackFor = Exception.class)
     public Platform create(PlatformModel model) {
         //创建平台需要同步创建平台下的 0 级组织架构
-        Optional<Member> optional = memberRepository.findById(model.getMemberId());
+        Optional<Member> optional = memberRepository.findById(model.getOriginator());
         Member member = optional.orElse(null);
         if (Objects.isNull(member)) {
             throw new MemberServerException(EnumCodeMessage.MEMBER_NON_EXIST);

@@ -70,7 +70,7 @@ public class PlatformListener extends AbstractListener implements PersistEventLi
             organizationRepository.save(po);
 
             //创建第一个员工
-            Member creator = mmemberRepository.getOne(platform.getCreator());
+            Member creator = mmemberRepository.getOne(platform.getOriginator());
             PlatformMember pm = new PlatformMember();
             pm.setPlatform(platform);
             pm.setPlatformOrganization(po);

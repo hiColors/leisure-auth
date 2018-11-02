@@ -47,6 +47,11 @@ public class Platform extends BaseJpaModel {
     private String name;
 
     /**
+     * 创始人
+     */
+    private Long originator;
+
+    /**
      * 状态[0:禁用;1:审核中;2:启用]
      */
     @Convert(converter = PlatformStatusConverter.class)
