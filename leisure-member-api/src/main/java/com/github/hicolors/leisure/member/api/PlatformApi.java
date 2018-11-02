@@ -54,6 +54,9 @@ public interface PlatformApi {
     @PatchMapping("/{id}/job")
     PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model);
 
+    @ApiOperation("平台 - 创建员工")
+    @PostMapping("/{pid}/organization/{oid}")
+    PlatformOrganization createMember(@PathVariable("pid") Long pid,@PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model);
 
 
 }

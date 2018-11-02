@@ -26,7 +26,7 @@ public interface MemberApi {
 
     @ApiOperation("人员 - 修改信息")
     @PatchMapping("/{id}")
-    Member modify(@PathVariable("id") Long id, @RequestBody MemberModel model);
+    Member modify(@PathVariable("id") Long id, @RequestBody MemberPatchModel model);
 
     @ApiOperation("人员 - 修改绑定手机号信息")
     @PatchMapping("/{id}/mobile")

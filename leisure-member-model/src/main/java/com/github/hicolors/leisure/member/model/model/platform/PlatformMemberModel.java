@@ -1,4 +1,5 @@
-package com.github.hicolors.leisure.member.model.model.member;
+package com.github.hicolors.leisure.member.model.model.platform;
+
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,18 +7,21 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
- * MemberModel
+ * PlatformModel
  *
  * @author weichao.li (liweichao0102@gmail.com)
- * @date 2018/10/24
+ * @date 2018/10/21
  */
-@ApiModel("人员信息 model")
+
+@ApiModel("平台员工创建 model")
 @Data
-public class MemberModel {
+public class PlatformMemberModel {
 
     @ApiModelProperty(notes = "手机号", required = true)
     @NotBlank(message = "手机号不允许为空")
@@ -28,10 +32,6 @@ public class MemberModel {
     @NotBlank(message = "邮箱不允许为空")
     @Email(message = "新邮箱不合法")
     private String email;
-
-    @ApiModelProperty(notes = "昵称")
-    @Length(max = 64, message = "昵称长度不合法")
-    private String nickName;
 
     @ApiModelProperty(notes = "姓名")
     @Length(max = 20, message = "姓名长度不合法")
@@ -51,4 +51,9 @@ public class MemberModel {
     @ApiModelProperty(notes = "头像")
     @Length(max = 255, message = "头像长度不合法")
     private String avatar;
+
+    @ApiModelProperty(notes = "岗位 id ", required = true)
+    @NotNull(message = "岗位 id 不允许为空")
+    @Range(min = 1, message = "岗位 id 不合法")
+    private Long jobId;
 }

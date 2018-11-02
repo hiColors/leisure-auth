@@ -71,6 +71,11 @@ public class PlatformRest implements PlatformApi {
         return null;
     }
 
+    @Override
+    public PlatformOrganization createMember(@PathVariable("pid") Long pid,@PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model) {
+        return null;
+    }
+
     private Platform get(Long id) {
         Platform role = service.queryOne(id);
         if (Objects.isNull(role)) {
