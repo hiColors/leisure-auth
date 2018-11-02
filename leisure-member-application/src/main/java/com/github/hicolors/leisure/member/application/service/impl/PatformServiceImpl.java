@@ -60,23 +60,6 @@ public class PatformServiceImpl implements PlatformService {
         platform.setStatus(EnumPlatformStatus.ENABLE);
         BeanUtils.copyProperties(model, platform);
         repository.save(platform);
-
-        PlatformOrganization po = new PlatformOrganization();
-        po.setPlatform(platform);
-        po.setLevel(0);
-        po.setParent(new PlatformOrganization(0L));
-        po.setName(platform.getName());
-        po.setComment("自动创建的全员群");
-        organizationRepository.save(po);
-
-        PlatformMember pm = new PlatformMember();
-        pm.setPlatform(platform);
-        pm.setPlatformOrganization(po);
-        pm.setMember(member);
-        pm.setEntryDate(new Date());
-        pm.setName(member.getMemberDetail().getName());
-        platformMemberRepository.save(pm);
-
         return platform;
     }
 

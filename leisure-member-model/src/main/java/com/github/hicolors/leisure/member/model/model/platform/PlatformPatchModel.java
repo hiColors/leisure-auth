@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @date 2018/10/21
  */
 
-@ApiModel("平台创建 model")
+@ApiModel("平台补丁 model")
 @Data
 public class PlatformPatchModel {
 
