@@ -3,6 +3,7 @@ package com.github.hicolors.leisure.member.application.service;
 import com.github.hicolors.leisure.member.model.model.platform.PlatformModel;
 import com.github.hicolors.leisure.member.model.model.platform.PlatformPatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
+import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 
 /**
  * PlatformService
@@ -19,4 +20,6 @@ public interface PlatformService {
     Platform modifyAll(Platform platform, PlatformPatchModel model);
 
     Platform queryOne(Long id);
+
+    PlatformOrganization queryOnePlatformOrganization(Long id);
 }

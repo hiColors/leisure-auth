@@ -1,11 +1,8 @@
 package com.github.hicolors.leisure.member.model.persistence;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;

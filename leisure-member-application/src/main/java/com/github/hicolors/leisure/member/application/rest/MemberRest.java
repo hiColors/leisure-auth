@@ -29,11 +29,6 @@ public class MemberRest implements MemberApi {
     private MemberRepository memberRepository;
 
     @Override
-    public void signUpValidationCode(@RequestParam("mobile") String mobile, @RequestParam(value = "sign", required = false) String sign) {
-
-    }
-
-    @Override
     public Member signUp(@RequestBody MemberSignUpModel model) {
         return null;
     }
@@ -49,18 +44,8 @@ public class MemberRest implements MemberApi {
     }
 
     @Override
-    public void modifyMobileValidationCode(@PathVariable("id") Long id, @RequestParam(value = "sign", required = false) String sign) {
-
-    }
-
-    @Override
     public Member modifyMobile(@PathVariable("id") Long id, @RequestBody MemberMobileModel model) {
         return null;
-    }
-
-    @Override
-    public void modifyEmailValidationCode(@PathVariable("id") Long id, @RequestParam(value = "sign", required = false) String sign) {
-
     }
 
     @Override

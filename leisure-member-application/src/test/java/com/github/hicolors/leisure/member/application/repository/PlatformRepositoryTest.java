@@ -1,14 +1,13 @@
 package com.github.hicolors.leisure.member.application.repository;
 
+import com.github.hicolors.leisure.common.utils.JsonUtils;
 import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
-import com.github.hicolors.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)

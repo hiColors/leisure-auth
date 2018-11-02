@@ -6,6 +6,7 @@ import com.github.hicolors.leisure.member.application.service.PlatformService;
 import com.github.hicolors.leisure.member.model.model.platform.PlatformModel;
 import com.github.hicolors.leisure.member.model.model.platform.PlatformPatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
+import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,13 +33,23 @@ public class PlatformRest implements PlatformApi {
     }
 
     @Override
+    public Platform query(@PathVariable("id") Long id) {
+        return get(id);
+    }
+
+    @Override
     public Platform modifyAll(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model) {
-        return service.modifyAll(get(id),model);
+        return service.modifyAll(get(id), model);
     }
 
     @Override
     public Platform modify(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model) {
-        return service.modify(get(id),model);
+        return service.modify(get(id), model);
+    }
+
+    @Override
+    public PlatformOrganization queryOrganization(@PathVariable("id") Long id) {
+        return service.queryOnePlatformOrganization(id);
     }
 
     private Platform get(Long id) {

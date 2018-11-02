@@ -10,16 +10,15 @@ public enum EnumCodeMessage {
 
     /**
      * member 服务全局错误异常码
-     *
+     * <p>
      * 异常码示例：  100 000 001
-     *
-     *
+     * <p>
+     * <p>
      * 100 -> 前三位，代表服务（应用），不可更改。
-     *
+     * <p>
      * 000 -> 中间三位，代表模块，公用，根据业务拆分模块。
-     *
+     * <p>
      * 001 -> 后三位，代表具体异常码。
-     *
      */
 
     ROLE_NAME_EXIST(100001001L, "角色名称已存在"),
@@ -28,7 +27,10 @@ public enum EnumCodeMessage {
     PERMISSION_STRATEGY_EXIST(100001003L, "权限策略已存在"),
     PERMISSION_STRATEGY_NON_EXIST(100001003L, "权限不存在"),
 
-    PLATFORM_NAME_EXIST(100002001L,"平台信息名称已存在"),
+    PLATFORM_NAME_EXIST(100002001L, "平台信息名称已存在"),
+
+
+    MEMBER_NON_EXIST(100003001L, "人员不存在"),
 
     ;
 

@@ -3,7 +3,6 @@ package com.github.hicolors.leisure.member.api;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.model.model.role.PermissionModel;
 import com.github.hicolors.leisure.member.model.persistence.Permission;
-import com.github.hicolors.leisure.member.model.persistence.Permission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;

@@ -7,7 +7,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
-import java.util.Date;
 
 /**
  * 组织关系
@@ -50,5 +49,5 @@ public class PlatformMemberRole extends BaseJpaModel {
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    private  Role role;
+    private Role role;
 }

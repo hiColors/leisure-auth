@@ -10,6 +10,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
+import java.util.List;
 
 /**
  * 组织关系
@@ -44,6 +45,7 @@ public class PlatformOrganization extends BaseJpaModel {
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("organizations")
     private Platform platform;
 
     /**
@@ -69,4 +71,13 @@ public class PlatformOrganization extends BaseJpaModel {
      * varchar ( 255 ) null comment 备注
      */
     private String comment;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+    @JsonIgnoreProperties({"parent", "platform"})
+    private List<PlatformOrganization> children;
+
+
+    public PlatformOrganization(Long id) {
+        this.id = id;
+    }
 }
