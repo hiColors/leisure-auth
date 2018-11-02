@@ -22,8 +22,4 @@ public class MemberEmailModel {
     @Length(min = 3, max = 50, message = "新邮箱长度不合法")
     private String email;
 
-    @ApiModelProperty(notes = "验证码", required = true)
-    @NotBlank(message = "验证码不允许为空")
-    @Length(min = 4, max = 8, message = "验证码长度不合法")
-    private String validationCode;
 }

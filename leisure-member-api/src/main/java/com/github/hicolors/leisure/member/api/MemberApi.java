@@ -56,5 +56,4 @@ public interface MemberApi {
     @GetMapping("/username/password")
     Member queryByUsernameAndPassword(@RequestParam("username") String username, @RequestParam("password") String password);
 
-
 }

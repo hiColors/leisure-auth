@@ -16,6 +16,7 @@ spring:
     hibernate:
       ddl-auto: validate
       use-new-id-generator-mappings: true
+    open-in-view: true
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
       hibernate.cache.use_second_level_cache: false
@@ -23,7 +24,6 @@ spring:
       hibernate.current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
       hibernate.enable_lazy_load_no_trans: true
       hibernate.ejb.interceptor: com.github.hicolors.leisure.common.jpa.customiz.interceptor.BizInterceptor
-    open-in-view: true
 
 warning:
   dingtalk: https://oapi.dingtalk.com/robot/send?access_token=099551a192492077a922a5d1aa7e1a060b0fd18890f021c0e4298013d4dcb5c2

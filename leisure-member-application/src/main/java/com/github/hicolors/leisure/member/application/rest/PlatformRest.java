@@ -3,8 +3,7 @@ package com.github.hicolors.leisure.member.application.rest;
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.member.api.PlatformApi;
 import com.github.hicolors.leisure.member.application.service.PlatformService;
-import com.github.hicolors.leisure.member.model.model.platform.PlatformModel;
-import com.github.hicolors.leisure.member.model.model.platform.PlatformPatchModel;
+import com.github.hicolors.leisure.member.model.model.platform.*;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +49,26 @@ public class PlatformRest implements PlatformApi {
     @Override
     public PlatformOrganization queryOrganization(@PathVariable("id") Long id) {
         return service.queryOnePlatformOrganization(id);
+    }
+
+    @Override
+    public PlatformOrganization createOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformOrganization createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model) {
+        return null;
     }
 
     private Platform get(Long id) {

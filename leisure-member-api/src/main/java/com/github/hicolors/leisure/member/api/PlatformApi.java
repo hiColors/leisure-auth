@@ -1,7 +1,6 @@
 package com.github.hicolors.leisure.member.api;
 
-import com.github.hicolors.leisure.member.model.model.platform.PlatformModel;
-import com.github.hicolors.leisure.member.model.model.platform.PlatformPatchModel;
+import com.github.hicolors.leisure.member.model.model.platform.*;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import io.swagger.annotations.Api;
@@ -38,5 +37,23 @@ public interface PlatformApi {
     @ApiOperation("平台 - 查询组织架构")
     @GetMapping("/{id}/organization")
     PlatformOrganization queryOrganization(@PathVariable("id") Long id);
+
+    @ApiOperation("平台 - 创建组织架构")
+    @PostMapping("/{id}/organization")
+    PlatformOrganization createOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model);
+
+    @ApiOperation("平台 - 修改组织架构信息")
+    @PatchMapping("/{id}/organization")
+    PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model);
+
+    @ApiOperation("平台 - 创建岗位")
+    @PostMapping("/{id}/job")
+    PlatformOrganization createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model);
+
+    @ApiOperation("平台 - 修改岗位信息")
+    @PatchMapping("/{id}/job")
+    PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model);
+
+
 
 }

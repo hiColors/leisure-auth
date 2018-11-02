@@ -22,8 +22,4 @@ public class MemberMobileModel {
     @Length(min = 10, max = 20, message = "新手机号长度不合法")
     private String mobile;
 
-    @ApiModelProperty(notes = "手机验证码", required = true)
-    @NotBlank(message = "手机验证码不允许为空")
-    @Length(min = 4, max = 8, message = "手机验证码长度不合法")
-    private String validationCode;
 }
