@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RolePermissionRepository extends ColorsRepository<RolePermission, Long> {
 
-    RolePermission findByRoleIdAndPermissionId(Long roleId,Long permissionId);
+    RolePermission findByRoleIdAndPermissionId(Long roleId, Long permissionId);
 
     @Query(value = "delete from RolePermission where role.id = :role_id")
     @Modifying

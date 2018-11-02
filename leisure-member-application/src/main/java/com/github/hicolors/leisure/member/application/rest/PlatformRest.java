@@ -39,12 +39,12 @@ public class PlatformRest implements PlatformApi {
 
     @Override
     public Platform modifyAll(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model) {
-        return service.modifyAll(get(id),model);
+        return service.modifyAll(get(id), model);
     }
 
     @Override
     public Platform modify(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model) {
-        return service.modify(get(id),model);
+        return service.modify(get(id), model);
     }
 
     @Override

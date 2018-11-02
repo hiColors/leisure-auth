@@ -64,13 +64,13 @@ public class RoleRest implements RoleApi {
     }
 
     @Override
-    public RolePermission createRolePermission(@PathVariable("roleId")Long roleId,@PathVariable("permissionId")Long permissionId) {
-        return service.createRolePermission(get(roleId),permissionId);
+    public RolePermission createRolePermission(@PathVariable("roleId") Long roleId, @PathVariable("permissionId") Long permissionId) {
+        return service.createRolePermission(get(roleId), permissionId);
     }
 
     @Override
-    public void deleteRolePermission(@PathVariable("roleId")Long roleId,@PathVariable("permissionId")Long permissionId) {
-        service.deleteRolePermission(get(roleId),permissionId);
+    public void deleteRolePermission(@PathVariable("roleId") Long roleId, @PathVariable("permissionId") Long permissionId) {
+        service.deleteRolePermission(get(roleId), permissionId);
     }
 
     private Role get(Long id) {

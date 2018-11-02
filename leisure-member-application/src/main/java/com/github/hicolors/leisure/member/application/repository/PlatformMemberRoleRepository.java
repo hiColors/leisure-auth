@@ -1,7 +1,6 @@
 package com.github.hicolors.leisure.member.application.repository;
 
 import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsRepository;
-import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
 import com.github.hicolors.leisure.member.model.persistence.PlatformMemberRole;
 import org.springframework.stereotype.Repository;
 

@@ -53,11 +53,11 @@ public interface RoleApi {
 
     @ApiOperation("角色权限关联关系 - 创建")
     @PostMapping("/{roleId}/permission/{permissionId}")
-    RolePermission createRolePermission(@PathVariable("roleId")Long roleId,@PathVariable("permissionId")Long permissionId);
+    RolePermission createRolePermission(@PathVariable("roleId") Long roleId, @PathVariable("permissionId") Long permissionId);
 
     @ApiOperation("角色权限关联关系 - 删除")
     @DeleteMapping("/{roleId}/permission/{permissionId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteRolePermission(@PathVariable("roleId")Long roleId,@PathVariable("permissionId")Long permissionId);
+    void deleteRolePermission(@PathVariable("roleId") Long roleId, @PathVariable("permissionId") Long permissionId);
 
 }

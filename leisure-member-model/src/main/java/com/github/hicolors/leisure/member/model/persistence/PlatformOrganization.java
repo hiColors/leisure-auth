@@ -73,9 +73,8 @@ public class PlatformOrganization extends BaseJpaModel {
     private String comment;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-    @JsonIgnoreProperties({"parent","platform"})
+    @JsonIgnoreProperties({"parent", "platform"})
     private List<PlatformOrganization> children;
-
 
 
     public PlatformOrganization(Long id) {

@@ -35,7 +35,7 @@ public class RoleRepositoryTest {
     public void test01() {
         log.info("[{}]", repository.count());
 
-      repository.findById(11L).ifPresent((e)->{
+        repository.findById(11L).ifPresent((e) -> {
             System.out.println(e.getName());
         });
 
