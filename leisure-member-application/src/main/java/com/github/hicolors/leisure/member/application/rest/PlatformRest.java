@@ -5,6 +5,8 @@ import com.github.hicolors.leisure.member.api.PlatformApi;
 import com.github.hicolors.leisure.member.application.service.PlatformService;
 import com.github.hicolors.leisure.member.model.model.platform.*;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
+import com.github.hicolors.leisure.member.model.persistence.PlatformJob;
+import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,39 +50,47 @@ public class PlatformRest implements PlatformApi {
 
     @Override
     public PlatformOrganization queryOrganization(@PathVariable("id") Long id) {
-        return service.queryOnePlatformOrganization(id);
+        return service.queryOnePlatformOrganizationByPlatform(get(id));
     }
 
     @Override
-    public PlatformOrganization createOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model) {
-        return null;
+    public PlatformOrganization createOrganization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model) {
+        return service.createOrganization(get(id),model);
     }
 
     @Override
-    public PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model) {
-        return null;
+    public PlatformOrganization modifyOrganization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model) {
+        return service.modifyOrganization(get(id),model);
     }
 
     @Override
-    public PlatformOrganization createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model) {
-        return null;
+    public PlatformJob createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model) {
+        return service.createJob(get(id),model);
     }
 
     @Override
-    public PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model) {
-        return null;
+    public PlatformJob modifyJob(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model) {
+        return service.modifyJob(get(id),model);
     }
 
     @Override
-    public PlatformOrganization createMember(@PathVariable("pid") Long pid,@PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model) {
-        return null;
+    public PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model) {
+        return service.createMember(get(pid),getOrganization(oid),model);
     }
 
     private Platform get(Long id) {
-        Platform role = service.queryOne(id);
-        if (Objects.isNull(role)) {
+        Platform platform = service.queryOneById(id);
+        if (Objects.isNull(platform)) {
             throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台信息不存在！", id));
         }
-        return role;
+        return platform;
+    }
+
+    private PlatformOrganization getOrganization(Long id) {
+        PlatformOrganization organization = service.queryOnePlatformOrganizationById(id);
+        if (Objects.isNull(organization)) {
+            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台组织架构信息不存在！", id));
+        }
+        return organization;
     }
 }

@@ -3,18 +3,11 @@ package com.github.hicolors.leisure.member.application.service.impl;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
-import com.github.hicolors.leisure.member.application.repository.MemberRepository;
-import com.github.hicolors.leisure.member.application.repository.PlatformMemberRepository;
-import com.github.hicolors.leisure.member.application.repository.PlatformOrganizationRepository;
-import com.github.hicolors.leisure.member.application.repository.PlatformRepository;
+import com.github.hicolors.leisure.member.application.repository.*;
 import com.github.hicolors.leisure.member.application.service.PlatformService;
 import com.github.hicolors.leisure.member.model.consts.EnumPlatformStatus;
-import com.github.hicolors.leisure.member.model.model.platform.PlatformModel;
-import com.github.hicolors.leisure.member.model.model.platform.PlatformPatchModel;
-import com.github.hicolors.leisure.member.model.persistence.Member;
-import com.github.hicolors.leisure.member.model.persistence.Platform;
-import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
-import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
+import com.github.hicolors.leisure.member.model.model.platform.*;
+import com.github.hicolors.leisure.member.model.persistence.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanUtils;
@@ -22,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -43,12 +35,15 @@ public class PatformServiceImpl implements PlatformService {
     private PlatformOrganizationRepository organizationRepository;
 
     @Autowired
-    private PlatformMemberRepository platformMemberRepository;
+    private PlatformMemberRepository pmemberRepository;
+
+    @Autowired
+    private PlatformJobRepository jobRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Platform create(PlatformModel model) {
-        //创建平台需要同步创建平台下的 0 级组织架构
+        //创建平台需要同步创建平台下的 0 级组织架构 (具体逻辑在 监听器中)
         Optional<Member> optional = memberRepository.findById(model.getOriginator());
         Member member = optional.orElse(null);
         if (Objects.isNull(member)) {
@@ -80,14 +75,44 @@ public class PatformServiceImpl implements PlatformService {
     }
 
     @Override
-    public Platform queryOne(Long id) {
+    public Platform queryOneById(Long id) {
         Optional<Platform> platform = repository.findById(id);
         return platform.orElse(null);
     }
 
     @Override
-    public PlatformOrganization queryOnePlatformOrganization(Long id) {
-        return organizationRepository.findByPlatformAndLevelEquals0(id);
+    public PlatformOrganization queryOnePlatformOrganizationByPlatform(Platform platform) {
+        return organizationRepository.findByPlatformAndLevelEquals0(platform.getId());
+    }
+
+    @Override
+    public PlatformOrganization createOrganization(Platform platform, PlatformOrganizationModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformOrganization modifyOrganization(Platform platform, PlatformOrganizationPatchModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformOrganization queryOnePlatformOrganizationById(Long id) {
+        return organizationRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public PlatformJob createJob(Platform platform, PlatformJobModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformJob modifyJob(Platform platform, PlatformJobPatchModel model) {
+        return null;
+    }
+
+    @Override
+    public PlatformMember createMember(Platform platform, PlatformOrganization organization, PlatformMemberModel model) {
+        return null;
     }
 
     private void checkName(String name, Long id) {

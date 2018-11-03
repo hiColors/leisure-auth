@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * MemberApi
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/11/3
+ */
 @Api(tags = "member", description = "对人员的相关操作")
 @RequestMapping("member")
 public interface MemberApi {
@@ -42,18 +48,18 @@ public interface MemberApi {
 
     @ApiOperation("人员 - 获取人员信息通过 id")
     @GetMapping("/{id}")
-    Member queryById(@PathVariable("id") Long id);
+    Member queryOneById(@PathVariable("id") Long id);
 
     @ApiOperation("人员 - 获取人员信息通过 mobile")
     @GetMapping("/mobile")
-    Member queryByMobile(@RequestParam("mobile") String mobile);
+    Member queryOneByMobile(@RequestParam("mobile") String mobile);
 
     @ApiOperation("人员 - 获取人员信息通过 email")
     @GetMapping("/email")
-    Member queryByEmail(@RequestParam("email") String email);
+    Member queryOneByEmail(@RequestParam("email") String email);
 
-    @ApiOperation("人员 - 获取人员信息通过 username 和 password")
-    @GetMapping("/username/password")
-    Member queryByUsernameAndPassword(@RequestParam("username") String username, @RequestParam("password") String password);
+    @ApiOperation("人员 - 获取人员信息通过 uniquekey（包含用户名，手机号，邮箱） 和 password")
+    @GetMapping("/unique-key/password")
+    Member queryOneByUniqueKeyAndPassword(@RequestParam("uniquekey") String uniquekey, @RequestParam("password") String password);
 
 }

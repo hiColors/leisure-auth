@@ -17,6 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * PlatformListener
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/11/3
+ */
 @Component
 @Slf4j
 public class PlatformListener extends AbstractListener implements PersistEventListener, MergeEventListener {

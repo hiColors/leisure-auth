@@ -1,5 +1,11 @@
 package com.github.hicolors.leisure.member.model.consts;
 
+/**
+ * EnumSign
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/11/3
+ */
 public enum EnumSign {
 
     /**

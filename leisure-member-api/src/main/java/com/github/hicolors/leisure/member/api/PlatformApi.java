@@ -2,6 +2,8 @@ package com.github.hicolors.leisure.member.api;
 
 import com.github.hicolors.leisure.member.model.model.platform.*;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
+import com.github.hicolors.leisure.member.model.persistence.PlatformJob;
+import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,23 +42,23 @@ public interface PlatformApi {
 
     @ApiOperation("平台 - 创建组织架构")
     @PostMapping("/{id}/organization")
-    PlatformOrganization createOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model);
+    PlatformOrganization createOrganization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model);
 
     @ApiOperation("平台 - 修改组织架构信息")
     @PatchMapping("/{id}/organization")
-    PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model);
+    PlatformOrganization modifyOrganization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model);
 
     @ApiOperation("平台 - 创建岗位")
     @PostMapping("/{id}/job")
-    PlatformOrganization createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model);
+    PlatformJob createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model);
 
     @ApiOperation("平台 - 修改岗位信息")
     @PatchMapping("/{id}/job")
-    PlatformOrganization modifyOrgnization(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model);
+    PlatformJob modifyJob(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model);
 
     @ApiOperation("平台 - 创建员工")
     @PostMapping("/{pid}/organization/{oid}")
-    PlatformOrganization createMember(@PathVariable("pid") Long pid,@PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model);
+    PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model);
 
 
 }
