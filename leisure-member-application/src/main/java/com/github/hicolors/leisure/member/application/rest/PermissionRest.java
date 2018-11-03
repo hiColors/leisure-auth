@@ -19,6 +19,8 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Objects;
 
+;
+
 /**
  * PermissionRest
  *
@@ -32,17 +34,17 @@ public class PermissionRest implements PermissionApi {
     private PermissionService service;
 
     @Override
-    public Permission create(@RequestBody @Validated PermissionModel model) {
+    public Permission create(@Validated @RequestBody PermissionModel model) {
         return service.create(model);
     }
 
     @Override
-    public Permission modifyAll(@PathVariable("id") Long id, @RequestBody PermissionModel model) {
+    public Permission modifyAll(@PathVariable("id") Long id, @Validated @RequestBody PermissionModel model) {
         return service.modifyAll(get(id), model);
     }
 
     @Override
-    public Permission modify(@PathVariable("id") Long id, @RequestBody PermissionModel model) {
+    public Permission modify(@PathVariable("id") Long id, @Validated @RequestBody PermissionModel model) {
         return service.modify(get(id), model);
     }
 

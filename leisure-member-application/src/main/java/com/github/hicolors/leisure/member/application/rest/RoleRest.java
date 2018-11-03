@@ -34,17 +34,17 @@ public class RoleRest implements RoleApi {
     private RoleService service;
 
     @Override
-    public Role create(@RequestBody @Validated RoleModel model) {
+    public Role create(@Validated @RequestBody RoleModel model) {
         return service.create(model);
     }
 
     @Override
-    public Role modifyAll(@PathVariable("id") Long id, @RequestBody RolePatchModel model) {
+    public Role modifyAll(@PathVariable("id") Long id, @Validated @RequestBody RolePatchModel model) {
         return service.modifyAll(get(id), model);
     }
 
     @Override
-    public Role modify(@PathVariable("id") Long id, @RequestBody RolePatchModel model) {
+    public Role modify(@PathVariable("id") Long id, @Validated @RequestBody RolePatchModel model) {
         return service.modify(get(id), model);
     }
 

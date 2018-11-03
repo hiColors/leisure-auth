@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,27 +33,27 @@ public class MemberRest implements MemberApi {
     private MemberService service;
 
     @Override
-    public Member signUp(@RequestBody MemberSignUpModel model) {
+    public Member signUp(@Validated @RequestBody MemberSignUpModel model) {
         return service.signUp(model);
     }
 
     @Override
-    public Member modifyUsername(@PathVariable("id") Long id, @RequestBody MemberUsernameModel model) {
+    public Member modifyUsername(@PathVariable("id") Long id, @Validated @RequestBody MemberUsernameModel model) {
         return service.modifyUsername(get(id), model);
     }
 
     @Override
-    public Member modify(@PathVariable("id") Long id, @RequestBody MemberPatchModel model) {
+    public Member modify(@PathVariable("id") Long id, @Validated @RequestBody MemberPatchModel model) {
         return service.modify(get(id), model);
     }
 
     @Override
-    public Member modifyMobile(@PathVariable("id") Long id, @RequestBody MemberMobileModel model) {
+    public Member modifyMobile(@PathVariable("id") Long id, @Validated @RequestBody MemberMobileModel model) {
         return service.modifyMobile(get(id), model);
     }
 
     @Override
-    public Member modifyEmail(@PathVariable("id") Long id, @RequestBody MemberEmailModel model) {
+    public Member modifyEmail(@PathVariable("id") Long id, @Validated @RequestBody MemberEmailModel model) {
         return service.modifyEmail(get(id), model);
     }
 

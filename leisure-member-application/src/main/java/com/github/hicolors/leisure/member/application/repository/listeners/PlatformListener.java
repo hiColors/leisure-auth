@@ -51,7 +51,7 @@ public class PlatformListener extends AbstractListener implements PersistEventLi
         if (event.getResult() instanceof Platform) {
             Platform platform = (Platform) event.getResult();
             int result = organizationRepository.updateNameByPlatformAndLevelEquals0(platform.getName(), platform.getId());
-            log.info("修改平台信息同步变更该平台 0 级组织架构信息 [id:{} ; name:{} ;result:{}]",platform.getId(),platform.getName(),result);
+            log.info("修改平台信息同步变更该平台 0 级组织架构信息 [id:{} ; name:{} ;result:{}]", platform.getId(), platform.getName(), result);
         }
 
     }

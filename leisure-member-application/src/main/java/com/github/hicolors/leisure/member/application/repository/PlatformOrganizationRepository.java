@@ -2,7 +2,6 @@ package com.github.hicolors.leisure.member.application.repository;
 
 import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsRepository;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
-import io.swagger.models.auth.In;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -15,6 +15,6 @@ public interface MemberRepository extends ColorsRepository<Member, Long> {
 
     Member findByUsername(String username);
 
-    Member findByUsernameAndPassword(String username,String password);
+    Member findByUsernameAndPassword(String username, String password);
 
 }
