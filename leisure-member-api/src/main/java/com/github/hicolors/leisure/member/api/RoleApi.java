@@ -30,10 +30,6 @@ public interface RoleApi {
     @PostMapping
     Role create(@RequestBody @Validated RoleModel model);
 
-    @ApiOperation("角色 - 全部修改（不传字段修改为 null）")
-    @PutMapping("/{id}")
-    Role modifyAll(@PathVariable("id") Long id, @RequestBody RolePatchModel model);
-
     @ApiOperation("角色 - 部分修改")
     @PatchMapping("/{id}")
     Role modify(@PathVariable("id") Long id, @RequestBody RolePatchModel model);

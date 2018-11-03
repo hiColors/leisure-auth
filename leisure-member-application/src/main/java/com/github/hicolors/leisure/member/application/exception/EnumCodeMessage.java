@@ -29,8 +29,12 @@ public enum EnumCodeMessage {
 
     /********* 平台相关 *********/
     PLATFORM_NAME_EXIST(100002001L, "平台信息名称已存在"),
-
-
+    PLATFORM_PARENT_ORGANIZATION_NON_EXIST(100002002L, "父级的平台组织架构信息不存在"),
+    PLATFORM_ORGANIZATION_NAME_EXIST(100002003L, "该平台下已存在同名组织架构"),
+    PLATFORM_ORGANIZATION_MISMATCHES(100002004L, "该平台和该组织架构信息不匹配"),
+    PLATFORM_JOB_TITLE_EXIST(100002005L, "该平台下已存在该职称的岗位"),
+    PLATFORM_JOB_MISMATCHES(100002006L, "该平台和该岗位信息不匹配"),
+    PLATFORM_JOB_NON_EXIST(100002002L, "平台岗位信息不存在"),
     /********* 人员相关 *********/
     MEMBER_NON_EXIST(100003001L, "人员不存在"),
     MEMBER_MOBILE_EXIST(100003002L, "该手机号已存在"),

@@ -28,10 +28,6 @@ public interface PlatformApi {
     @GetMapping("/{id}")
     Platform query(@PathVariable("id") Long id);
 
-    @ApiOperation("平台 - 全部修改（不传字段修改为 null）")
-    @PutMapping("/{id}")
-    Platform modifyAll(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model);
-
     @ApiOperation("平台 - 部分修改")
     @PatchMapping("/{id}")
     Platform modify(@PathVariable("id") Long id, @RequestBody PlatformPatchModel model);
@@ -45,19 +41,19 @@ public interface PlatformApi {
     PlatformOrganization createOrganization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationModel model);
 
     @ApiOperation("平台 - 修改组织架构信息")
-    @PatchMapping("/{id}/organization")
-    PlatformOrganization modifyOrganization(@PathVariable("id") Long id, @RequestBody PlatformOrganizationPatchModel model);
+    @PatchMapping("/{pid}/organization/{oid}")
+    PlatformOrganization modifyOrganization(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @RequestBody PlatformOrganizationPatchModel model);
 
     @ApiOperation("平台 - 创建岗位")
     @PostMapping("/{id}/job")
     PlatformJob createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model);
 
     @ApiOperation("平台 - 修改岗位信息")
-    @PatchMapping("/{id}/job")
-    PlatformJob modifyJob(@PathVariable("id") Long id, @RequestBody PlatformJobPatchModel model);
+    @PatchMapping("/{pid}/job/{jid}")
+    PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @RequestBody PlatformJobPatchModel model);
 
     @ApiOperation("平台 - 创建员工")
-    @PostMapping("/{pid}/organization/{oid}")
+    @PostMapping("/{pid}/organization/{oid}/member")
     PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model);
 
 

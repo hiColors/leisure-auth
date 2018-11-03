@@ -45,7 +45,7 @@ public class PlatformMemberModel {
     private String description;
 
     @ApiModelProperty(notes = "主页")
-    @Length(min = 10, max = 50, message = "主页长度不合法")
+    @Length(min = 3, max = 50, message = "主页长度不合法")
     private String website;
 
     @ApiModelProperty(notes = "头像")
@@ -56,4 +56,5 @@ public class PlatformMemberModel {
     @NotNull(message = "岗位 id 不允许为空")
     @Range(min = 1, message = "岗位 id 不合法")
     private Long jobId;
+
 }

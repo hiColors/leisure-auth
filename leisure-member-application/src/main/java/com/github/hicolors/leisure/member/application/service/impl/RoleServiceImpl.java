@@ -66,14 +66,6 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Role modifyAll(Role role, RolePatchModel model) {
-        checkName(model.getName(), role.getId());
-        BeanUtils.copyProperties(model, role);
-        return repository.saveAndFlush(role);
-    }
-
-    @Override
     public Role queryOne(Long id) {
         Optional<Role> role = repository.findById(id);
         return role.orElse(null);

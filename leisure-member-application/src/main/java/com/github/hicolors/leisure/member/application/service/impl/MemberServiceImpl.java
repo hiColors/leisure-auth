@@ -11,7 +11,6 @@ import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import com.github.hicolors.leisure.member.model.persistence.MemberDetail;
 import com.github.hicolors.leisure.member.model.persistence.value.MemberDefaultValue;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,10 +37,13 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberDetailRepository memberDetailRepository;
 
+    @Autowired
+    private CheckService checkService;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Member signUp(MemberSignUpModel model) {
-        checkMobile(model.getMobile(), null);
+        checkService.checkMobile(model.getMobile(), null);
 
         Member member = new Member();
         MemberDetail memberDetail = new MemberDetail();
@@ -70,7 +72,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member modifyUsername(Member member, MemberUsernameModel model) {
-        checkUsername(model.getUsername(), member.getId());
+        checkService.checkUsername(model.getUsername(), member.getId());
         member.setUsername(model.getUsername());
         return memberRepository.saveAndFlush(member);
     }
@@ -86,7 +88,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member modifyMobile(Member member, MemberMobileModel model) {
-        checkMobile(model.getMobile(), member.getId());
+        checkService.checkMobile(model.getMobile(), member.getId());
         member.getMemberDetail().setMobile(model.getMobile());
         memberDetailRepository.save(member.getMemberDetail());
         return member;
@@ -94,7 +96,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member modifyEmail(Member member, MemberEmailModel model) {
-        checkEmail(model.getEmail(), member.getId());
+        checkService.checkEmail(model.getEmail(), member.getId());
         member.getMemberDetail().setEmail(model.getEmail());
         memberDetailRepository.save(member.getMemberDetail());
         return member;
@@ -139,36 +141,6 @@ public class MemberServiceImpl implements MemberService {
             throw new MemberServerException(EnumCodeMessage.MEMBER_USERNAME_PASSWORD_NON_EXIST);
         }
         return member;
-    }
-
-    private void checkUsername(String username, Long id) {
-        Member member = memberRepository.findByUsername(username);
-        if (Objects.nonNull(member)) {
-            id = ObjectUtils.defaultIfNull(id, 0L);
-            if (!id.equals(member.getId())) {
-                throw new MemberServerException(EnumCodeMessage.MEMBER_USERNAME_EXIST);
-            }
-        }
-    }
-
-    private void checkMobile(String mobile, Long id) {
-        MemberDetail md = memberDetailRepository.findByMobile(mobile);
-        if (Objects.nonNull(md)) {
-            id = ObjectUtils.defaultIfNull(id, 0L);
-            if (!id.equals(md.getId())) {
-                throw new MemberServerException(EnumCodeMessage.MEMBER_MOBILE_EXIST);
-            }
-        }
-    }
-
-    private void checkEmail(String email, Long id) {
-        MemberDetail md = memberDetailRepository.findByEmail(email);
-        if (Objects.nonNull(md)) {
-            id = ObjectUtils.defaultIfNull(id, 0L);
-            if (!id.equals(md.getId())) {
-                throw new MemberServerException(EnumCodeMessage.MEMBER_EMAIL_EXIST);
-            }
-        }
     }
 
 }

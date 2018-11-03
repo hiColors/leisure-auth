@@ -59,15 +59,6 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Permission modifyAll(Permission permission, PermissionModel model) {
-        checkName(model.getName(), permission.getId());
-        checkStrategy(model.getAntPath(), model.getStrategy(), permission.getId());
-        BeanUtils.copyProperties(model, permission);
-        return repository.saveAndFlush(permission);
-    }
-
-    @Override
     public Permission queryOne(Long id) {
         Optional<Permission> permission = repository.findById(id);
         return permission.orElse(null);

@@ -18,21 +18,21 @@ public interface PlatformService {
 
     Platform modify(Platform platform, PlatformPatchModel model);
 
-    Platform modifyAll(Platform platform, PlatformPatchModel model);
-
     Platform queryOneById(Long id);
+
+    PlatformJob queryOnePlatformJobById(Long id);
 
     PlatformOrganization queryOnePlatformOrganizationByPlatform(Platform platform);
 
     PlatformOrganization createOrganization(Platform platform, PlatformOrganizationModel model);
 
-    PlatformOrganization modifyOrganization(Platform platform, PlatformOrganizationPatchModel model);
+    PlatformOrganization modifyOrganization(Platform platform, PlatformOrganization organization, PlatformOrganizationPatchModel model);
 
     PlatformOrganization queryOnePlatformOrganizationById(Long id);
 
     PlatformJob createJob(Platform platform, PlatformJobModel model);
 
-    PlatformJob modifyJob(Platform platform, PlatformJobPatchModel model);
+    PlatformJob modifyJob(Platform platform, PlatformJob job, PlatformJobPatchModel model);
 
     PlatformMember createMember(Platform platform, PlatformOrganization organization, PlatformMemberModel model);
 }

@@ -20,8 +20,6 @@ public interface PermissionService {
 
     Permission modify(Permission permission, PermissionModel model);
 
-    Permission modifyAll(Permission permission, PermissionModel model);
-
     Permission queryOne(Long id);
 
     Page<Permission> queryPage(Pageable pageable, List<ColorsExpression> filters);

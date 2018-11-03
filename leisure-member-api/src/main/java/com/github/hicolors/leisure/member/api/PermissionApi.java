@@ -28,10 +28,6 @@ public interface PermissionApi {
     @PostMapping
     Permission create(@RequestBody @Validated PermissionModel model);
 
-    @ApiOperation("权限 - 全部修改（不传字段修改为 null）")
-    @PutMapping("/{id}")
-    Permission modifyAll(@PathVariable("id") Long id, @RequestBody PermissionModel model);
-
     @ApiOperation("权限 - 部分修改")
     @PatchMapping("/{id}")
     Permission modify(@PathVariable("id") Long id, @RequestBody PermissionModel model);

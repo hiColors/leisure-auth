@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PlatformJobRepository extends ColorsRepository<PlatformJob, Long> {
+
+    PlatformJob findByPlatformIdAndTitle(Long id, String title);
 }

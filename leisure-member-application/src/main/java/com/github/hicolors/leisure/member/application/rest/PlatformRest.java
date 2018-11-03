@@ -40,11 +40,6 @@ public class PlatformRest implements PlatformApi {
     }
 
     @Override
-    public Platform modifyAll(@PathVariable("id") Long id, @Validated @RequestBody PlatformPatchModel model) {
-        return service.modifyAll(get(id), model);
-    }
-
-    @Override
     public Platform modify(@PathVariable("id") Long id, @Validated @RequestBody PlatformPatchModel model) {
         return service.modify(get(id), model);
     }
@@ -60,8 +55,8 @@ public class PlatformRest implements PlatformApi {
     }
 
     @Override
-    public PlatformOrganization modifyOrganization(@PathVariable("id") Long id, @Validated @RequestBody PlatformOrganizationPatchModel model) {
-        return service.modifyOrganization(get(id), model);
+    public PlatformOrganization modifyOrganization(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @Validated @RequestBody PlatformOrganizationPatchModel model) {
+        return service.modifyOrganization(get(pid), getOrganization(oid), model);
     }
 
     @Override
@@ -70,8 +65,8 @@ public class PlatformRest implements PlatformApi {
     }
 
     @Override
-    public PlatformJob modifyJob(@PathVariable("id") Long id, @Validated @RequestBody PlatformJobPatchModel model) {
-        return service.modifyJob(get(id), model);
+    public PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @Validated @RequestBody PlatformJobPatchModel model) {
+        return service.modifyJob(get(pid), getJob(jid), model);
     }
 
     @Override
@@ -93,5 +88,13 @@ public class PlatformRest implements PlatformApi {
             throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台组织架构信息不存在！", id));
         }
         return organization;
+    }
+
+    private PlatformJob getJob(Long id) {
+        PlatformJob job = service.queryOnePlatformJobById(id);
+        if (Objects.isNull(job)) {
+            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平岗位信息不存在！", id));
+        }
+        return job;
     }
 }

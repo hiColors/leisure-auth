@@ -22,4 +22,6 @@ public interface PlatformOrganizationRepository extends ColorsRepository<Platfor
     @Query("update PlatformOrganization set name = :name where platform.id = :platformId and level = 0")
     @Modifying
     Integer updateNameByPlatformAndLevelEquals0(@Param("name") String name, @Param("platformId") Long platformId);
+
+    PlatformOrganization findByPlatformIdAndName(Long pid, String name);
 }

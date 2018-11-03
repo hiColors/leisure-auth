@@ -22,8 +22,6 @@ public interface RoleService {
 
     Role modify(Role role, RolePatchModel model);
 
-    Role modifyAll(Role role, RolePatchModel model);
-
     Role queryOne(Long id);
 
     Page<Role> queryPage(Pageable pageable, List<ColorsExpression> filters);

@@ -39,11 +39,6 @@ public class PermissionRest implements PermissionApi {
     }
 
     @Override
-    public Permission modifyAll(@PathVariable("id") Long id, @Validated @RequestBody PermissionModel model) {
-        return service.modifyAll(get(id), model);
-    }
-
-    @Override
     public Permission modify(@PathVariable("id") Long id, @Validated @RequestBody PermissionModel model) {
         return service.modify(get(id), model);
     }

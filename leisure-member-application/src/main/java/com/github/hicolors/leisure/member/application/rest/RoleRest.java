@@ -39,11 +39,6 @@ public class RoleRest implements RoleApi {
     }
 
     @Override
-    public Role modifyAll(@PathVariable("id") Long id, @Validated @RequestBody RolePatchModel model) {
-        return service.modifyAll(get(id), model);
-    }
-
-    @Override
     public Role modify(@PathVariable("id") Long id, @Validated @RequestBody RolePatchModel model) {
         return service.modify(get(id), model);
     }

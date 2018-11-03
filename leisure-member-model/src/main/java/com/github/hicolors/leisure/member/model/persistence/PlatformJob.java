@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.member.model.persistence;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import com.github.hicolors.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
@@ -41,6 +42,7 @@ public class PlatformJob extends BaseJpaModel {
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("organizations")
     private Platform platform;
 
     /**
