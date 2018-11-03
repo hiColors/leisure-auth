@@ -130,17 +130,15 @@
 
     <logger name="springfox.documentation" level="OFF"/>
 
+
     <springProfile name="dev">
-
-        <logger name="com.github.hicolors.leisure.common.framework.logger" level="info" additivity="true">
-            <appender-ref ref="asyncAccess"/>
-        </logger>
-
         <root>
             <level value="INFO"/>
             <appender-ref ref="stdout"/>
+            <appender-ref ref="asyncInfo"/>
+            <appender-ref ref="asyncWarn"/>
+            <appender-ref ref="asyncError"/>
         </root>
-
     </springProfile>
 
     <springProfile name="test,prod">
