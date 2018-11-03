@@ -12,4 +12,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MemberDetailRepository extends ColorsRepository<MemberDetail, Long> {
+
+    MemberDetail findByMobile(String mobile);
+
+    MemberDetail findByEmail(String mobile);
+
 }

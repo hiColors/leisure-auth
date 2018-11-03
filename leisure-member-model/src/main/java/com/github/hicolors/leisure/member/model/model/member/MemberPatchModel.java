@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 /**
@@ -17,9 +18,23 @@ import java.util.Date;
 @Data
 public class MemberPatchModel {
 
+
     @ApiModelProperty(notes = "昵称")
     @Length(max = 64, message = "昵称长度不合法")
     private String nickName;
+
+    @ApiModelProperty(notes = "启用状态[0:未启用;1:启用]")
+    private Boolean enabled;
+
+    @ApiModelProperty(notes = "锁定状态[0:未锁定;1:锁定]")
+    private Boolean lockStatus;
+
+    @ApiModelProperty(notes = "过期时间")
+    private Date expiredDate;
+
+    @Column(name = "credentials_expired_date")
+    @ApiModelProperty(notes = "凭证过期时间")
+    private Date credentialsExpiredDate;
 
     @ApiModelProperty(notes = "姓名")
     @Length(max = 20, message = "姓名长度不合法")

@@ -13,4 +13,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepository extends ColorsRepository<Member, Long> {
 
+    Member findByUsername(String username);
+
+    Member findByUsernameAndPassword(String username,String password);
+
 }
