@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.member.application.service.impl;
 
+import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
@@ -13,10 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -132,6 +136,11 @@ public class PatformServiceImpl implements PlatformService {
     }
 
     @Override
+    public PlatformMember queryOnePlatformMemberById(Long id) {
+        return pmemberRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public PlatformJob createJob(Platform platform, PlatformJobModel model) {
         checkJobTitle(platform.getId(), model.getTitle(), null);
         PlatformJob pj = new PlatformJob();
@@ -149,6 +158,13 @@ public class PatformServiceImpl implements PlatformService {
         ColorsBeanUtils.copyPropertiesNonNull(model, job);
         checkJobTitle(platform.getId(), model.getTitle(), job.getId());
         return jobRepository.saveAndFlush(job);
+    }
+
+    @Override
+    public Page<PlatformMember> queryPlatformMember(Platform platform, PlatformOrganization organization, Pageable pageable, List<ColorsExpression> filters) {
+        filters.add(new ColorsExpression("EQ_platform.id", new String[]{String.valueOf(platform.getId())}));
+        filters.add(new ColorsExpression("EQ_platformOrganization.id", new String[]{String.valueOf(organization.getId())}));
+        return pmemberRepository.findPage(pageable, filters);
     }
 
     @Override
@@ -202,6 +218,12 @@ public class PatformServiceImpl implements PlatformService {
         pm.setEntryDate(new Date());
         //返回结果
         return pmemberRepository.save(pm);
+    }
+
+    @Override
+    public PlatformMember modifyMember(Platform platform, PlatformOrganization organization, PlatformMember platformMember, PlatformMemberPatchModel model) {
+        //判断逻辑
+        return null;
     }
 
     private void checkName(String name, Long id) {

@@ -1,6 +1,7 @@
 package com.github.hicolors.leisure.member.application.rest;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
+import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.api.PlatformApi;
 import com.github.hicolors.leisure.member.application.service.PlatformService;
 import com.github.hicolors.leisure.member.model.model.platform.*;
@@ -9,12 +10,15 @@ import com.github.hicolors.leisure.member.model.persistence.PlatformJob;
 import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -70,8 +74,18 @@ public class PlatformRest implements PlatformApi {
     }
 
     @Override
+    public Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, Pageable pageable, List<ColorsExpression> filters) {
+        return service.queryPlatformMember(get(pid), getOrganization(oid), pageable, filters);
+    }
+
+    @Override
     public PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @Validated @RequestBody PlatformMemberModel model) {
         return service.createMember(get(pid), getOrganization(oid), model);
+    }
+
+    @Override
+    public PlatformMember modifyMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @PathVariable("pmid") Long pmid, @Validated @RequestBody PlatformMemberPatchModel model) {
+        return service.modifyMember(get(pid), getOrganization(oid), getPlatformMember(pmid), model);
     }
 
     private Platform get(Long id) {
@@ -97,4 +111,13 @@ public class PlatformRest implements PlatformApi {
         }
         return job;
     }
+
+    private PlatformMember getPlatformMember(Long id) {
+        PlatformMember pm = service.queryOnePlatformMemberById(id);
+        if (Objects.isNull(pm)) {
+            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台员工信息不存在！", id));
+        }
+        return pm;
+    }
+
 }

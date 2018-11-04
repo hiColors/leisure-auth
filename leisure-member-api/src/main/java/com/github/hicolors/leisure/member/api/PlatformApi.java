@@ -1,5 +1,6 @@
 package com.github.hicolors.leisure.member.api;
 
+import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.model.model.platform.*;
 import com.github.hicolors.leisure.member.model.persistence.Platform;
 import com.github.hicolors.leisure.member.model.persistence.PlatformJob;
@@ -7,7 +8,12 @@ import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * PlatformApi
@@ -52,9 +58,17 @@ public interface PlatformApi {
     @PatchMapping("/{pid}/job/{jid}")
     PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @RequestBody PlatformJobPatchModel model);
 
+    @ApiOperation("平台 - 查询{pid}平台下{oid}组织的员工")
+    @GetMapping("/{pid}/organization/{oid}/member")
+    Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters);
+
     @ApiOperation("平台 - 创建员工")
     @PostMapping("/{pid}/organization/{oid}/member")
     PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model);
+
+    @ApiOperation("平台 - 修改员工信息")
+    @PatchMapping("/{pid}/organization/{oid}/member/{pmid}")
+    PlatformMember modifyMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @PathVariable("pmid") Long pmid, @RequestBody PlatformMemberPatchModel model);
 
 
 }
