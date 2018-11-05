@@ -19,6 +19,11 @@
             <version>${leisure-member.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.hicolors</groupId>
+            <artifactId>common-fegin</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
