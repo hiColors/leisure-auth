@@ -52,6 +52,7 @@ public class PatformServiceImpl implements PlatformService {
     @Autowired
     private CheckService checkService;
 
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Platform create(PlatformModel model) {
@@ -223,7 +224,25 @@ public class PatformServiceImpl implements PlatformService {
     @Override
     public PlatformMember modifyMember(Platform platform, PlatformOrganization organization, PlatformMember platformMember, PlatformMemberPatchModel model) {
         //判断逻辑
-        return null;
+        // Platform 集团信息
+        // PlatformOrganization  组织关系
+        //PlatformMember  平台组织关系
+        // 员工 要修改的是组织关系
+        // PlatformMemberPatchModel  组织架构
+        //验证所修改的员工组织架构信息 与平台是否相符
+
+        // 要修改的是这个 PlatformMember
+        if(!model.getOrganizationId().equals(organization.getId())){
+            throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+        }
+        if(!platformMember.getPlatform().getId().equals(platform.getId())){
+            //集团信息不存在
+            throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+
+        }
+        //验证岗位id
+        ColorsBeanUtils.copyPropertiesNonNull(model, platformMember);
+        return  pmemberRepository.saveAndFlush(platformMember);
     }
 
     private void checkName(String name, Long id) {
