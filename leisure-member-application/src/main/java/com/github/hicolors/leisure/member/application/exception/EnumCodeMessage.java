@@ -25,7 +25,7 @@ public enum EnumCodeMessage {
     ROLE_NAME_EXIST(100001001L, "角色名称已存在"),
     PERMISSION_NAME_EXIST(100001002L, "权限名称已存在"),
     PERMISSION_STRATEGY_EXIST(100001003L, "权限策略已存在"),
-    PERMISSION_STRATEGY_NON_EXIST(100001003L, "权限不存在"),
+    PERMISSION_STRATEGY_NON_EXIST(100001004L, "权限策略不存在"),
 
     /********* 平台相关 *********/
     PLATFORM_NAME_EXIST(100002001L, "平台信息名称已存在"),
@@ -34,7 +34,9 @@ public enum EnumCodeMessage {
     PLATFORM_ORGANIZATION_MISMATCHES(100002004L, "该平台和该组织架构信息不匹配"),
     PLATFORM_JOB_TITLE_EXIST(100002005L, "该平台下已存在该职称的岗位"),
     PLATFORM_JOB_MISMATCHES(100002006L, "该平台和该岗位信息不匹配"),
-    PLATFORM_JOB_NON_EXIST(100002002L, "平台岗位信息不存在"),
+    PLATFORM_JOB_NON_EXIST(100002007L, "平台岗位信息不存在"),
+    PLATFORM_MEMBER_MISMATCHES(100002008L, "该员工不属于该平台"),
+    PLATFORM_ORGANIZATION_NON_EXIST(100002009L, "该组织机构不存在"),
     /********* 人员相关 *********/
     MEMBER_NON_EXIST(100003001L, "人员不存在"),
     MEMBER_MOBILE_EXIST(100003002L, "该手机号已存在"),

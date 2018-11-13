@@ -48,7 +48,6 @@ public class PermissionRest implements PermissionApi {
         return get(id);
     }
 
-    @Override
     public Page<Permission> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
         return service.queryPage(pageable, filters);
     }

@@ -38,10 +38,6 @@ public interface RoleApi {
     @GetMapping("/{id}")
     Role query(@PathVariable("id") Long id);
 
-    @ApiOperation("角色 - 查询（分页筛选）")
-    @GetMapping
-    Page<Role> query(@PageableDefault(page = 0, size = 10) Pageable pageable, List<ColorsExpression> filters);
-
     @ApiOperation("角色 - 删除")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

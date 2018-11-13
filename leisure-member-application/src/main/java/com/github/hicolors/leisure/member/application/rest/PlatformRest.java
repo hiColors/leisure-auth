@@ -68,7 +68,6 @@ public class PlatformRest implements PlatformApi {
         return service.createJob(get(id), model);
     }
 
-    @Override
     public PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @Validated @RequestBody PlatformJobPatchModel model) {
         return service.modifyJob(get(pid), getJob(jid), model);
     }

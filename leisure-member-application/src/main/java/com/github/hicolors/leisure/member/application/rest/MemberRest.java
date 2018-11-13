@@ -57,7 +57,6 @@ public class MemberRest implements MemberApi {
         return service.modifyEmail(get(id), model);
     }
 
-    @Override
     public Page<Member> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
         return service.query(pageable, filters);
     }

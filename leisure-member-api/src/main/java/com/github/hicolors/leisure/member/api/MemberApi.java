@@ -1,16 +1,10 @@
 package com.github.hicolors.leisure.member.api;
 
-import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * MemberApi
@@ -41,10 +35,6 @@ public interface MemberApi {
     @ApiOperation("人员 - 修改绑定邮箱信息")
     @PatchMapping("/{id}/email")
     Member modifyEmail(@PathVariable("id") Long id, @RequestBody MemberEmailModel model);
-
-    @ApiOperation("人员 - 查询（分页筛选）")
-    @GetMapping
-    Page<Member> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters);
 
     @ApiOperation("人员 - 获取人员信息通过 id")
     @GetMapping("/{id}")

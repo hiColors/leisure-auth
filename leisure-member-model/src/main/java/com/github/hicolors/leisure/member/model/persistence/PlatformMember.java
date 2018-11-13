@@ -54,6 +54,14 @@ public class PlatformMember extends BaseJpaModel {
     @JsonIgnoreProperties({"platform", "parent", "children"})
     private PlatformOrganization platformOrganization;
 
+    /**
+     * 平台岗位 id
+     */
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "platform_job_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties({"platform"})
+    private PlatformJob platformJob;
+
 
     /**
      * 人员 id

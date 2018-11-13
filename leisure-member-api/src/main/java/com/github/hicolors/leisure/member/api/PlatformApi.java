@@ -54,10 +54,6 @@ public interface PlatformApi {
     @PostMapping("/{id}/job")
     PlatformJob createJob(@PathVariable("id") Long id, @RequestBody PlatformJobModel model);
 
-    @ApiOperation("平台 - 修改岗位信息")
-    @PatchMapping("/{pid}/job/{jid}")
-    PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @RequestBody PlatformJobPatchModel model);
-
     @ApiOperation("平台 - 查询{pid}平台下{oid}组织的员工")
     @GetMapping("/{pid}/organization/{oid}/member")
     Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters);

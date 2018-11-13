@@ -48,8 +48,7 @@ public class RoleRest implements RoleApi {
         return get(id);
     }
 
-    @Override
-    public Page<Role> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
+    public Page<Role> query(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
         return service.queryPage(pageable, filters);
     }
 

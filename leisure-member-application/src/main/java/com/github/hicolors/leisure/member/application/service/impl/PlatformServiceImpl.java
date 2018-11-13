@@ -29,7 +29,7 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-public class PatformServiceImpl implements PlatformService {
+public class PlatformServiceImpl implements PlatformService {
 
     @Autowired
     private PlatformRepository repository;
@@ -214,6 +214,7 @@ public class PatformServiceImpl implements PlatformService {
         PlatformMember pm = new PlatformMember();
         pm.setPlatform(platform);
         pm.setPlatformOrganization(organization);
+        pm.setPlatformJob(job);
         pm.setMember(member);
         pm.setName(memberDetail.getName());
         pm.setEntryDate(new Date());
@@ -223,26 +224,45 @@ public class PatformServiceImpl implements PlatformService {
 
     @Override
     public PlatformMember modifyMember(Platform platform, PlatformOrganization organization, PlatformMember platformMember, PlatformMemberPatchModel model) {
-        //判断逻辑
-        // Platform 集团信息
-        // PlatformOrganization  组织关系
-        //PlatformMember  平台组织关系
-        // 员工 要修改的是组织关系
-        // PlatformMemberPatchModel  组织架构
-        //验证所修改的员工组织架构信息 与平台是否相符
+        //验证 平台信息
+        if (!platform.getId().equals(platformMember.getPlatform().getId())) {
+            throw new MemberServerException(EnumCodeMessage.PLATFORM_MEMBER_MISMATCHES);
 
-        // 要修改的是这个 PlatformMember
-        if(!model.getOrganizationId().equals(organization.getId())){
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
         }
-        if(!platformMember.getPlatform().getId().equals(platform.getId())){
-            //集团信息不存在
+        //验证 原组织机构信息
+        if (!platform.getId().equals(organization.getPlatform().getId())) {
             throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
 
         }
-        //验证岗位id
+        //验证 新组织机构信息
+        if (Objects.nonNull(model.getOrganizationId())) {
+            if (!model.getOrganizationId().equals(organization.getId())) {
+                organization = queryOnePlatformOrganizationById(model.getOrganizationId());
+                if (Objects.isNull(organization)) {
+                    throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_NON_EXIST);
+                }
+                if (!platform.getId().equals(organization.getPlatform().getId())) {
+                    throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+
+                }
+                platformMember.setPlatformOrganization(organization);
+            }
+        }
+        //验证岗位信息
+        if (Objects.nonNull(model.getJobId())) {
+            PlatformJob job = queryOnePlatformJobById(model.getJobId());
+            if (Objects.isNull(job)) {
+                throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_NON_EXIST);
+            }
+            //验证岗位信息
+            if (!platform.getId().equals(job.getPlatform().getId())) {
+                throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_MISMATCHES);
+
+            }
+            platformMember.setPlatformJob(job);
+        }
         ColorsBeanUtils.copyPropertiesNonNull(model, platformMember);
-        return  pmemberRepository.saveAndFlush(platformMember);
+        return pmemberRepository.saveAndFlush(platformMember);
     }
 
     private void checkName(String name, Long id) {
