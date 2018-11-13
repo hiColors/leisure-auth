@@ -7,6 +7,7 @@ import com.github.hicolors.leisure.member.application.exception.MemberServerExce
 import com.github.hicolors.leisure.member.application.repository.MemberDetailRepository;
 import com.github.hicolors.leisure.member.application.repository.MemberRepository;
 import com.github.hicolors.leisure.member.application.service.MemberService;
+import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import com.github.hicolors.leisure.member.model.persistence.MemberDetail;
@@ -141,6 +142,14 @@ public class MemberServiceImpl implements MemberService {
             throw new MemberServerException(EnumCodeMessage.MEMBER_USERNAME_PASSWORD_NON_EXIST);
         }
         return member;
+    }
+
+    @Override
+    public MemberAuthorization queryMemberAuthorization(Member member) {
+        //用户的权限
+
+        //用户作为员工的权限
+        return null;
     }
 
 }

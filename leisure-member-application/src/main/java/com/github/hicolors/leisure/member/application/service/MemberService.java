@@ -1,10 +1,12 @@
 package com.github.hicolors.leisure.member.application.service;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
+import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -36,4 +38,5 @@ public interface MemberService {
 
     Member queryOneByUniqueKeyAndPassword(String username, String password);
 
+    MemberAuthorization queryMemberAuthorization(Member member);
 }

@@ -4,6 +4,7 @@ import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.api.MemberApi;
 import com.github.hicolors.leisure.member.application.service.MemberService;
+import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,11 @@ public class MemberRest implements MemberApi {
     @Override
     public Member queryOneByUniqueKeyAndPassword(@RequestParam("uniquekey") String uniquekey, @RequestParam("password") String password) {
         return service.queryOneByUniqueKeyAndPassword(uniquekey, password);
+    }
+
+    @Override
+    public MemberAuthorization queryMemberAuthorization(Long id) {
+        return service.queryMemberAuthorization(get(id));
     }
 
     private Member get(Long id) {
