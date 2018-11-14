@@ -4,13 +4,11 @@ import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
-import com.github.hicolors.leisure.member.application.repository.MemberDetailRepository;
-import com.github.hicolors.leisure.member.application.repository.MemberRepository;
+import com.github.hicolors.leisure.member.application.repository.*;
 import com.github.hicolors.leisure.member.application.service.MemberService;
 import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
-import com.github.hicolors.leisure.member.model.persistence.Member;
-import com.github.hicolors.leisure.member.model.persistence.MemberDetail;
+import com.github.hicolors.leisure.member.model.persistence.*;
 import com.github.hicolors.leisure.member.model.persistence.value.MemberDefaultValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,8 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * MemberServiceImpl
@@ -40,6 +37,13 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private CheckService checkService;
+    
+    @Autowired
+    private MemberRoleRepository memberRoleRepository ;
+
+    @Autowired
+    private PlatformMemberRoleRepository platformMemberRoleRepository ;
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -146,10 +150,41 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberAuthorization queryMemberAuthorization(Member member) {
+        MemberAuthorization memberAuthorization = new MemberAuthorization();
+        memberAuthorization.setId(member.getId());
+        memberAuthorization.setNickName(member.getNickName());
         //用户的权限
 
-        //用户作为员工的权限
-        return null;
+        //成员信息
+        // 获取自身权限 memberRoles list<String>
+        List<String> memberRoles = new ArrayList<String>();
+        List<MemberRole> allByMemberAndId = memberRoleRepository.findAllByMemberAndId(member.getId());
+        if( null != allByMemberAndId && allByMemberAndId.size() > 0 ){
+            for( MemberRole mbr : allByMemberAndId ){
+                if( null != mbr && null != mbr.getRole().getRolePermissions() && mbr.getRole().getRolePermissions().size() > 0 ){
+                    for( RolePermission pcs : mbr.getRole().getRolePermissions()){
+                        memberRoles.add(pcs.getPermission().getName()) ;
+                    }
+                }
+            }
+        }
+        memberAuthorization.setMemberRoles(memberRoles);
+        //处理平台权限 map<Long ,list<String >> platformRoles Map<Long, List<String>> platformRoles;
+        Map<Long, List<String>> platformRoles = new HashMap<Long,List<String>>();
+        List<PlatformMemberRole> allByPlatformMemberAndId = platformMemberRoleRepository.findAllByPlatformMemberAndId(member.getId());
+        if( null != allByPlatformMemberAndId && allByPlatformMemberAndId.size() > 0 ){
+            for( PlatformMemberRole pfbr : allByPlatformMemberAndId ){
+                if( null != pfbr && null != pfbr.getRole() && null != pfbr.getRole().getRolePermissions() && pfbr.getRole().getRolePermissions().size() > 0 ){
+                    List<String > platrpermission = new ArrayList<String>();
+                    for( RolePermission rp : pfbr.getRole().getRolePermissions()){
+                        platrpermission.add(rp.getPermission().getName()) ;
+                    }
+                    platformRoles.put(pfbr.getId(),platrpermission) ;
+                }
+            }
+        }
+        memberAuthorization.setPlatformRoles(platformRoles);
+        return memberAuthorization;
     }
 
 }
