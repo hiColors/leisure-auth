@@ -4,6 +4,8 @@ import com.github.hicolors.leisure.common.jpa.customiz.repository.ColorsReposito
 import com.github.hicolors.leisure.member.model.persistence.MemberRole;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * MemberRoleRepository
  *
@@ -12,4 +14,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MemberRoleRepository extends ColorsRepository<MemberRole, Long> {
+
+    /**
+     * 通过 member id  获取 memberrole的数据集合
+     * @param memberId
+     * @return
+     */
+    List<MemberRole> findAllByMemberAndId(Long  memberId );
+
 }
