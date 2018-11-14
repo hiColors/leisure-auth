@@ -4,12 +4,16 @@ import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
 import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
-import com.github.hicolors.leisure.member.application.repository.*;
+import com.github.hicolors.leisure.member.application.repository.MemberDetailRepository;
+import com.github.hicolors.leisure.member.application.repository.MemberRepository;
+import com.github.hicolors.leisure.member.application.repository.MemberRoleRepository;
+import com.github.hicolors.leisure.member.application.repository.PlatformMemberRoleRepository;
 import com.github.hicolors.leisure.member.application.service.MemberService;
 import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.*;
 import com.github.hicolors.leisure.member.model.persistence.value.MemberDefaultValue;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,12 +41,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private CheckService checkService;
-    
-    @Autowired
-    private MemberRoleRepository memberRoleRepository ;
 
     @Autowired
-    private PlatformMemberRoleRepository platformMemberRoleRepository ;
+    private MemberRoleRepository memberRoleRepository;
+
+    @Autowired
+    private PlatformMemberRoleRepository platformMemberRoleRepository;
 
 
     @Override
@@ -150,40 +154,31 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberAuthorization queryMemberAuthorization(Member member) {
+
         MemberAuthorization memberAuthorization = new MemberAuthorization();
         memberAuthorization.setId(member.getId());
         memberAuthorization.setNickName(member.getNickName());
-        //用户的权限
 
-        //成员信息
-        // 获取自身权限 memberRoles list<String>
-        List<String> memberRoles = new ArrayList<String>();
-        List<MemberRole> allByMemberAndId = memberRoleRepository.findAllByMemberAndId(member.getId());
-        if( null != allByMemberAndId && allByMemberAndId.size() > 0 ){
-            for( MemberRole mbr : allByMemberAndId ){
-                if( null != mbr && null != mbr.getRole().getRolePermissions() && mbr.getRole().getRolePermissions().size() > 0 ){
-                    for( RolePermission pcs : mbr.getRole().getRolePermissions()){
-                        memberRoles.add(pcs.getPermission().getName()) ;
-                    }
-                }
-            }
+        //用户的权限
+        List<String> memberRoles = new ArrayList<>();
+        List<MemberRole> memberRoleList = memberRoleRepository.findByMemberId(member.getId());
+        if (CollectionUtils.isNotEmpty(memberRoleList)) {
+            memberRoleList.forEach(e -> memberRoles.add(e.getRole().getName()));
         }
         memberAuthorization.setMemberRoles(memberRoles);
-        //处理平台权限 map<Long ,list<String >> platformRoles Map<Long, List<String>> platformRoles;
-        Map<Long, List<String>> platformRoles = new HashMap<Long,List<String>>();
-        List<PlatformMemberRole> allByPlatformMemberAndId = platformMemberRoleRepository.findAllByPlatformMemberAndId(member.getId());
-        if( null != allByPlatformMemberAndId && allByPlatformMemberAndId.size() > 0 ){
-            for( PlatformMemberRole pfbr : allByPlatformMemberAndId ){
-                if( null != pfbr && null != pfbr.getRole() && null != pfbr.getRole().getRolePermissions() && pfbr.getRole().getRolePermissions().size() > 0 ){
-                    List<String > platrpermission = new ArrayList<String>();
-                    for( RolePermission rp : pfbr.getRole().getRolePermissions()){
-                        platrpermission.add(rp.getPermission().getName()) ;
-                    }
-                    platformRoles.put(pfbr.getId(),platrpermission) ;
-                }
+
+        //处理用户在平台的权限
+        List<PlatformMemberRole> platformMemberRoleList = platformMemberRoleRepository.findByPlatformMemberMemberId(member.getId());
+        Map<Long, List<String>> platformRoleMap = new HashMap<>();
+        platformMemberRoleList.parallelStream().forEach(e -> platformRoleMap.compute(e.getPlatformMember().getPlatform().getId(), (item, values) -> {
+            if (Objects.isNull(values)) {
+                values = new ArrayList<>();
             }
-        }
-        memberAuthorization.setPlatformRoles(platformRoles);
+            values.add(e.getRole().getName());
+            return values;
+        }));
+
+        memberAuthorization.setPlatformRoles(platformRoleMap);
         return memberAuthorization;
     }
 

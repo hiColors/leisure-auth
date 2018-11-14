@@ -17,9 +17,10 @@ public interface MemberRoleRepository extends ColorsRepository<MemberRole, Long>
 
     /**
      * 通过 member id  获取 memberrole的数据集合
+     *
      * @param memberId
      * @return
      */
-    List<MemberRole> findAllByMemberAndId(Long  memberId );
+    List<MemberRole> findByMemberId(Long memberId);
 
 }

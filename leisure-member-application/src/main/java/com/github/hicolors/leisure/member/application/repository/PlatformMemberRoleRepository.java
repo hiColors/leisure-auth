@@ -16,9 +16,12 @@ import java.util.List;
 public interface PlatformMemberRoleRepository extends ColorsRepository<PlatformMemberRole, Long> {
 
     /**
-     * 通过 memberId 去查询 platformaemberrole  设想一个员工可能属于多个平台 故返回值为list
+     * 通过 memberId 去查询 PlatformMemberRole
+     *
+     * 设想一个员工可能属于多个平台 故返回值为list
+     *
      * @param memberId
      * @return
      */
-    List<PlatformMemberRole> findAllByPlatformMemberAndId(Long memberId) ;
+    List<PlatformMemberRole> findByPlatformMemberMemberId(Long memberId);
 }
