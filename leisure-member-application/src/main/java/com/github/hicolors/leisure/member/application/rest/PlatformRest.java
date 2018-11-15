@@ -9,10 +9,12 @@ import com.github.hicolors.leisure.member.model.persistence.Platform;
 import com.github.hicolors.leisure.member.model.persistence.PlatformJob;
 import com.github.hicolors.leisure.member.model.persistence.PlatformMember;
 import com.github.hicolors.leisure.member.model.persistence.PlatformOrganization;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,11 +70,13 @@ public class PlatformRest implements PlatformApi {
         return service.createJob(get(id), model);
     }
 
+    @Override
     public PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @Validated @RequestBody PlatformJobPatchModel model) {
         return service.modifyJob(get(pid), getJob(jid), model);
     }
 
-    @Override
+    @ApiOperation("平台 - 查询{pid}平台下{oid}组织的员工 [Pageable + ColorsExpression]")
+    @GetMapping("/{pid}/organization/{oid}/member")
     public Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, Pageable pageable, List<ColorsExpression> filters) {
         return service.queryPlatformMember(get(pid), getOrganization(oid), pageable, filters);
     }

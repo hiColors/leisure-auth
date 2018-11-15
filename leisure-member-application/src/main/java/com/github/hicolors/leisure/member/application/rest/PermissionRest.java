@@ -6,11 +6,13 @@ import com.github.hicolors.leisure.member.intf.PermissionApi;
 import com.github.hicolors.leisure.member.application.service.PermissionService;
 import com.github.hicolors.leisure.member.model.model.role.PermissionModel;
 import com.github.hicolors.leisure.member.model.persistence.Permission;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,7 +50,9 @@ public class PermissionRest implements PermissionApi {
         return get(id);
     }
 
-    public Page<Permission> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
+    @ApiOperation("[Pageable + ColorsExpression]")
+    @GetMapping
+    public Page<Permission> query(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
         return service.queryPage(pageable, filters);
     }
 

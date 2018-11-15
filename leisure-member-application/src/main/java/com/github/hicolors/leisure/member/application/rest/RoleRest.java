@@ -8,11 +8,13 @@ import com.github.hicolors.leisure.member.model.model.role.RoleModel;
 import com.github.hicolors.leisure.member.model.model.role.RolePatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Role;
 import com.github.hicolors.leisure.member.model.persistence.RolePermission;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +50,8 @@ public class RoleRest implements RoleApi {
         return get(id);
     }
 
+    @ApiOperation("[Pageable + ColorsExpression]")
+    @GetMapping
     public Page<Role> query(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
         return service.queryPage(pageable, filters);
     }

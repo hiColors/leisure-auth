@@ -7,6 +7,7 @@ import com.github.hicolors.leisure.member.application.service.MemberService;
 import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,6 +56,7 @@ public class MemberRest implements MemberApi {
         return service.modifyEmail(get(id), model);
     }
 
+    @ApiOperation("[Pageable + ColorsExpression]")
     @GetMapping
     public Page<Member> query(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
         return service.query(pageable, filters);
