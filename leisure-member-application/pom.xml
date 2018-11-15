@@ -36,7 +36,7 @@
     </dependencies>
 
     <build>
-        <finalName>leisure-member</finalName>
+        <finalName>${project.parent.name}</finalName>
 
         <plugins>
 
@@ -63,6 +63,5 @@
 
         </plugins>
     </build>
-
 
 </project>
