@@ -1,6 +1,6 @@
 package com.github.hicolors.leisure.member.sdk;
 
-import com.github.hicolors.leisure.member.api.RoleApi;
+import com.github.hicolors.leisure.member.intf.RoleApi;
 import com.github.hicolors.leisure.member.sdk.config.LeisureMemberSdkConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 

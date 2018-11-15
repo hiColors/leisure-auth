@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.rest;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
-import com.github.hicolors.leisure.member.api.PlatformApi;
+import com.github.hicolors.leisure.member.intf.PlatformApi;
 import com.github.hicolors.leisure.member.application.service.PlatformService;
 import com.github.hicolors.leisure.member.model.model.platform.*;
 import com.github.hicolors.leisure.member.model.persistence.Platform;

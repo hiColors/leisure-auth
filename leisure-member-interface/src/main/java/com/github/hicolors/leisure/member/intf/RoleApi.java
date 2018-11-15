@@ -1,20 +1,14 @@
-package com.github.hicolors.leisure.member.api;
+package com.github.hicolors.leisure.member.intf;
 
-import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
 import com.github.hicolors.leisure.member.model.model.role.RolePatchModel;
 import com.github.hicolors.leisure.member.model.persistence.Role;
 import com.github.hicolors.leisure.member.model.persistence.RolePermission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * RoleApi

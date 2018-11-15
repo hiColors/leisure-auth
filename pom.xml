@@ -16,7 +16,7 @@
 
     <modules>
         <module>leisure-member-model</module>
-        <module>leisure-member-api</module>
+        <module>leisure-member-interface</module>
         <module>leisure-member-sdk</module>
         <module>leisure-member-application</module>
     </modules>
@@ -28,5 +28,31 @@
     </properties>
 
     <packaging>pom</packaging>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>com.github.hicolors.leisure</groupId>
+                <artifactId>leisure-member-model</artifactId>
+                <version>${leisure-member.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.hicolors.leisure</groupId>
+                <artifactId>leisure-member-interface</artifactId>
+                <version>${leisure-member.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.hicolors.leisure</groupId>
+                <artifactId>leisure-member-sdk</artifactId>
+                <version>${leisure-member.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
 
 </project>

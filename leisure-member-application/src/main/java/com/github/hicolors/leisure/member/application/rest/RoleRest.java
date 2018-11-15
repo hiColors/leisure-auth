@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.rest;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
-import com.github.hicolors.leisure.member.api.RoleApi;
+import com.github.hicolors.leisure.member.intf.RoleApi;
 import com.github.hicolors.leisure.member.application.service.RoleService;
 import com.github.hicolors.leisure.member.model.model.role.RoleModel;
 import com.github.hicolors.leisure.member.model.model.role.RolePatchModel;

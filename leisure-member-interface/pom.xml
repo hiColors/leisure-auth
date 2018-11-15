@@ -9,14 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>leisure-member-api</artifactId>
+    <artifactId>leisure-member-interface</artifactId>
 
     <dependencies>
 
         <dependency>
             <groupId>com.github.hicolors.leisure</groupId>
             <artifactId>leisure-member-model</artifactId>
-            <version>${leisure-member.version}</version>
         </dependency>
 
         <dependency>

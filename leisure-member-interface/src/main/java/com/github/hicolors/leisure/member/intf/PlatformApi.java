@@ -1,4 +1,4 @@
-package com.github.hicolors.leisure.member.api;
+package com.github.hicolors.leisure.member.intf;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.member.model.model.platform.*;

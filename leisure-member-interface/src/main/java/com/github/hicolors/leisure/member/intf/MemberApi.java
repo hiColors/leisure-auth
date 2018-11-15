@@ -1,4 +1,4 @@
-package com.github.hicolors.leisure.member.api;
+package com.github.hicolors.leisure.member.intf;
 
 import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;

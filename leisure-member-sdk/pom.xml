@@ -15,13 +15,12 @@
 
         <dependency>
             <groupId>com.github.hicolors.leisure</groupId>
-            <artifactId>leisure-member-api</artifactId>
-            <version>${leisure-member.version}</version>
+            <artifactId>leisure-member-interface</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.github.hicolors</groupId>
-            <artifactId>common-fegin</artifactId>
+            <artifactId>common-feign</artifactId>
         </dependency>
 
     </dependencies>

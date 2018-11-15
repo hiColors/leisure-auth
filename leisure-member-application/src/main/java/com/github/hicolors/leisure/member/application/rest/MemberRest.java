@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.rest;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
-import com.github.hicolors.leisure.member.api.MemberApi;
+import com.github.hicolors.leisure.member.intf.MemberApi;
 import com.github.hicolors.leisure.member.application.service.MemberService;
 import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
@@ -12,10 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -58,7 +55,8 @@ public class MemberRest implements MemberApi {
         return service.modifyEmail(get(id), model);
     }
 
-    public Page<Member> query(@PageableDefault(page = 0) Pageable pageable, List<ColorsExpression> filters) {
+    @GetMapping
+    public Page<Member> query(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
         return service.query(pageable, filters);
     }
 
