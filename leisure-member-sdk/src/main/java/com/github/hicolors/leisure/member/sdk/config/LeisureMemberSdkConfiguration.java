@@ -13,4 +13,5 @@ public class LeisureMemberSdkConfiguration {
 
     public static final String SERVER_NAME = "leisure-member";
 
+    public static final String CONTEXT_PATH = "/leisure-member";
 }

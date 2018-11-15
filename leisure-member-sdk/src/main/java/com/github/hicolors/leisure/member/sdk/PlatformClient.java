@@ -1,15 +1,17 @@
 package com.github.hicolors.leisure.member.sdk;
 
 import com.github.hicolors.leisure.member.intf.PlatformApi;
-import com.github.hicolors.leisure.member.sdk.config.LeisureMemberSdkConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 
+import static com.github.hicolors.leisure.member.sdk.config.LeisureMemberSdkConfiguration.CONTEXT_PATH;
+import static com.github.hicolors.leisure.member.sdk.config.LeisureMemberSdkConfiguration.SERVER_NAME;
+
 /**
- * PermissionClient
+ * PlatformClient
  *
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/11/5
  */
-@FeignClient(name = LeisureMemberSdkConfiguration.SERVER_NAME, url = "${url.leisure-member}")
+@FeignClient(name = SERVER_NAME, path = CONTEXT_PATH)
 public interface PlatformClient extends PlatformApi {
 }
