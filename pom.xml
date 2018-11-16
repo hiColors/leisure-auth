@@ -19,6 +19,7 @@
         <module>leisure-member-interface</module>
         <module>leisure-member-sdk</module>
         <module>leisure-member-application</module>
+        <module>leisure-member-authorization</module>
     </modules>
 
     <properties>
@@ -36,6 +37,12 @@
             <dependency>
                 <groupId>com.github.hicolors.leisure</groupId>
                 <artifactId>leisure-member-model</artifactId>
+                <version>${leisure-member.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.hicolors.leisure</groupId>
+                <artifactId>leisure-member-authorization</artifactId>
                 <version>${leisure-member.version}</version>
             </dependency>
 

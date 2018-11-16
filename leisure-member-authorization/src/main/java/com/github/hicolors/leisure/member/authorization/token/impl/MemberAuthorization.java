@@ -1,5 +1,6 @@
-package com.github.hicolors.leisure.member.model.authorization;
+package com.github.hicolors.leisure.member.authorization.token.impl;
 
+import com.github.hicolors.leisure.member.authorization.token.UserInfo;
 import lombok.Data;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Map;
  * @date 2018/11/13
  */
 @Data
-public class MemberAuthorization {
+public class MemberAuthorization implements UserInfo {
 
     /**
      * 用户 id

@@ -1,41 +1,26 @@
-package com.github.hicolors.leisure.member.intf;
+package com.github.hicolors.leisure.member.authorization.feign;
 
 import com.github.hicolors.leisure.member.authorization.token.impl.MemberAuthorization;
-import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * MemberApi
+ * MemberClient
  *
  * @author weichao.li (liweichao0102@gmail.com)
- * @date 2018/11/3
+ * @date 2018/11/16
  */
-@Api(tags = "member", description = "对人员的相关操作")
+@Api(tags = "member", description = "登录的相关操作")
+@FeignClient(name = "leisure-member", path = "/leisure-member")
 @RequestMapping("member")
-public interface MemberApi {
+public interface SignInClient {
 
-    @ApiOperation("人员 - 注册")
-    @PostMapping
-    Member signUp(@RequestBody MemberSignUpModel model);
-
-    @ApiOperation("人员 - 修改用户名")
-    @PatchMapping("/{id}/username")
-    Member modifyUsername(@PathVariable("id") Long id, @RequestBody MemberUsernameModel model);
-
-    @ApiOperation("人员 - 修改信息")
-    @PatchMapping("/{id}")
-    Member modify(@PathVariable("id") Long id, @RequestBody MemberPatchModel model);
-
-    @ApiOperation("人员 - 修改绑定手机号信息")
-    @PatchMapping("/{id}/mobile")
-    Member modifyMobile(@PathVariable("id") Long id, @RequestBody MemberMobileModel model);
-
-    @ApiOperation("人员 - 修改绑定邮箱信息")
-    @PatchMapping("/{id}/email")
-    Member modifyEmail(@PathVariable("id") Long id, @RequestBody MemberEmailModel model);
 
     @ApiOperation("人员 - 获取人员信息通过 id")
     @GetMapping("/{id}")
@@ -56,4 +41,5 @@ public interface MemberApi {
     @ApiOperation("人员 - 获取人员所有的授权信息")
     @GetMapping("/{id}/authorization")
     MemberAuthorization queryMemberAuthorization(@PathVariable("id") Long id);
+
 }

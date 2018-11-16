@@ -2,9 +2,9 @@ package com.github.hicolors.leisure.member.application.rest;
 
 import com.github.hicolors.leisure.common.exception.ResourceNotFoundException;
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
+import com.github.hicolors.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.hicolors.leisure.member.intf.MemberApi;
 import com.github.hicolors.leisure.member.application.service.MemberService;
-import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.Member;
 import io.swagger.annotations.ApiOperation;
@@ -83,7 +83,7 @@ public class MemberRest implements MemberApi {
     }
 
     @Override
-    public MemberAuthorization queryMemberAuthorization(Long id) {
+    public MemberAuthorization queryMemberAuthorization(@PathVariable("id") Long id) {
         return service.queryMemberAuthorization(get(id));
     }
 

@@ -9,7 +9,7 @@ import com.github.hicolors.leisure.member.application.repository.MemberRepositor
 import com.github.hicolors.leisure.member.application.repository.MemberRoleRepository;
 import com.github.hicolors.leisure.member.application.repository.PlatformMemberRoleRepository;
 import com.github.hicolors.leisure.member.application.service.MemberService;
-import com.github.hicolors.leisure.member.model.authorization.MemberAuthorization;
+import com.github.hicolors.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.hicolors.leisure.member.model.model.member.*;
 import com.github.hicolors.leisure.member.model.persistence.*;
 import com.github.hicolors.leisure.member.model.persistence.value.MemberDefaultValue;
