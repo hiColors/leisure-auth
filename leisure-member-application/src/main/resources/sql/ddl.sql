@@ -69,6 +69,7 @@ CREATE TABLE `member` (
 
 CREATE TABLE `member_detail` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '主键',
+  `default_platform_id` BIGINT ( 20 ) UNSIGNED COMMENT '主平台 id',
   `email` VARCHAR ( 50 ) NOT NULL COMMENT '邮箱',
   `mobile` VARCHAR ( 20 ) NOT NULL COMMENT '手机号',
   `name` VARCHAR ( 20 ) NOT NULL DEFAULT '' COMMENT '姓名',

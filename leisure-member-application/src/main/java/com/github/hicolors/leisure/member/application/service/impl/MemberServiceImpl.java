@@ -158,6 +158,10 @@ public class MemberServiceImpl implements MemberService {
         MemberAuthorization memberAuthorization = new MemberAuthorization();
         memberAuthorization.setId(member.getId());
         memberAuthorization.setNickName(member.getNickName());
+        if(Objects.nonNull(member.getMemberDetail().getPlatform())){
+            memberAuthorization.setPlatformId(member.getMemberDetail().getPlatform().getId());
+            memberAuthorization.setPlatformName(member.getMemberDetail().getPlatform().getName());
+        }
 
         //用户的权限
         List<String> memberRoles = new ArrayList<>();

@@ -26,6 +26,16 @@ public class MemberAuthorization implements UserInfo {
     private String nickName;
 
     /**
+     * 主平台 id
+     */
+    private Long platformId;
+
+    /**
+     * 主平台 名称
+     */
+    private String platformName;
+
+    /**
      * 用户自身的权限
      */
     private List<String> memberRoles;

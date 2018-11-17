@@ -90,11 +90,11 @@ public class RedisTokenStore implements TokenStore {
     @Override
     public AuthToken storeAccessToken(UserInfo member) {
         //创建用户 token
-        AuthToken authTokenModel = new AuthToken();
+        AuthToken authToken = new AuthToken();
         String accessToken = randomStringByUserId(member.getId());
-        authTokenModel.setAccessToken(accessToken);
-        authTokenModel.setNickname(member.getNickName());
-        authTokenModel.setTokenExpires(accessTokenValidateSeconds);
+        authToken.setAccessToken(accessToken);
+        authToken.setNickname(member.getNickName());
+        authToken.setTokenExpires(accessTokenValidateSeconds);
         stringRedisTemplate.opsForValue().set(generateAccessTokenKey(accessToken), String.valueOf(member.getId()), accessTokenValidateSeconds, TimeUnit.SECONDS);
         //更新用户token信息列表
         String userAccessTokenKey = generateUserAccessTokenKey(member.getId());
@@ -107,9 +107,9 @@ public class RedisTokenStore implements TokenStore {
         stringRedisTemplate.opsForList().leftPush(userAccessTokenKey, accessToken);
         stringRedisTemplate.expire(userAccessTokenKey, refreshTokenValidateSeconds, TimeUnit.SECONDS);
         String refreshToken = storeRefreshToken(member);
-        authTokenModel.setRefreshTokenExpires(stringRedisTemplate.getExpire(generateRefreshTokenKey(refreshToken)));
-        authTokenModel.setRefreshToken(refreshToken);
-        return authTokenModel;
+        authToken.setRefreshTokenExpires(stringRedisTemplate.getExpire(generateRefreshTokenKey(refreshToken)));
+        authToken.setRefreshToken(refreshToken);
+        return authToken;
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.github.hicolors.leisure.member.model.persistence;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hicolors.leisure.common.model.BaseJpaModel;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -33,6 +36,15 @@ public class MemberDetail extends BaseJpaModel {
     @GeneratedValue(generator = "assigned")
     @GenericGenerator(name = "assigned", strategy = "assigned")
     private Long id;
+
+    /**
+     * 主平台 id
+     */
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "default_platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnoreProperties("organizations")
+    @NotFound(action = NotFoundAction.IGNORE)
+    private Platform platform;
 
     /**
      * 邮箱
