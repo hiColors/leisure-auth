@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.service.impl;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
-import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
+import com.github.hicolors.leisure.member.application.exception.EnumMemberServerCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.MemberDetailRepository;
 import com.github.hicolors.leisure.member.application.repository.MemberRepository;
@@ -126,8 +126,8 @@ public class MemberServiceImpl implements MemberService {
         MemberDetail md = memberDetailRepository.findByMobile(mobile);
         if (Objects.isNull(md)) {
             throw new MemberServerException(
-                    EnumCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST,
-                    MessageFormat.format(EnumCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST.getMessage(), mobile));
+                    EnumMemberServerCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST,
+                    MessageFormat.format(EnumMemberServerCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST.getMessage(), mobile));
         }
         return queryOneById(md.getId());
     }
@@ -137,8 +137,8 @@ public class MemberServiceImpl implements MemberService {
         MemberDetail md = memberDetailRepository.findByEmail(email);
         if (Objects.isNull(md)) {
             throw new MemberServerException(
-                    EnumCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST,
-                    MessageFormat.format(EnumCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST.getMessage(), email));
+                    EnumMemberServerCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST,
+                    MessageFormat.format(EnumMemberServerCodeMessage.MEMBER_UNIQUE_KEY_NON_EXIST.getMessage(), email));
         }
         return queryOneById(md.getId());
     }
@@ -147,7 +147,7 @@ public class MemberServiceImpl implements MemberService {
     public Member queryOneByUniqueKeyAndPassword(String username, String password) {
         Member member = memberRepository.findByUsernameAndPassword(username, password);
         if (Objects.isNull(member)) {
-            throw new MemberServerException(EnumCodeMessage.MEMBER_USERNAME_PASSWORD_NON_EXIST);
+            throw new MemberServerException(EnumMemberServerCodeMessage.MEMBER_USERNAME_PASSWORD_NON_EXIST);
         }
         return member;
     }

@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.service.impl;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
-import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
+import com.github.hicolors.leisure.member.application.exception.EnumMemberServerCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.*;
 import com.github.hicolors.leisure.member.application.service.PlatformService;
@@ -60,7 +60,7 @@ public class PlatformServiceImpl implements PlatformService {
         Optional<Member> optional = memberRepository.findById(model.getOriginator());
         Member member = optional.orElse(null);
         if (Objects.isNull(member)) {
-            throw new MemberServerException(EnumCodeMessage.MEMBER_NON_EXIST);
+            throw new MemberServerException(EnumMemberServerCodeMessage.MEMBER_NON_EXIST);
         }
         checkName(model.getName(), null);
         Platform platform = new Platform();
@@ -101,7 +101,7 @@ public class PlatformServiceImpl implements PlatformService {
         checkOrganizationName(platform.getId(), model.getName(), null);
         PlatformOrganization parent = queryOnePlatformOrganizationById(model.getParent());
         if (Objects.isNull(parent)) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_PARENT_ORGANIZATION_NON_EXIST);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_PARENT_ORGANIZATION_NON_EXIST);
         }
         PlatformOrganization po = new PlatformOrganization();
         ColorsBeanUtils.copyPropertiesNonNull(model, po);
@@ -115,12 +115,12 @@ public class PlatformServiceImpl implements PlatformService {
     @Transactional(rollbackFor = Exception.class)
     public PlatformOrganization modifyOrganization(Platform platform, PlatformOrganization organization, PlatformOrganizationPatchModel model) {
         if (!organization.getPlatform().getId().equals(platform.getId())) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
         }
         if (Objects.nonNull(model.getParent())) {
             PlatformOrganization parent = queryOnePlatformOrganizationById(model.getParent());
             if (Objects.isNull(parent)) {
-                throw new MemberServerException(EnumCodeMessage.PLATFORM_PARENT_ORGANIZATION_NON_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_PARENT_ORGANIZATION_NON_EXIST);
             }
             organization.setParent(parent);
         }
@@ -154,7 +154,7 @@ public class PlatformServiceImpl implements PlatformService {
     @Transactional(rollbackFor = Exception.class)
     public PlatformJob modifyJob(Platform platform, PlatformJob job, PlatformJobPatchModel model) {
         if (!job.getPlatform().getId().equals(platform.getId())) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_MISMATCHES);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_JOB_MISMATCHES);
         }
         ColorsBeanUtils.copyPropertiesNonNull(model, job);
         checkJobTitle(platform.getId(), model.getTitle(), job.getId());
@@ -175,13 +175,13 @@ public class PlatformServiceImpl implements PlatformService {
         checkService.checkEmail(model.getEmail(), null);
         PlatformJob job = queryOnePlatformJobById(model.getJobId());
         if (Objects.isNull(job)) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_NON_EXIST);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_JOB_NON_EXIST);
         }
         if (!organization.getPlatform().getId().equals(platform.getId())) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
         }
         if (!job.getPlatform().getId().equals(platform.getId())) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_MISMATCHES);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_JOB_MISMATCHES);
         }
         //1. 创建人员信息
         Member member = new Member();
@@ -226,12 +226,12 @@ public class PlatformServiceImpl implements PlatformService {
     public PlatformMember modifyMember(Platform platform, PlatformOrganization organization, PlatformMember platformMember, PlatformMemberPatchModel model) {
         //验证 平台信息
         if (!platform.getId().equals(platformMember.getPlatform().getId())) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_MEMBER_MISMATCHES);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_MEMBER_MISMATCHES);
 
         }
         //验证 原组织机构信息
         if (!platform.getId().equals(organization.getPlatform().getId())) {
-            throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
 
         }
         //验证 新组织机构信息
@@ -239,10 +239,10 @@ public class PlatformServiceImpl implements PlatformService {
             if (!model.getOrganizationId().equals(organization.getId())) {
                 organization = queryOnePlatformOrganizationById(model.getOrganizationId());
                 if (Objects.isNull(organization)) {
-                    throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_NON_EXIST);
+                    throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_ORGANIZATION_NON_EXIST);
                 }
                 if (!platform.getId().equals(organization.getPlatform().getId())) {
-                    throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
+                    throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_ORGANIZATION_MISMATCHES);
 
                 }
                 platformMember.setPlatformOrganization(organization);
@@ -252,11 +252,11 @@ public class PlatformServiceImpl implements PlatformService {
         if (Objects.nonNull(model.getJobId())) {
             PlatformJob job = queryOnePlatformJobById(model.getJobId());
             if (Objects.isNull(job)) {
-                throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_NON_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_JOB_NON_EXIST);
             }
             //验证岗位信息
             if (!platform.getId().equals(job.getPlatform().getId())) {
-                throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_MISMATCHES);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_JOB_MISMATCHES);
 
             }
             platformMember.setPlatformJob(job);
@@ -270,7 +270,7 @@ public class PlatformServiceImpl implements PlatformService {
         if (Objects.nonNull(platform)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(platform.getId())) {
-                throw new MemberServerException(EnumCodeMessage.PLATFORM_NAME_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_NAME_EXIST);
             }
         }
     }
@@ -280,7 +280,7 @@ public class PlatformServiceImpl implements PlatformService {
         if (Objects.nonNull(po)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(po.getId())) {
-                throw new MemberServerException(EnumCodeMessage.PLATFORM_ORGANIZATION_NAME_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_ORGANIZATION_NAME_EXIST);
             }
         }
     }
@@ -290,7 +290,7 @@ public class PlatformServiceImpl implements PlatformService {
         if (Objects.nonNull(pj)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(pj.getId())) {
-                throw new MemberServerException(EnumCodeMessage.PLATFORM_JOB_TITLE_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PLATFORM_JOB_TITLE_EXIST);
             }
         }
     }

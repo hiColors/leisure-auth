@@ -1,6 +1,6 @@
 package com.github.hicolors.leisure.member.application.service.impl;
 
-import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
+import com.github.hicolors.leisure.member.application.exception.EnumMemberServerCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.MemberDetailRepository;
 import com.github.hicolors.leisure.member.application.repository.MemberRepository;
@@ -33,7 +33,7 @@ public class CheckService {
         if (Objects.nonNull(member)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(member.getId())) {
-                throw new MemberServerException(EnumCodeMessage.MEMBER_USERNAME_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.MEMBER_USERNAME_EXIST);
             }
         }
     }
@@ -43,7 +43,7 @@ public class CheckService {
         if (Objects.nonNull(md)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(md.getId())) {
-                throw new MemberServerException(EnumCodeMessage.MEMBER_MOBILE_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.MEMBER_MOBILE_EXIST);
             }
         }
     }
@@ -53,7 +53,7 @@ public class CheckService {
         if (Objects.nonNull(md)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(md.getId())) {
-                throw new MemberServerException(EnumCodeMessage.MEMBER_EMAIL_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.MEMBER_EMAIL_EXIST);
             }
         }
     }

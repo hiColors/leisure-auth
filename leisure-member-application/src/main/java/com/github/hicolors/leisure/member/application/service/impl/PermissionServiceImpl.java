@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.service.impl;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
-import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
+import com.github.hicolors.leisure.member.application.exception.EnumMemberServerCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.PermissionRepository;
 import com.github.hicolors.leisure.member.application.repository.RolePermissionRepository;
@@ -82,7 +82,7 @@ public class PermissionServiceImpl implements PermissionService {
         if (Objects.nonNull(permission)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(permission.getId())) {
-                throw new MemberServerException(EnumCodeMessage.PERMISSION_NAME_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PERMISSION_NAME_EXIST);
             }
         }
     }
@@ -92,7 +92,7 @@ public class PermissionServiceImpl implements PermissionService {
         if (Objects.nonNull(permission)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(permission.getId())) {
-                throw new MemberServerException(EnumCodeMessage.PERMISSION_STRATEGY_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.PERMISSION_STRATEGY_EXIST);
             }
         }
     }

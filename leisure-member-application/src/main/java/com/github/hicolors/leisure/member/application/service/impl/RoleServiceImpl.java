@@ -2,7 +2,7 @@ package com.github.hicolors.leisure.member.application.service.impl;
 
 import com.github.hicolors.leisure.common.model.expression.ColorsExpression;
 import com.github.hicolors.leisure.common.utils.ColorsBeanUtils;
-import com.github.hicolors.leisure.member.application.exception.EnumCodeMessage;
+import com.github.hicolors.leisure.member.application.exception.EnumMemberServerCodeMessage;
 import com.github.hicolors.leisure.member.application.exception.MemberServerException;
 import com.github.hicolors.leisure.member.application.repository.RolePermissionRepository;
 import com.github.hicolors.leisure.member.application.repository.RoleRepository;
@@ -89,7 +89,7 @@ public class RoleServiceImpl implements RoleService {
     public RolePermission createRolePermission(Role role, Long permissionId) {
         Permission permission = permissionService.queryOne(permissionId);
         if (Objects.isNull(permission)) {
-            throw new MemberServerException(EnumCodeMessage.PERMISSION_STRATEGY_NON_EXIST);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PERMISSION_STRATEGY_NON_EXIST);
         }
         RolePermission rolePermission = rolePermissionRepository.findByRoleIdAndPermissionId(role.getId(), permission.getId());
         if (Objects.nonNull(rolePermission)) {
@@ -106,7 +106,7 @@ public class RoleServiceImpl implements RoleService {
     public void deleteRolePermission(Role role, Long permissionId) {
         Permission permission = permissionService.queryOne(permissionId);
         if (Objects.isNull(permission)) {
-            throw new MemberServerException(EnumCodeMessage.PERMISSION_STRATEGY_NON_EXIST);
+            throw new MemberServerException(EnumMemberServerCodeMessage.PERMISSION_STRATEGY_NON_EXIST);
         }
         int count = rolePermissionRepository.deleteByRoleIdAndPermissionId(role.getId(), permission.getId());
         log.info("删除了 [{}] 条角色[{}] & 权限[{}] 对应的角色权限关联信息", count, role.getName(), permission.getName());
@@ -117,7 +117,7 @@ public class RoleServiceImpl implements RoleService {
         if (Objects.nonNull(role)) {
             id = ObjectUtils.defaultIfNull(id, 0L);
             if (!id.equals(role.getId())) {
-                throw new MemberServerException(EnumCodeMessage.ROLE_NAME_EXIST);
+                throw new MemberServerException(EnumMemberServerCodeMessage.ROLE_NAME_EXIST);
             }
         }
     }

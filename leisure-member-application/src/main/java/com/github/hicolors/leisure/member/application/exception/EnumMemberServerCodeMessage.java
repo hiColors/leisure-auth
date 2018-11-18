@@ -6,7 +6,7 @@ package com.github.hicolors.leisure.member.application.exception;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/22
  */
-public enum EnumCodeMessage {
+public enum EnumMemberServerCodeMessage {
 
     /**
      * member 服务全局错误异常码
@@ -46,13 +46,15 @@ public enum EnumCodeMessage {
 
     MEMBER_USERNAME_PASSWORD_NON_EXIST(100003005L, "用户名密码不匹配"),
 
+
+    /************* 100100xxx 认证模块占用请跳过此段异常码 *********/
     ;
 
     private final Long code;
 
     private final String message;
 
-    EnumCodeMessage(Long code, String message) {
+    EnumMemberServerCodeMessage(Long code, String message) {
         this.code = code;
         this.message = message;
     }

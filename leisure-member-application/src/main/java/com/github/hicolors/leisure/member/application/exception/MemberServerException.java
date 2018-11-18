@@ -10,15 +10,15 @@ import com.github.hicolors.leisure.common.exception.BusinessException;
  */
 public class MemberServerException extends BusinessException {
 
-    public MemberServerException(EnumCodeMessage codeMessage) {
+    public MemberServerException(EnumMemberServerCodeMessage codeMessage) {
         super(codeMessage.getCode(), codeMessage.getMessage(), null);
     }
 
-    public MemberServerException(EnumCodeMessage codeMessage, Object data) {
+    public MemberServerException(EnumMemberServerCodeMessage codeMessage, Object data) {
         super(codeMessage.getCode(), codeMessage.getMessage(), data);
     }
 
-    public MemberServerException(EnumCodeMessage codeMessage, String msg) {
+    public MemberServerException(EnumMemberServerCodeMessage codeMessage, String msg) {
         super(codeMessage.getCode(), msg, null);
     }
 }
