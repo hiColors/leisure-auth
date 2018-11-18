@@ -33,9 +33,11 @@ public interface TokenStore {
 
     void clearToken(Long id);
 
-    Long findByAccessToken(String accessToken);
+    Long findUserIdByAccessToken(String accessToken);
 
-    Long findByRefreshToken(String accessToken);
+    Long findUserIdByRefreshToken(String accessToken);
+
+    String findUserInfoByUserId(Long userId);
 
     String encode(Long id);
 

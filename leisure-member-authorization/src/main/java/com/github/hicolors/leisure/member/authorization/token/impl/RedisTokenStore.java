@@ -125,13 +125,18 @@ public class RedisTokenStore implements TokenStore {
     }
 
     @Override
-    public Long findByAccessToken(String accessToken) {
+    public Long findUserIdByAccessToken(String accessToken) {
         return Long.valueOf(ObjectUtils.defaultIfNull(stringRedisTemplate.opsForValue().get(generateAccessTokenKey(accessToken)), "0"));
     }
 
     @Override
-    public Long findByRefreshToken(String accessToken) {
+    public Long findUserIdByRefreshToken(String accessToken) {
         return Long.valueOf(ObjectUtils.defaultIfNull(stringRedisTemplate.opsForValue().get(generateRefreshTokenKey(accessToken)), "0"));
+    }
+
+    @Override
+    public String findUserInfoByUserId(Long userId) {
+        return stringRedisTemplate.opsForValue().get(generateUserInfoKey(userId));
     }
 
     @Override
