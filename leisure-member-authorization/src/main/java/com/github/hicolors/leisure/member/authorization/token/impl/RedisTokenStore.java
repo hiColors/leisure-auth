@@ -94,6 +94,8 @@ public class RedisTokenStore implements TokenStore {
         String accessToken = randomStringByUserId(member.getId());
         authToken.setAccessToken(accessToken);
         authToken.setNickname(member.getNickName());
+        authToken.setPlatformId(member.getPlatformId());
+        authToken.setPlatformName(member.getPlatformName());
         authToken.setTokenExpires(accessTokenValidateSeconds);
         stringRedisTemplate.opsForValue().set(generateAccessTokenKey(accessToken), String.valueOf(member.getId()), accessTokenValidateSeconds, TimeUnit.SECONDS);
         //更新用户token信息列表
