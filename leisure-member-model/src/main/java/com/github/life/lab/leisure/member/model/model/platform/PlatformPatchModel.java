@@ -1,0 +1,37 @@
+package com.github.life.lab.leisure.member.model.model.platform;
+
+
+import com.github.life.lab.leisure.member.model.consts.EnumPlatformStatus;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+
+/**
+ * PlatformModel
+ *
+ * @author weichao.li (liweichao0102@gmail.com)
+ * @date 2018/10/21
+ */
+
+@ApiModel("平台补丁 model")
+@Data
+public class PlatformPatchModel {
+
+    @ApiModelProperty(notes = "名称", required = true)
+    @NotBlank(message = "名称不允许为空")
+    @Length(min = 1, max = 100, message = "名称长度不合法")
+    private String name;
+
+    @ApiModelProperty(notes = "状态[0:禁用;1:审核中;2:启用]", required = true)
+    @NotNull(message = "状态不允许为空")
+    private EnumPlatformStatus status;
+
+    @ApiModelProperty(notes = "备注")
+    @Length(min = 1, max = 255, message = "备注长度不合法")
+    private String comment;
+
+}
