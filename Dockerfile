@@ -1,6 +1,6 @@
-FROM java:8u111-jre-alpine
+FROM openjdk:8-jre-alpine
 
-ADD ./leisure-member-application/target/*.jar /app/app.jar
+ADD ./leisure-member-application/target/leisure-member.jar /app/app.jar
 
 # 设置编码格式
 ENV LANG="zh_CN.UTF-8"
