@@ -15,7 +15,7 @@
     <parent>
         <groupId>com.github.life-lab</groupId>
         <artifactId>leisure</artifactId>
-        <version>0.0.1-RELEASE</version>
+        <version>0.0.2-RELEASE</version>
     </parent>
 
     <modules>
@@ -65,20 +65,5 @@
         </dependencies>
 
     </dependencyManagement>
-
-    <distributionManagement>
-
-        <repository>
-            <id>rdc-releases</id>
-            <url>https://repo.rdc.aliyun.com/repository/39739-release-x5U75a/</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>rdc-snapshots</id>
-            <url>https://repo.rdc.aliyun.com/repository/39739-snapshot-AvLBWK/</url>
-        </snapshotRepository>
-
-    </distributionManagement>
-
 
 </project>
