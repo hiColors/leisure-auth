@@ -31,7 +31,9 @@ public interface TokenStore {
 
     void storeUserInfo(UserInfo userInfo);
 
-    void clearToken(Long id);
+    void clearAllToken(Long id);
+
+    void clearOneToken(String accessToken);
 
     Long findUserIdByAccessToken(String accessToken);
 

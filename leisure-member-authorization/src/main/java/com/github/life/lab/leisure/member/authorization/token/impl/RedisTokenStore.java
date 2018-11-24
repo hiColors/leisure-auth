@@ -110,7 +110,7 @@ public class RedisTokenStore implements TokenStore {
     }
 
     @Override
-    public void clearToken(Long id) {
+    public void clearAllToken(Long id) {
         //删 refresh token
         stringRedisTemplate.delete(generateRefreshTokenKey(ObjectUtils.defaultIfNull(stringRedisTemplate.opsForValue().get(generateUserRefreshTokenKey(id)), "")));
         stringRedisTemplate.delete(generateUserRefreshTokenKey(id));
@@ -142,6 +142,15 @@ public class RedisTokenStore implements TokenStore {
         String userInfoJson = JsonUtils.serialize(userInfo);
         String userInfoKey = generateUserInfoKey(userInfo.getId());
         stringRedisTemplate.opsForValue().set(userInfoKey, userInfoJson, refreshTokenValidateSeconds, TimeUnit.SECONDS);
+
+    }
+
+    @Override
+    public void clearOneToken(String accessToken) {
+        //删除 auth:access-token:user: 中的
+        stringRedisTemplate.opsForList().remove(generateUserAccessTokenKey(findUserIdByAccessToken(accessToken)), 0L, accessToken);
+        //删除 auth:access-token:
+        stringRedisTemplate.delete(generateAccessTokenKey(accessToken));
 
     }
 
