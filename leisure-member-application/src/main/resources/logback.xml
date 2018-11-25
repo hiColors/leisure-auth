@@ -124,12 +124,11 @@
         additivity: 是否向上级logger传递打印信息。默认是true。
         同<logger>一样，可以包含零个或多个<appender-ref>元素，标识这个appender将会添加到这个logger。
     -->
-    <logger name="com.github.hicolors.leisure.common.framework.logger" level="info" additivity="false">
+    <logger name="com.github.life.lab.leisure.common.framework.logger" level="info" additivity="false">
         <appender-ref ref="asyncAccess"/>
     </logger>
 
     <logger name="springfox.documentation" level="OFF"/>
-
 
     <springProfile name="dev">
         <root>

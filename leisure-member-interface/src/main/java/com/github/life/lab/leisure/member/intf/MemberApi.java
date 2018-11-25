@@ -3,9 +3,12 @@ package com.github.life.lab.leisure.member.intf;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.model.model.member.*;
 import com.github.life.lab.leisure.member.model.persistence.Member;
+import com.github.life.lab.leisure.member.model.persistence.Platform;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * MemberApi
@@ -56,4 +59,8 @@ public interface MemberApi {
     @ApiOperation("人员 - 获取人员所有的授权信息")
     @GetMapping("/{id}/authorization")
     MemberAuthorization queryMemberAuthorization(@PathVariable("id") Long id);
+
+    @ApiOperation("人员 - 获取人员所属的平台信息")
+    @GetMapping("/{id}/platform")
+    List<Platform> queryPlatformByMemberId(@PathVariable("id") Long id);
 }

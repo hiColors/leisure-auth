@@ -2,10 +2,7 @@ package com.github.life.lab.leisure.member.application.service;
 
 import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.model.model.platform.*;
-import com.github.life.lab.leisure.member.model.persistence.Platform;
-import com.github.life.lab.leisure.member.model.persistence.PlatformJob;
-import com.github.life.lab.leisure.member.model.persistence.PlatformMember;
-import com.github.life.lab.leisure.member.model.persistence.PlatformOrganization;
+import com.github.life.lab.leisure.member.model.persistence.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -46,4 +43,6 @@ public interface PlatformService {
     PlatformMember createMember(Platform platform, PlatformOrganization organization, PlatformMemberModel model);
 
     PlatformMember modifyMember(Platform platform, PlatformOrganization organization, PlatformMember platformMember, PlatformMemberPatchModel model);
+
+    List<Platform> findPlatformByMemberId(Member member);
 }

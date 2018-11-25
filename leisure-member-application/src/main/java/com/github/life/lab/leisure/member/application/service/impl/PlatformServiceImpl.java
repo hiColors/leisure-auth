@@ -1,5 +1,7 @@
 package com.github.life.lab.leisure.member.application.service.impl;
 
+import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonBeanFilter;
+import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonResultFilter;
 import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.exception.EnumMemberServerCodeMessage;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -263,6 +266,12 @@ public class PlatformServiceImpl implements PlatformService {
         }
         ColorsBeanUtils.copyPropertiesNonNull(model, platformMember);
         return pmemberRepository.saveAndFlush(platformMember);
+    }
+
+    @Override
+    public List<Platform> findPlatformByMemberId(Member member) {
+        List<Platform> platforms = pmemberRepository.findPlatformByMemberId(member.getId());
+        return CollectionUtils.isEmpty(platforms) ? null : platforms;
     }
 
     private void checkName(String name, Long id) {

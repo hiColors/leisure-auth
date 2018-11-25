@@ -1,12 +1,16 @@
 package com.github.life.lab.leisure.member.application.rest;
 
 import com.github.life.lab.leisure.common.exception.ResourceNotFoundException;
+import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonBeanFilter;
+import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonResultFilter;
 import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.application.service.MemberService;
+import com.github.life.lab.leisure.member.application.service.PlatformService;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.intf.MemberApi;
 import com.github.life.lab.leisure.member.model.model.member.*;
 import com.github.life.lab.leisure.member.model.persistence.Member;
+import com.github.life.lab.leisure.member.model.persistence.Platform;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,6 +34,9 @@ public class MemberRest implements MemberApi {
 
     @Autowired
     private MemberService service;
+
+    @Autowired
+    private PlatformService platformService;
 
     @Override
     public Member signUp(@Validated @RequestBody MemberSignUpModel model) {
@@ -85,6 +92,14 @@ public class MemberRest implements MemberApi {
     @Override
     public MemberAuthorization queryMemberAuthorization(@PathVariable("id") Long id) {
         return service.queryMemberAuthorization(get(id));
+    }
+
+    @Override
+    @JsonResultFilter(values = {
+            @JsonBeanFilter(clazz = Platform.class,excludes = {"organizations"})
+    })
+    public List<Platform> queryPlatformByMemberId(@PathVariable("id") Long id) {
+        return platformService.findPlatformByMemberId(get(id));
     }
 
     private Member get(Long id) {
