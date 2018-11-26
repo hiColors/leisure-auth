@@ -106,6 +106,7 @@ public class RedisTokenStore implements TokenStore {
         String refreshToken = storeRefreshToken(member);
         authToken.setRefreshTokenExpires(stringRedisTemplate.getExpire(generateRefreshTokenKey(refreshToken)));
         authToken.setRefreshToken(refreshToken);
+        authToken.setRoles(member.getPlatformRoles().get(authToken.getPlatformId()));
         return authToken;
     }
 

@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * AuthToken
  *
@@ -38,4 +40,7 @@ public class AuthToken {
 
     @ApiModelProperty("刷新 token 失效期")
     private Long refreshTokenExpires;
+
+    @ApiModelProperty("角色列表")
+    private List<String> roles;
 }
