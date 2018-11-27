@@ -194,10 +194,11 @@ public class PlatformServiceImpl implements PlatformService {
         member.setExpiredDate(MemberDefaultValue.generatorDefaultExpiredDate());
         member.setLockStatus(false);
         member.setNickName(model.getName());
-        member.setPassword(model.getMobile());
+        member.setPassword(MemberDefaultValue.PASSWORD);
         memberRepository.save(member);
         MemberDetail memberDetail = new MemberDetail();
         memberDetail.setId(member.getId());
+        memberDetail.setPlatform(platform);
         ColorsBeanUtils.copyPropertiesNonNull(model, memberDetail);
         if (Objects.isNull(memberDetail.getAvatar())) {
             memberDetail.setAvatar(MemberDefaultValue.AVATAR);
