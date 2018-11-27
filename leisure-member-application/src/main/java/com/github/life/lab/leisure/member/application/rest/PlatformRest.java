@@ -1,14 +1,13 @@
 package com.github.life.lab.leisure.member.application.rest;
 
 import com.github.life.lab.leisure.common.exception.ResourceNotFoundException;
+import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonBeanFilter;
+import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonResultFilter;
 import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.application.service.PlatformService;
 import com.github.life.lab.leisure.member.intf.PlatformApi;
 import com.github.life.lab.leisure.member.model.model.platform.*;
-import com.github.life.lab.leisure.member.model.persistence.Platform;
-import com.github.life.lab.leisure.member.model.persistence.PlatformJob;
-import com.github.life.lab.leisure.member.model.persistence.PlatformMember;
-import com.github.life.lab.leisure.member.model.persistence.PlatformOrganization;
+import com.github.life.lab.leisure.member.model.persistence.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -78,16 +77,25 @@ public class PlatformRest implements PlatformApi {
 
     @ApiOperation("平台 - 查询{pid}平台下{oid}组织的员工 [Pageable + ColorsExpression]")
     @GetMapping("/{pid}/organization/{oid}/member")
+    @JsonResultFilter(values = {
+            @JsonBeanFilter(clazz = MemberDetail.class,excludes = {"platform"})
+    })
     public Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @ApiIgnore Pageable pageable,@ApiIgnore List<ColorsExpression> filters) {
         return service.queryPlatformMember(get(pid), getOrganization(oid), pageable, filters);
     }
 
     @Override
+    @JsonResultFilter(values = {
+            @JsonBeanFilter(clazz = MemberDetail.class,excludes = {"platform"})
+    })
     public PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @Validated @RequestBody PlatformMemberModel model) {
         return service.createMember(get(pid), getOrganization(oid), model);
     }
 
     @Override
+    @JsonResultFilter(values = {
+            @JsonBeanFilter(clazz = MemberDetail.class,excludes = {"platform"})
+    })
     public PlatformMember modifyMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @PathVariable("pmid") Long pmid, @Validated @RequestBody PlatformMemberPatchModel model) {
         return service.modifyMember(get(pid), getOrganization(oid), getPlatformMember(pmid), model);
     }
