@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -65,7 +66,7 @@ public class MemberRest implements MemberApi {
 
     @ApiOperation("[Pageable + ColorsExpression]")
     @GetMapping
-    public Page<Member> query(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
+    public Page<Member> query(@PageableDefault @ApiIgnore Pageable pageable, @ApiIgnore List<ColorsExpression> filters) {
         return service.query(pageable, filters);
     }
 

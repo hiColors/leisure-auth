@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -77,7 +78,7 @@ public class PlatformRest implements PlatformApi {
 
     @ApiOperation("平台 - 查询{pid}平台下{oid}组织的员工 [Pageable + ColorsExpression]")
     @GetMapping("/{pid}/organization/{oid}/member")
-    public Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, Pageable pageable, List<ColorsExpression> filters) {
+    public Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @ApiIgnore Pageable pageable,@ApiIgnore List<ColorsExpression> filters) {
         return service.queryPlatformMember(get(pid), getOrganization(oid), pageable, filters);
     }
 
