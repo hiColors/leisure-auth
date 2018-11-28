@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("dev")
 public class MemberRoleRepositoryTest {
 
+
   @Autowired
   private MemberRoleRepository memberRoleRepository;
 
