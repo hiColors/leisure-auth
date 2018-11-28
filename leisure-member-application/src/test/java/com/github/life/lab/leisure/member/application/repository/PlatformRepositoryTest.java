@@ -3,7 +3,6 @@ package com.github.life.lab.leisure.member.application.repository;
 import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.model.consts.EnumPlatformStatus;
 import com.github.life.lab.leisure.member.model.persistence.Platform;
-import com.oracle.tools.packager.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;

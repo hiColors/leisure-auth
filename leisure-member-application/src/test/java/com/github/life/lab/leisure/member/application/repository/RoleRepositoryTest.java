@@ -1,7 +1,6 @@
 package com.github.life.lab.leisure.member.application.repository;
 
 import com.github.life.lab.leisure.member.model.persistence.Role;
-import com.oracle.tools.packager.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
