@@ -31,7 +31,6 @@ public class Platform extends BaseJpaModel {
     /**
      * 主键
      */
-
     @Null(
             message = "id 必须为空",
             groups = {ValidatorGroup.Post.class, ValidatorGroup.Put.class, ValidatorGroup.Patch.class}

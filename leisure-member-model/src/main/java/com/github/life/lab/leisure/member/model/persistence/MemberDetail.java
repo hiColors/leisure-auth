@@ -41,7 +41,7 @@ public class MemberDetail extends BaseJpaModel {
      * 主平台 id
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "default_platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "primary_platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JsonIgnoreProperties("organizations")
     @NotFound(action = NotFoundAction.IGNORE)
     private Platform platform;
