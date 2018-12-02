@@ -9,27 +9,24 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * Cathay-ins.com.cn Inc. Copyright (c) 2014-2018 All Rights Reserved.
- *
- * @author fanchengbo
- * @version 1.0.0 2018/11/28 20:35
+ * @ClassName PlatformJobRepositoryTest
+ * @Description TODO
+ * @Author fhero
+ * @Date 2018-12-01 22:04
+ * @Version 1.0
  **/
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 @ActiveProfiles("dev")
-public class MemberRoleRepositoryTest {
+public class PlatformJobRepositoryTest {
 
+    @Autowired
+    private PlatformJobRepository platformJobRepository;
 
-  @Autowired
-  private MemberRoleRepository memberRoleRepository;
-
-
-  @Test
-  public void findByMemberId01() {
-    log.info("通过memberId获取成员角色列表{}",memberRoleRepository.findByMemberId(100014L));
-  }
-
-
+    @Test
+    public void findByPlatformIdAndTitle(){
+        log.info("平台职称:{}",platformJobRepository.findByPlatformIdAndTitle(100000L,"Java 初级开发工程师"));
+    }
 }
