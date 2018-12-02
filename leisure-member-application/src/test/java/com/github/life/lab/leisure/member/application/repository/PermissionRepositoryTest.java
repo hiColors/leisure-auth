@@ -26,8 +26,8 @@ public class PermissionRepositoryTest {
     private PermissionRepository permissionRepository;
 
     @Test
-    private void findByName(){
-//        log.info("{}",permissionRepository.findByName());
+    public void findByName(){
+        log.info("通过权限名称获取权限的信息{}",permissionRepository.findByName("超级管理员"));
 
     }
 }
