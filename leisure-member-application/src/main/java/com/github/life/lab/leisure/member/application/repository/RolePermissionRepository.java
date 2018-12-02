@@ -18,14 +18,17 @@ public interface RolePermissionRepository extends ColorsRepository<RolePermissio
 
     RolePermission findByRoleIdAndPermissionId(Long roleId, Long permissionId);
 
+    //TODO 删除之前应该根据deleteFlag进行判断状态
     @Query(value = "delete from RolePermission where role.id = :role_id")
     @Modifying
     Integer deleteByRoleId(@Param("role_id") Long roleId);
 
+    //TODO 删除之前应该根据deleteFlag进行判断状态
     @Query(value = "delete from RolePermission where permission.id = :permission_id")
     @Modifying
     Integer deleteByPermissionId(@Param("permission_id") Long permissionId);
 
+    //TODO 删除之前应该根据deleteFlag进行判断状态
     @Query(value = "delete from RolePermission where role.id = :role_id and permission.id = :permission_id")
     @Modifying
     Integer deleteByRoleIdAndPermissionId(@Param("role_id") Long roleId, @Param("permission_id") Long permissionId);

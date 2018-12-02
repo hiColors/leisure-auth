@@ -21,24 +21,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("dev")
 public class MemberDetailRepositoryTest {
 
-//    @Autowired
-//    private DataSource dataSource;
-//
     @Autowired
     private MemberDetailRepository memberDetailRepository;
-//
-//    @Before
-//    public void setUp() throws Exception {
-//        Operation operation = Operations.sequenceOf(
-//                Operations.deleteAllFrom("sys_organization"),
-//                Operations.insertInto("sys_organization")
-//                        .columns("name","priority","parent_id","parent_ids","available")
-//                        .values("测试组", 10, 0, "0/", Boolean.TRUE)
-//                        .build()
-//        );
-//        DbSetup dbSetup = new DbSetup(new DataSourceDestination(dataSource), operation);
-//        dbSetupTracker.launchIfNecessary(dbSetup);
-//    }
 
 
     @Test
