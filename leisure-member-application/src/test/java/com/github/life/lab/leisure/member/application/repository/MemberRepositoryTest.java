@@ -25,10 +25,9 @@ public class MemberRepositoryTest {
     @Autowired
     private MemberRepository memberRepository;
 
-
     @Test
     public void findByUsername(){
-        log.info("成员信息:{}",memberRepository.findByUsername("liweichao"));
+        log.info("通过姓名获取成员信息:{}",memberRepository.findByUsername("liweichao"));
     }
 
     @Test
@@ -38,9 +37,8 @@ public class MemberRepositoryTest {
 
     @Test
     public void findByUsernameAndPassword02(){
-        log.info("{}",memberRepository.findByUsernameAndPassword("liweichao","000000"));
+        log.info("通过姓名和密码获取成员信息:{}",memberRepository.findByUsernameAndPassword("liweichao","000000"));
         Assert.assertNotNull(memberRepository.findByUsernameAndPassword("liweichao","000000"));
     }
-
 
 }

@@ -15,6 +15,6 @@ public interface MemberDetailRepository extends ColorsRepository<MemberDetail, L
 
     MemberDetail findByMobile(String mobile);
 
-    MemberDetail findByEmail(String mobile);
+    MemberDetail findByEmail(String email);
 
 }

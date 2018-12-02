@@ -19,7 +19,7 @@ public interface PlatformMemberRoleRepository extends ColorsRepository<PlatformM
      * 通过 memberId 去查询 PlatformMemberRole
      * <p>
      * 设想一个员工可能属于多个平台 故返回值为list
-     *
+     * TODO 这里应该通过platformMemberId去查
      * @param memberId
      * @return
      */

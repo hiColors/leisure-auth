@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface MemberRepository extends ColorsRepository<Member, Long> {
 
     Member findByUsername(String username);
-
+//TODO 密码加密了，通过用户民和密码查不太好吧
     Member findByUsernameAndPassword(String username, String password);
 
 }

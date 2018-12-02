@@ -9,27 +9,25 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * Cathay-ins.com.cn Inc. Copyright (c) 2014-2018 All Rights Reserved.
- *
- * @author fanchengbo
- * @version 1.0.0 2018/11/28 20:35
+ * @ClassName PermissionRepositoryTest
+ * @Description TODO
+ * @Author fhero
+ * @Date 2018-12-01 22:45
+ * @Version 1.0
  **/
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 @ActiveProfiles("dev")
-public class MemberRoleRepositoryTest {
+public class PermissionRepositoryTest {
 
+    @Autowired
+    private PermissionRepository permissionRepository;
 
-  @Autowired
-  private MemberRoleRepository memberRoleRepository;
+    @Test
+    public void findByName(){
+        log.info("通过权限名称获取权限的信息{}",permissionRepository.findByName("超级管理员"));
 
-
-  @Test
-  public void findByMemberId01() {
-    log.info("通过memberId获取成员角色列表{}",memberRoleRepository.findByMemberId(100014L));
-  }
-
-
+    }
 }
