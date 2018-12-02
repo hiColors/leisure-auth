@@ -28,7 +28,7 @@ public class MemberRepositoryTest {
 
     @Test
     public void findByUsername(){
-        log.info("成员信息:{}",memberRepository.findByUsername("liweichao"));
+        log.info("获取成员信息:{}",memberRepository.findByUsername("liweichao"));
     }
 
     @Test

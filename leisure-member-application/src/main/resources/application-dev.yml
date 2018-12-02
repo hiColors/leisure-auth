@@ -9,3 +9,5 @@ spring:
     username: leisure
     password: leisure
     publisher-confirms: true
+server:
+  port: 8080
