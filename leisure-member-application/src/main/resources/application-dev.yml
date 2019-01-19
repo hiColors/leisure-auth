@@ -3,6 +3,9 @@ spring:
     url: jdbc:mysql://47.105.97.16:3306/leisure_member?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
+  jpa:
+    properties:
+      hibernate.show_sql: true
   rabbitmq:
     addresses: 47.101.155.253
     port: 5672

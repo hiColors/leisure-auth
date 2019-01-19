@@ -78,7 +78,7 @@ public class MemberRest implements MemberApi {
     }
 
     @GetMapping("/xxxx")
-    public EMemberDetail memberDetail(@RequestParam("id")Long id){
+    public EMemberDetail memberDetail(@RequestParam("id") Long id) {
         return SpringContextUtils.getBeanByType(EMemberDetailRepository.class).getOne(id);
     }
 }

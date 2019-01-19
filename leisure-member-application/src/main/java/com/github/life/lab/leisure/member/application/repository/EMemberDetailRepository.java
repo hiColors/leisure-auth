@@ -21,6 +21,13 @@ public interface EMemberDetailRepository extends ColorsRepository<EMemberDetail,
      */
     EMemberDetail findByMobile(String mobile);
 
+
+    /**
+     * 通过邮箱查询用户信息
+     *
+     * @param email 邮箱
+     * @return 用户详细信息 entity
+     */
     EMemberDetail findByEmail(String email);
 
 }

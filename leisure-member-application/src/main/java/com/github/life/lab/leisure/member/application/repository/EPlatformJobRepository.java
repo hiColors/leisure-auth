@@ -13,5 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EPlatformJobRepository extends ColorsRepository<EPlatformJob, Long> {
 
-    EPlatformJob findByPlatformIdAndTitle(Long id, String title);
+    /**
+     * 查找{ x}平台下{x}职称的岗位
+     *
+     * @param platformId 平台 id
+     * @param title      职称
+     * @return 平台岗位
+     */
+    EPlatformJob findByPlatformIdAndTitle(Long platformId, String title);
 }
