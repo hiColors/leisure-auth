@@ -107,7 +107,8 @@ CREATE TABLE `member_role` (
 CREATE TABLE `platform` (
   `id` BIGINT ( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` VARCHAR ( 100 ) NOT NULL COMMENT '名称',
-  `originator` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '创始人',
+  `originator` BIGINT ( 20 ) UNSIGNED NOT NULL COMMENT '发起人',
+  `originator_name` VARCHAR ( 20 ) NOT NULL COMMENT '发起人名称',
   `status` INTEGER ( 3 ) UNSIGNED NOT NULL DEFAULT 0 COMMENT '状态[0:禁用;1:审核中;2:启用]',
   `comment` VARCHAR ( 255 ) NULL COMMENT '备注',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

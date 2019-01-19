@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/22
  */
-@RestController
+//@RestController
 public class RoleRest implements RoleApi {
 
     @Override

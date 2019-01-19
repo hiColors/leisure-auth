@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/28
  */
-@RestController
+//@RestController
 public class PlatformRest implements PlatformApi {
 
     @Override

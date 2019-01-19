@@ -1,6 +1,8 @@
 package com.github.life.lab.leisure.member.authorization.token.impl;
 
 import com.github.life.lab.leisure.member.authorization.token.UserInfo;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -13,35 +15,24 @@ import java.util.Map;
  * @date 2018/11/13
  */
 @Data
+@ApiModel("用户授权信息")
 public class MemberAuthorization implements UserInfo {
 
-    /**
-     * 用户 id
-     */
+    @ApiModelProperty("用户 id")
     private Long id;
 
-    /**
-     * 昵称
-     */
+    @ApiModelProperty("昵称")
     private String nickName;
 
-    /**
-     * 主平台 id
-     */
+    @ApiModelProperty("主平台 id")
     private Long platformId;
 
-    /**
-     * 主平台 名称
-     */
+    @ApiModelProperty("主平台 名称")
     private String platformName;
 
-    /**
-     * 用户自身的权限
-     */
+    @ApiModelProperty("用户自身的角色信息")
     private List<String> memberRoles;
 
-    /**
-     * 用户在某平台下的权限
-     */
+    @ApiModelProperty("用户在某平台下的角色信息")
     private Map<Long, List<String>> platformRoles;
 }

@@ -19,6 +19,6 @@ public class MemberSignUpModel {
 
     @ApiModelProperty(notes = "手机号", required = true)
     @NotBlank(message = "手机号不允许为空")
-    @Length(min = 10, max = 20, message = "手机号长度不合法")
+    @Length(min = 11, max = 11, message = "手机号长度不合法")
     private String mobile;
 }

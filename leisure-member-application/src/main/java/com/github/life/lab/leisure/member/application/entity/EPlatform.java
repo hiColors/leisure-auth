@@ -46,9 +46,15 @@ public class EPlatform extends BaseJpaModel {
     private String name;
 
     /**
-     * 创始人
+     * 发起人
      */
     private Long originator;
+
+    /**
+     * 发起人名称
+     */
+    @Column(name = "originator_name")
+    private String originatorName;
 
     /**
      * 状态[0:禁用;1:审核中;2:启用]

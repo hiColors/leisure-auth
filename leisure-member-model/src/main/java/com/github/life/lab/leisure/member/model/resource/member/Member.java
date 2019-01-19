@@ -25,6 +25,9 @@ public class Member {
     @ApiModelProperty("用户名")
     private String username;
 
+    @ApiModelProperty("密码")
+    private String password;
+
     @ApiModelProperty("启用状态[0:未启用;1:启用]")
     private Boolean enabled;
 
@@ -58,10 +61,10 @@ public class Member {
     @ApiModelProperty("头像")
     private String avatar;
 
-    @ApiModelProperty("所属平台 id")
+    @ApiModelProperty("默认所属平台 id，如没有则不存在该值")
     private Long platformId;
 
-    @ApiModelProperty("名称")
+    @ApiModelProperty("默认所属名称，如没有则不存在该值")
     private String platformName;
 
 }

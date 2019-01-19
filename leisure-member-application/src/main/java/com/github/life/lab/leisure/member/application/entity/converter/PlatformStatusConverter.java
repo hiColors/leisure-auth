@@ -26,6 +26,6 @@ public class PlatformStatusConverter implements AttributeConverter<EnumPlatformS
                 return type;
             }
         }
-        throw new RuntimeException("unknown database value: " + dbData);
+        throw new RuntimeException("PlatformStatusConverter error, unknown database value: " + dbData);
     }
 }
