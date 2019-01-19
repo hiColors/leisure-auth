@@ -1,8 +1,8 @@
 package com.github.life.lab.leisure.member.authorization.feign;
 
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
-import com.github.life.lab.leisure.member.model.persistence.Member;
-import com.github.life.lab.leisure.member.model.persistence.Platform;
+import com.github.life.lab.leisure.member.model.resource.member.Member;
+import com.github.life.lab.leisure.member.model.resource.platform.Platform;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;

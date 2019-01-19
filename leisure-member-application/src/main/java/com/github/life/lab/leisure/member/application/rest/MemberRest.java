@@ -1,28 +1,17 @@
 package com.github.life.lab.leisure.member.application.rest;
 
-import com.github.life.lab.leisure.common.exception.ResourceNotFoundException;
-import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonBeanFilter;
-import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonResultFilter;
-import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
-import com.github.life.lab.leisure.member.application.service.MemberService;
-import com.github.life.lab.leisure.member.application.service.PlatformService;
+import com.github.life.lab.leisure.common.framework.utils.SpringContextUtils;
+import com.github.life.lab.leisure.member.application.entity.EMemberDetail;
+import com.github.life.lab.leisure.member.application.repository.EMemberDetailRepository;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.intf.MemberApi;
-import com.github.life.lab.leisure.member.model.model.member.*;
-import com.github.life.lab.leisure.member.model.persistence.Member;
-import com.github.life.lab.leisure.member.model.persistence.Platform;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
+import com.github.life.lab.leisure.member.model.resource.member.*;
+import com.github.life.lab.leisure.member.model.resource.platform.Platform;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.text.MessageFormat;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * MemberRest
@@ -33,81 +22,63 @@ import java.util.Objects;
 @RestController
 public class MemberRest implements MemberApi {
 
-    @Autowired
-    private MemberService service;
-
-    @Autowired
-    private PlatformService platformService;
-
     @Override
-    public Member signUp(@Validated @RequestBody MemberSignUpModel model) {
-        return service.signUp(model);
+    public Member signUp(MemberSignUpModel model) {
+        return null;
     }
 
     @Override
-    public Member modifyUsername(@PathVariable("id") Long id, @Validated @RequestBody MemberUsernameModel model) {
-        return service.modifyUsername(get(id), model);
+    public Member modifyUsername(Long id, MemberUsernameModel model) {
+        return null;
     }
 
     @Override
-    public Member modify(@PathVariable("id") Long id, @Validated @RequestBody MemberPatchModel model) {
-        return service.modify(get(id), model);
+    public Member modify(Long id, MemberPatchModel model) {
+        return null;
     }
 
     @Override
-    public Member modifyMobile(@PathVariable("id") Long id, @Validated @RequestBody MemberMobileModel model) {
-        return service.modifyMobile(get(id), model);
+    public Member modifyMobile(Long id, MemberMobileModel model) {
+        return null;
     }
 
     @Override
-    public Member modifyEmail(@PathVariable("id") Long id, @Validated @RequestBody MemberEmailModel model) {
-        return service.modifyEmail(get(id), model);
-    }
-
-    @ApiOperation("[Pageable + ColorsExpression]")
-    @GetMapping
-    public Page<Member> query(@PageableDefault @ApiIgnore Pageable pageable, @ApiIgnore List<ColorsExpression> filters) {
-        return service.query(pageable, filters);
+    public Member modifyEmail(Long id, MemberEmailModel model) {
+        return null;
     }
 
     @Override
-    public Member queryOneById(@PathVariable("id") Long id) {
-        return get(id);
+    public Member queryOneById(Long id) {
+        return null;
     }
 
     @Override
-    public Member queryOneByMobile(@RequestParam("mobile") String mobile) {
-        return service.queryOneByMobile(mobile);
+    public Member queryOneByMobile(String mobile) {
+        return null;
     }
 
     @Override
-    public Member queryOneByEmail(@RequestParam("email") String email) {
-        return service.queryOneByEmail(email);
+    public Member queryOneByEmail(String email) {
+        return null;
     }
 
     @Override
-    public Member queryOneByUniqueKeyAndPassword(@RequestParam("uniquekey") String uniquekey, @RequestParam("password") String password) {
-        return service.queryOneByUniqueKeyAndPassword(uniquekey, password);
+    public Member queryOneByUniqueKeyAndPassword(String uniquekey, String password) {
+        return null;
     }
 
     @Override
-    public MemberAuthorization queryMemberAuthorization(@PathVariable("id") Long id) {
-        return service.queryMemberAuthorization(get(id));
+    public MemberAuthorization queryMemberAuthorization(Long id) {
+        return null;
     }
 
     @Override
-    @JsonResultFilter(values = {
-            @JsonBeanFilter(clazz = Platform.class,excludes = {"organizations"})
-    })
-    public List<Platform> queryPlatformByMemberId(@PathVariable("id") Long id) {
-        return platformService.findPlatformByMemberId(get(id));
+    public List<Platform> queryPlatformByMemberId(Long id) {
+        return null;
     }
 
-    private Member get(Long id) {
-        Member member = service.queryOneById(id);
-        if (Objects.isNull(member)) {
-            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的人员不存在！", id));
-        }
-        return member;
+    @GetMapping("/xxxx")
+    public EMemberDetail memberDetail(@RequestParam("id")Long id){
+        return SpringContextUtils.getBeanByType(EMemberDetailRepository.class).getOne(id);
     }
 }

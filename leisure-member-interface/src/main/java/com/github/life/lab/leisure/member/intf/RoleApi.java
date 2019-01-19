@@ -1,9 +1,9 @@
 package com.github.life.lab.leisure.member.intf;
 
-import com.github.life.lab.leisure.member.model.model.role.RoleModel;
-import com.github.life.lab.leisure.member.model.model.role.RolePatchModel;
-import com.github.life.lab.leisure.member.model.persistence.Role;
-import com.github.life.lab.leisure.member.model.persistence.RolePermission;
+import com.github.life.lab.leisure.member.model.resource.role.Role;
+import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
+import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
+import com.github.life.lab.leisure.member.model.resource.role.RolePermission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;

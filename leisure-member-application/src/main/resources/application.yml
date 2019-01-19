@@ -1,13 +1,43 @@
 logging:
   path: /data/log/leisure-member
-
+  config: classpath:logback.xml
 server:
   servlet:
     context-path: /leisure-member
 
 spring:
   datasource:
-    type: com.zaxxer.hikari.HikariDataSource
+    druid:
+      initial-size: 8
+      min-idle: 8
+      max-active: 80
+      async-init: true
+      max-wait: 60000
+      use-unfair-lock: true
+      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 60000
+      validation-query: select 'x'
+      validation-query-timeout: 1
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: true
+      max-pool-prepared-statement-per-connection-size: -1
+      max-open-prepared-statements: -1
+      pool-prepared-statements: false
+      filters: stat,wall,slf4j
+      filter:
+        stat:
+          slow-sql-millis: 1000
+          log-slow-sql: true
+        wall:
+          config:
+            truncate-allow: false
+            alter-table-allow: false
+            drop-table-allow: false
+          enabled: true
+      stat-view-servlet:
+        login-password: leisure
+        login-username: leisure
   jpa:
     hibernate:
       ddl-auto: validate
@@ -16,7 +46,7 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
       hibernate.cache.use_second_level_cache: false
-      hibernate.show_sql: true
+      hibernate.show_sql: false
       hibernate.current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
       hibernate.enable_lazy_load_no_trans: true
       hibernate.ejb.interceptor: com.github.life.lab.leisure.common.jpa.customiz.interceptor.BizInterceptor
@@ -26,4 +56,4 @@ warning:
 
 platform:
   creator:
-    default-role: 100001
+    default-role-name: xxx

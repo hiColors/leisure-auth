@@ -1,8 +1,6 @@
 package com.github.life.lab.leisure.member.authorization.validator;
 
-import com.github.life.lab.leisure.member.authorization.validator.exception.EnumMemberAuthorizationCodeMessage;
-import com.github.life.lab.leisure.member.authorization.validator.exception.MemberAuthorizationException;
-import com.github.life.lab.leisure.member.model.persistence.Member;
+import com.github.life.lab.leisure.member.model.resource.member.Member;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
@@ -17,17 +15,17 @@ import javax.validation.constraints.NotNull;
 public class MemberValidator {
 
     public void validator(@NotNull Member member) {
-        if (!member.getEnabled()) {
-            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_DISABLED, member);
-        }
-        if (member.getLockStatus()) {
-            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_LOCKED, member);
-        }
-        if (System.currentTimeMillis() > member.getExpiredDate().getTime()) {
-            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_EXPIRED, member);
-        }
-        if (System.currentTimeMillis() > member.getCredentialsExpiredDate().getTime()) {
-            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_CREDENTIALS_EXPIRED, member);
-        }
+//        if (!member.getEnabled()) {
+//            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_DISABLED, member);
+//        }
+//        if (member.getLockStatus()) {
+//            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_LOCKED, member);
+//        }
+//        if (System.currentTimeMillis() > member.getExpiredDate().getTime()) {
+//            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_EXPIRED, member);
+//        }
+//        if (System.currentTimeMillis() > member.getCredentialsExpiredDate().getTime()) {
+//            throw new MemberAuthorizationException(EnumMemberAuthorizationCodeMessage.MEMBER_CREDENTIALS_EXPIRED, member);
+//        }
     }
 }

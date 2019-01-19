@@ -25,9 +25,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
                         }
                 )
         },
-        basePackages = "com.github.life.lab.leisure.member",
+        basePackages = "com.github.life.lab.leisure.member.application.repository",
         repositoryBaseClass = ColorsComplexRepository.class
 )
-@EntityScan({"com.github.life.lab.leisure.member"})
+@EntityScan({"com.github.life.lab.leisure.member.application.entity"})
 public class JpaLeisureAuthConfiguration {
 }

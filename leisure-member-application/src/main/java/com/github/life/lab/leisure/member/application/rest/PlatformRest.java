@@ -1,27 +1,8 @@
 package com.github.life.lab.leisure.member.application.rest;
 
-import com.github.life.lab.leisure.common.exception.ResourceNotFoundException;
-import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonBeanFilter;
-import com.github.life.lab.leisure.common.framework.springmvc.json.annotation.JsonResultFilter;
-import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
-import com.github.life.lab.leisure.member.application.service.PlatformService;
 import com.github.life.lab.leisure.member.intf.PlatformApi;
-import com.github.life.lab.leisure.member.model.model.platform.*;
-import com.github.life.lab.leisure.member.model.persistence.*;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.github.life.lab.leisure.member.model.resource.platform.*;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
-
-import java.text.MessageFormat;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * PlatformRest
@@ -32,104 +13,53 @@ import java.util.Objects;
 @RestController
 public class PlatformRest implements PlatformApi {
 
-    @Autowired
-    private PlatformService service;
-
     @Override
-    public Platform create(@Validated @RequestBody PlatformModel model) {
-        return service.create(model);
+    public Platform create(PlatformModel model) {
+        return null;
     }
 
     @Override
-    public Platform query(@PathVariable("id") Long id) {
-        return get(id);
+    public Platform query(Long id) {
+        return null;
     }
 
     @Override
-    public Platform modify(@PathVariable("id") Long id, @Validated @RequestBody PlatformPatchModel model) {
-        return service.modify(get(id), model);
+    public Platform modify(Long id, PlatformPatchModel model) {
+        return null;
     }
 
     @Override
-    public PlatformOrganization queryOrganization(@PathVariable("id") Long id) {
-        return service.queryOnePlatformOrganizationByPlatform(get(id));
+    public PlatformOrganization queryOrganization(Long id) {
+        return null;
     }
 
     @Override
-    public PlatformOrganization createOrganization(@PathVariable("id") Long id, @Validated @RequestBody PlatformOrganizationModel model) {
-        return service.createOrganization(get(id), model);
+    public PlatformOrganization createOrganization(Long id, PlatformOrganizationModel model) {
+        return null;
     }
 
     @Override
-    public PlatformOrganization modifyOrganization(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @Validated @RequestBody PlatformOrganizationPatchModel model) {
-        return service.modifyOrganization(get(pid), getOrganization(oid), model);
+    public PlatformOrganization modifyOrganization(Long pid, Long oid, PlatformOrganizationPatchModel model) {
+        return null;
     }
 
     @Override
-    public PlatformJob createJob(@PathVariable("id") Long id, @Validated @RequestBody PlatformJobModel model) {
-        return service.createJob(get(id), model);
+    public PlatformJob createJob(Long id, PlatformJobModel model) {
+        return null;
     }
 
     @Override
-    public PlatformJob modifyJob(@PathVariable("pid") Long pid, @PathVariable("jid") Long jid, @Validated @RequestBody PlatformJobPatchModel model) {
-        return service.modifyJob(get(pid), getJob(jid), model);
-    }
-
-    @ApiOperation("平台 - 查询{pid}平台下{oid}组织的员工 [Pageable + ColorsExpression]")
-    @GetMapping("/{pid}/organization/{oid}/member")
-    @JsonResultFilter(values = {
-            @JsonBeanFilter(clazz = MemberDetail.class,excludes = {"platform"})
-    })
-    public Page<PlatformMember> queryPlatformMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @ApiIgnore Pageable pageable,@ApiIgnore List<ColorsExpression> filters) {
-        return service.queryPlatformMember(get(pid), getOrganization(oid), pageable, filters);
+    public PlatformJob modifyJob(Long pid, Long jid, PlatformJobPatchModel model) {
+        return null;
     }
 
     @Override
-    @JsonResultFilter(values = {
-            @JsonBeanFilter(clazz = MemberDetail.class,excludes = {"platform"})
-    })
-    public PlatformMember createMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @Validated @RequestBody PlatformMemberModel model) {
-        return service.createMember(get(pid), getOrganization(oid), model);
+    public PlatformMember createMember(Long pid, Long oid, PlatformMemberModel model) {
+        return null;
     }
 
     @Override
-    @JsonResultFilter(values = {
-            @JsonBeanFilter(clazz = MemberDetail.class,excludes = {"platform"})
-    })
-    public PlatformMember modifyMember(@PathVariable("pid") Long pid, @PathVariable("oid") Long oid, @PathVariable("pmid") Long pmid, @Validated @RequestBody PlatformMemberPatchModel model) {
-        return service.modifyMember(get(pid), getOrganization(oid), getPlatformMember(pmid), model);
+    public PlatformMember modifyMember(Long pid, Long oid, Long pmid, PlatformMemberPatchModel model) {
+        return null;
     }
-
-    private Platform get(Long id) {
-        Platform platform = service.queryOneById(id);
-        if (Objects.isNull(platform)) {
-            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台信息不存在！", id));
-        }
-        return platform;
-    }
-
-    private PlatformOrganization getOrganization(Long id) {
-        PlatformOrganization organization = service.queryOnePlatformOrganizationById(id);
-        if (Objects.isNull(organization)) {
-            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台组织架构信息不存在！", id));
-        }
-        return organization;
-    }
-
-    private PlatformJob getJob(Long id) {
-        PlatformJob job = service.queryOnePlatformJobById(id);
-        if (Objects.isNull(job)) {
-            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平岗位信息不存在！", id));
-        }
-        return job;
-    }
-
-    private PlatformMember getPlatformMember(Long id) {
-        PlatformMember pm = service.queryOnePlatformMemberById(id);
-        if (Objects.isNull(pm)) {
-            throw new ResourceNotFoundException(MessageFormat.format("该 id[{0}] 对应的平台员工信息不存在！", id));
-        }
-        return pm;
-    }
-
 }

@@ -1,7 +1,7 @@
 package com.github.life.lab.leisure.member.intf;
 
-import com.github.life.lab.leisure.member.model.model.role.PermissionModel;
-import com.github.life.lab.leisure.member.model.persistence.Permission;
+import com.github.life.lab.leisure.member.model.resource.role.Permission;
+import com.github.life.lab.leisure.member.model.resource.role.PermissionModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;

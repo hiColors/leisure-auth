@@ -1,9 +1,8 @@
 package com.github.life.lab.leisure.member.intf;
 
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
-import com.github.life.lab.leisure.member.model.model.member.*;
-import com.github.life.lab.leisure.member.model.persistence.Member;
-import com.github.life.lab.leisure.member.model.persistence.Platform;
+import com.github.life.lab.leisure.member.model.resource.member.*;
+import com.github.life.lab.leisure.member.model.resource.platform.Platform;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
