@@ -69,7 +69,7 @@ public interface PlatformApi {
 
     @ApiOperation("平台 - 创建员工")
     @PostMapping("/{id}/member")
-    PlatformMember createMember(@PathVariable("id") Long id, @PathVariable("oid") Long oid, @RequestBody PlatformMemberModel model);
+    PlatformMember createMember(@PathVariable("id") Long id, @RequestBody PlatformMemberModel model);
 
     @ApiOperation("平台 - 删除员工")
     @DeleteMapping("/{id}/member/{mid}")

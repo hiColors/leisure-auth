@@ -1,9 +1,11 @@
 package com.github.life.lab.leisure.member.application.rest;
 
+import com.github.life.lab.leisure.member.application.service.MemberService;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.intf.MemberApi;
 import com.github.life.lab.leisure.member.model.resource.member.*;
 import com.github.life.lab.leisure.member.model.resource.platform.Platform;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,59 +23,62 @@ import java.util.List;
 @RestController
 public class MemberRest implements MemberApi {
 
+    @Autowired
+    private MemberService memberService;
+
     @Override
     public Member signUp(@RequestBody @Validated MemberSignUpModel model) {
-        return null;
+        return memberService.signUp(model);
     }
 
     @Override
     public Member modifyUsername(@PathVariable("id") Long id, @RequestBody @Validated MemberUsernameModel model) {
-        return null;
+        return memberService.modifyUsername(id, model);
     }
 
     @Override
     public Member modify(@PathVariable("id") Long id, @RequestBody @Validated MemberPatchModel model) {
-        return null;
+        return memberService.modify(id, model);
     }
 
     @Override
     public Member modifyMobile(@PathVariable("id") Long id, @RequestBody @Validated MemberMobileModel model) {
-        return null;
+        return memberService.modifyMobile(id, model);
     }
 
     @Override
     public Member modifyEmail(@PathVariable("id") Long id, @RequestBody @Validated MemberEmailModel model) {
-        return null;
+        return memberService.modifyEmail(id, model);
     }
 
     @Override
     public Member queryOneById(@PathVariable("id") Long id) {
-        return null;
+        return memberService.queryOneById(id);
     }
 
     @Override
     public Member queryOneByMobile(@RequestParam("mobile") String mobile) {
-        return null;
+        return memberService.queryOneByMobile(mobile);
     }
 
     @Override
     public Member queryOneByEmail(@RequestParam("email") String email) {
-        return null;
+        return memberService.queryOneByEmail(email);
     }
 
     @Override
     public Member queryOneByUniqueKeyAndPassword(@RequestParam("unique-key") String uniqueKey, @RequestParam("password") String password) {
-        return null;
+        return memberService.queryOneByUniqueKeyAndPassword(uniqueKey, password);
     }
 
     @Override
     public MemberAuthorization queryMemberAuthorization(@PathVariable("id") Long id) {
-        return null;
+        return memberService.queryMemberAuthorization(id);
     }
 
     @Override
     public List<Platform> queryPlatformByMemberId(@PathVariable("id") Long id) {
-        return null;
+        return memberService.queryPlatformByMemberId(id);
     }
 
 }
