@@ -23,6 +23,11 @@ public interface RoleApi {
     @PostMapping
     Role create(@RequestBody @Validated RoleModel model);
 
+    @ApiOperation("角色 - 删除")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void delete(@PathVariable("id") Long id);
+
     @ApiOperation("角色 - 部分修改")
     @PatchMapping("/{id}")
     Role modify(@PathVariable("id") Long id, @RequestBody RolePatchModel model);
@@ -30,10 +35,5 @@ public interface RoleApi {
     @ApiOperation("角色 - 查询")
     @GetMapping("/{id}")
     Role query(@PathVariable("id") Long id);
-
-    @ApiOperation("角色 - 删除")
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Long id);
 
 }

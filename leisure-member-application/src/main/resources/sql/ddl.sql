@@ -1,7 +1,7 @@
 CREATE TABLE `role`
 (
   `id`          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `code`        VARCHAR(20)        NOT NULL COMMENT '唯一标识码',
+  `code`        VARCHAR(20)         NOT NULL COMMENT '唯一标识码',
   `name`        VARCHAR(100)        NOT NULL COMMENT '名称',
   `status`      bit(1)              NOT NULL DEFAULT 1 COMMENT '状态[0:未启用;1:启用]',
   `description` VARCHAR(255)        NOT NULL DEFAULT '' COMMENT '说明',

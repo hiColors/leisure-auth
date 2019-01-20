@@ -41,19 +41,19 @@ public class EMember extends BaseJpaModel {
     /**
      * 用户名
      */
-    @Column(name = "username",unique = true)
+    @Column(name = "username", unique = true)
     private String username;
 
     /**
      * 邮箱
      */
-    @Column(name = "email",unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     /**
      * 手机号
      */
-    @Column(name = "mobile",unique = true)
+    @Column(name = "mobile", unique = true)
     private String mobile;
 
     /**
