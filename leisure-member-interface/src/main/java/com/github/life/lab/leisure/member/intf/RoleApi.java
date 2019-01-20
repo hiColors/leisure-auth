@@ -3,7 +3,6 @@ package com.github.life.lab.leisure.member.intf;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
-import com.github.life.lab.leisure.member.model.resource.role.RolePermission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -36,14 +35,5 @@ public interface RoleApi {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable("id") Long id);
-
-    @ApiOperation("角色权限关联关系 - 创建")
-    @PostMapping("/{roleId}/permission/{permissionId}")
-    RolePermission createRolePermission(@PathVariable("roleId") Long roleId, @PathVariable("permissionId") Long permissionId);
-
-    @ApiOperation("角色权限关联关系 - 删除")
-    @DeleteMapping("/{roleId}/permission/{permissionId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteRolePermission(@PathVariable("roleId") Long roleId, @PathVariable("permissionId") Long permissionId);
 
 }

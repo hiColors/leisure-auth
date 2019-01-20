@@ -2,6 +2,7 @@ package com.github.life.lab.leisure.member.application.repository;
 
 import com.github.life.lab.leisure.common.jpa.customiz.repository.ColorsRepository;
 import com.github.life.lab.leisure.member.application.entity.EMember;
+import com.github.life.lab.leisure.member.application.entity.EMemberDetail;
 import org.springframework.stereotype.Repository;
 
 
@@ -30,5 +31,23 @@ public interface EMemberRepository extends ColorsRepository<EMember, Long> {
      * @return 用户简要信息
      */
     EMember findByUsernameAndPassword(String username, String password);
+
+    /**
+     * 通过手机号查询用户信息
+     *
+     * @param mobile 手机号
+     * @return 用户详细信息 entity
+     */
+    EMember findByMobile(String mobile);
+
+
+    /**
+     * 通过邮箱查询用户信息
+     *
+     * @param email 邮箱
+     * @return 用户详细信息 entity
+     */
+    EMember findByEmail(String email);
+
 
 }

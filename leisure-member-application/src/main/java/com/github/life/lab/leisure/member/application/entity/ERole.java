@@ -1,6 +1,5 @@
 package com.github.life.lab.leisure.member.application.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
 import com.github.life.lab.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
@@ -8,7 +7,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Null;
-import java.util.List;
 
 /**
  * 角色信息
@@ -38,6 +36,11 @@ public class ERole extends BaseJpaModel {
     private Long id;
 
     /**
+     * 唯一标识码
+     */
+    private String code;
+
+    /**
      * 名称
      */
 
@@ -57,9 +60,5 @@ public class ERole extends BaseJpaModel {
      * varchar ( 255 ) null comment 备注
      */
     private String comment;
-
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-    @JsonIgnoreProperties("role")
-    private List<ERolePermission> rolePermissions;
 
 }

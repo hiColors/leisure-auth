@@ -13,21 +13,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EMemberDetailRepository extends ColorsRepository<EMemberDetail, Long> {
 
-    /**
-     * 通过手机号查询用户信息
-     *
-     * @param mobile 手机号
-     * @return 用户详细信息 entity
-     */
-    EMemberDetail findByMobile(String mobile);
-
-
-    /**
-     * 通过邮箱查询用户信息
-     *
-     * @param email 邮箱
-     * @return 用户详细信息 entity
-     */
-    EMemberDetail findByEmail(String email);
-
 }

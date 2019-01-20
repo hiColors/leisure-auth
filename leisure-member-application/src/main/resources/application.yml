@@ -45,8 +45,8 @@ spring:
     open-in-view: true
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
-      hibernate.cache.use_second_level_cache: false
       hibernate.show_sql: false
+      hibernate.cache.use_second_level_cache: false
       hibernate.current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
       hibernate.enable_lazy_load_no_trans: true
       hibernate.ejb.interceptor: com.github.life.lab.leisure.common.jpa.customiz.interceptor.BizInterceptor

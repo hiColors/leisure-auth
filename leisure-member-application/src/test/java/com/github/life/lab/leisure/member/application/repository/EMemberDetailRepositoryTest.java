@@ -20,17 +20,5 @@ public class EMemberDetailRepositoryTest {
     @Autowired
     private EMemberDetailRepository repository;
 
-    @Test
-    public void test01() {
-        EMemberDetail memberDetail = repository.findByMobile("18395202205");
-        log.info(JsonUtils.serialize(memberDetail));
-        Assert.assertEquals(memberDetail.getId(), Long.valueOf(100000));
-    }
 
-    @Test
-    public void test02() {
-        EMemberDetail memberDetail = repository.findByEmail("liweichao@life-lab.onaliyun.com");
-        log.info(JsonUtils.serialize(memberDetail));
-        Assert.assertEquals(memberDetail.getId(), Long.valueOf(100000));
-    }
 }

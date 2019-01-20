@@ -39,15 +39,22 @@ public class EMember extends BaseJpaModel {
     private Long id;
 
     /**
-     * 昵称
-     */
-    @Column(name = "nick_name")
-    private String nickName;
-
-    /**
      * 用户名
      */
+    @Column(name = "username",unique = true)
     private String username;
+
+    /**
+     * 邮箱
+     */
+    @Column(name = "email",unique = true)
+    private String email;
+
+    /**
+     * 手机号
+     */
+    @Column(name = "mobile",unique = true)
+    private String mobile;
 
     /**
      * 密码

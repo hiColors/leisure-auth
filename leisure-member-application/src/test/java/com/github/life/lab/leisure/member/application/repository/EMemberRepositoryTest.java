@@ -2,6 +2,7 @@ package com.github.life.lab.leisure.member.application.repository;
 
 import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.application.entity.EMember;
+import com.github.life.lab.leisure.member.application.entity.EMemberDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,5 +26,19 @@ public class EMemberRepositoryTest {
         EMember member = repository.findByUsername("liweichao");
         log.info(JsonUtils.serialize(member));
         Assert.assertEquals(member.getId(), Long.valueOf(100000L));
+    }
+
+    @Test
+    public void test02() {
+        EMember member = repository.findByMobile("18395202205");
+        log.info(JsonUtils.serialize(member));
+        Assert.assertEquals(member.getId(), Long.valueOf(100000));
+    }
+
+    @Test
+    public void test03() {
+        EMember member = repository.findByEmail("liweichao@life-lab.onaliyun.com");
+        log.info(JsonUtils.serialize(member));
+        Assert.assertEquals(member.getId(), Long.valueOf(100000));
     }
 }

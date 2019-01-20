@@ -4,8 +4,6 @@ import com.github.life.lab.leisure.member.intf.RoleApi;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
-import com.github.life.lab.leisure.member.model.resource.role.RolePermission;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * RoleRest
@@ -33,16 +31,6 @@ public class RoleRest implements RoleApi {
 
     @Override
     public void delete(Long id) {
-
-    }
-
-    @Override
-    public RolePermission createRolePermission(Long roleId, Long permissionId) {
-        return null;
-    }
-
-    @Override
-    public void deleteRolePermission(Long roleId, Long permissionId) {
 
     }
 }

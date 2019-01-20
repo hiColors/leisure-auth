@@ -24,7 +24,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
-@ToString(of = {"id", "email", "mobile", "name"})
+@ToString(of = {"id", "nickName", "name", "birthday"})
 public class EMemberDetail extends BaseJpaModel {
 
     /**
@@ -41,20 +41,16 @@ public class EMemberDetail extends BaseJpaModel {
      * 主平台 id
      */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "primary_platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "default_platform_id", foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     @JsonIgnoreProperties("organizations")
     @NotFound(action = NotFoundAction.IGNORE)
     private EPlatform platform;
 
     /**
-     * 邮箱
+     * 昵称
      */
-    private String email;
-
-    /**
-     * 手机号
-     */
-    private String mobile;
+    @Column(name = "nick_name")
+    private String nickName;
 
     /**
      * 姓名

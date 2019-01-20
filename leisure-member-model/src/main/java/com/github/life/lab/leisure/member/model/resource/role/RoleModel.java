@@ -18,6 +18,11 @@ import org.hibernate.validator.constraints.NotBlank;
 @Data
 public class RoleModel {
 
+    @ApiModelProperty(notes = "唯一标识码", required = true)
+    @NotBlank(message = "唯一标识码不允许为空")
+    @Length(min = 1, max = 20, message = "唯一标识码长度不合法")
+    private String code;
+
     @ApiModelProperty(notes = "名称", required = true)
     @NotBlank(message = "名称不允许为空")
     @Length(min = 1, max = 100, message = "名称长度不合法")

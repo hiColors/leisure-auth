@@ -17,7 +17,10 @@ import java.util.Date;
  * @since 2018/10/10
  */
 @Entity
-@Table(name = "platform_member")
+@Table(name = "platform_member", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"platform_id", "member_id"}),
+        @UniqueConstraint(columnNames = {"platform_id", "mobile"}),
+})
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
@@ -74,6 +77,11 @@ public class EPlatformMember extends BaseJpaModel {
      * 员工 姓名
      */
     private String name;
+
+    /**
+     * 手机号
+     */
+    private String mobile;
 
     /**
      * 工号
