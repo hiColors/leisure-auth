@@ -2,7 +2,9 @@ package com.github.life.lab.leisure.member.model.resource.platform;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * PlatformMember
@@ -12,6 +14,8 @@ import lombok.Data;
  */
 @ApiModel("平台员工信息")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlatformMember {
 
     @ApiModelProperty(notes = "员工 id")

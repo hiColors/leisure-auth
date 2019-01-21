@@ -9,17 +9,17 @@ import com.github.life.lab.leisure.common.exception.BusinessException;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/22
  */
-public class MemberServerException extends BusinessException {
+public class LeisureMemberException extends BusinessException {
 
-    public MemberServerException(EnumMemberServerCodeMessage codeMessage) {
+    public LeisureMemberException(EnumLeisureMemberCodeMessage codeMessage) {
         super(codeMessage.getCode(), codeMessage.getMessage(), null);
     }
 
-    public MemberServerException(EnumMemberServerCodeMessage codeMessage, Object data) {
+    public LeisureMemberException(EnumLeisureMemberCodeMessage codeMessage, Object data) {
         super(codeMessage.getCode(), codeMessage.getMessage(), data);
     }
 
-    public MemberServerException(EnumMemberServerCodeMessage codeMessage, String msg) {
+    public LeisureMemberException(EnumLeisureMemberCodeMessage codeMessage, String msg) {
         super(codeMessage.getCode(), msg, null);
     }
 }

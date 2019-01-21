@@ -1,15 +1,19 @@
 package com.github.life.lab.leisure.member.application.rest;
 
+import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.application.service.RoleService;
 import com.github.life.lab.leisure.member.intf.RoleApi;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * RoleRest
@@ -41,5 +45,15 @@ public class RoleRest implements RoleApi {
     @Override
     public Role query(@PathVariable("id") Long id) {
         return roleService.query(id);
+    }
+
+    @Override
+    public Role queryByCode(@RequestParam("code") String code) {
+        return roleService.queryByCode(code);
+    }
+
+    @GetMapping("/roles")
+    public Page<Role> paging(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
+        return roleService.paging(pageable,filters);
     }
 }

@@ -2,7 +2,9 @@ package com.github.life.lab.leisure.member.model.resource.platform;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ import java.util.List;
  */
 @Data
 @ApiModel("平台组织架构信息")
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlatformOrganization {
 
     @ApiModelProperty(notes = "平台组织架构 id")

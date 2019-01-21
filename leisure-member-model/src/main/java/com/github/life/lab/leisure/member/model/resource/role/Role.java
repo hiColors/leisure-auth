@@ -2,7 +2,9 @@ package com.github.life.lab.leisure.member.model.resource.role;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Role
@@ -12,6 +14,8 @@ import lombok.Data;
  */
 @ApiModel("角色信息")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Role {
 
     @ApiModelProperty(notes = "角色 id")

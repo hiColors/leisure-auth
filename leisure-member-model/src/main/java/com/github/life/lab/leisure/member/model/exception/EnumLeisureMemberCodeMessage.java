@@ -6,7 +6,7 @@ package com.github.life.lab.leisure.member.model.exception;
  * @author weichao.li (liweichao0102@gmail.com)
  * @date 2018/10/22
  */
-public enum EnumMemberServerCodeMessage {
+public enum EnumLeisureMemberCodeMessage {
 
     /**
      * member 服务全局错误异常码
@@ -23,9 +23,8 @@ public enum EnumMemberServerCodeMessage {
 
     /********* 角色权限相关 *********/
     ROLE_NAME_EXIST(100001001L, "角色名称已存在"),
-    PERMISSION_NAME_EXIST(100001002L, "权限名称已存在"),
-    PERMISSION_STRATEGY_EXIST(100001003L, "权限策略已存在"),
-    PERMISSION_STRATEGY_NON_EXIST(100001004L, "权限策略不存在"),
+    ROLE_CODE_EXIST(100001002L, "角色唯一标识码已存在"),
+    ROLE_NON_EXIST(100001004L, "角色不存在"),
 
     /********* 平台相关 *********/
     PLATFORM_NAME_EXIST(100002001L, "平台信息名称已存在"),
@@ -55,7 +54,7 @@ public enum EnumMemberServerCodeMessage {
 
     private final String message;
 
-    EnumMemberServerCodeMessage(Long code, String message) {
+    EnumLeisureMemberCodeMessage(Long code, String message) {
         this.code = code;
         this.message = message;
     }

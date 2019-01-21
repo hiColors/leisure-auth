@@ -1,8 +1,13 @@
 package com.github.life.lab.leisure.member.application.service;
 
+import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * RoleService
@@ -21,6 +26,8 @@ public interface RoleService {
     Role create(RoleModel model);
 
     /**
+     * 角色 - 删除
+     *
      * @param id 角色 id
      */
     void delete(Long id);
@@ -41,4 +48,21 @@ public interface RoleService {
      * @return 角色信息
      */
     Role query(Long id);
+
+    /**
+     * 角色 - 查询通过唯一标识码
+     *
+     * @param code 唯一标识码
+     * @return 角色信息
+     */
+    Role queryByCode(String code);
+
+    /**
+     * 分页查询
+     *
+     * @param pageable 分页对象
+     * @param filters  过滤器
+     * @return 查询结果
+     */
+    Page<Role> paging(Pageable pageable, List<ColorsExpression> filters);
 }

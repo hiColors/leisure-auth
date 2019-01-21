@@ -20,6 +20,6 @@ public class ERoleRepositoryTest {
 
     @Test
     public void test01() {
-        log.info(JsonUtils.serialize(repository.findByName("xxx")));
+        log.info(JsonUtils.serialize(repository.existsByCode("x")));
     }
 }
