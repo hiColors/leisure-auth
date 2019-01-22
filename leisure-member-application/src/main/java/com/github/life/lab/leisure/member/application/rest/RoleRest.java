@@ -6,6 +6,7 @@ import com.github.life.lab.leisure.member.intf.RoleApi;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
+import com.github.life.lab.leisure.member.model.resource.role.RoleStatusModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,11 @@ public class RoleRest implements RoleApi {
     @Override
     public Role modify(@PathVariable("id") Long id, @RequestBody @Validated RolePatchModel model) {
         return roleService.modify(id, model);
+    }
+
+    @Override
+    public Role modifyStatus(@PathVariable("id") Long id, @RequestBody @Validated RoleStatusModel model) {
+        return roleService.modifyStatus(id, model);
     }
 
     @Override

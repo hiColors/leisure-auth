@@ -4,6 +4,7 @@ import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
+import com.github.life.lab.leisure.member.model.resource.role.RoleStatusModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -40,6 +41,16 @@ public interface RoleService {
      * @return 角色信息
      */
     Role modify(Long id, RolePatchModel model);
+
+    /**
+     * 角色 - 修改状态
+     *
+     * @param id    角色 id
+     * @param model 对应模型
+     * @return 角色信息
+     */
+    Role modifyStatus(Long id, RoleStatusModel model);
+
 
     /**
      * 角色 - 查询

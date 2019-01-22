@@ -10,6 +10,7 @@ import com.github.life.lab.leisure.member.model.exception.LeisureMemberException
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
+import com.github.life.lab.leisure.member.model.resource.role.RoleStatusModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -61,6 +62,17 @@ public class RoleServiceImpl implements RoleService {
             throw new LeisureMemberException(EnumLeisureMemberCodeMessage.ROLE_NON_EXIST);
         }
         ColorsBeanUtils.copyPropertiesNonNull(model, eRole);
+        eRole = repository.saveAndFlush(eRole);
+        return transferERole(eRole);
+    }
+
+    @Override
+    public Role modifyStatus(Long id, RoleStatusModel model) {
+        ERole eRole = getById(id);
+        if (Objects.isNull(eRole)) {
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.ROLE_NON_EXIST);
+        }
+        eRole.setStatus(model.getStatus());
         eRole = repository.saveAndFlush(eRole);
         return transferERole(eRole);
     }

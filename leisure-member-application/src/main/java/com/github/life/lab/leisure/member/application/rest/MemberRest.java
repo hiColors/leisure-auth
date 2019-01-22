@@ -52,23 +52,8 @@ public class MemberRest implements MemberApi {
     }
 
     @Override
-    public Member queryOneById(@PathVariable("id") Long id) {
-        return memberService.queryOneById(id);
-    }
-
-    @Override
-    public Member queryOneByMobile(@RequestParam("mobile") String mobile) {
-        return memberService.queryOneByMobile(mobile);
-    }
-
-    @Override
-    public Member queryOneByEmail(@RequestParam("email") String email) {
-        return memberService.queryOneByEmail(email);
-    }
-
-    @Override
-    public Member queryOneByUniqueKeyAndPassword(@RequestParam("unique-key") String uniqueKey, @RequestParam("password") String password) {
-        return memberService.queryOneByUniqueKeyAndPassword(uniqueKey, password);
+    public Member queryOne(@PathVariable("key") String key, @RequestParam(value = "key-type", defaultValue = "id") String keyType) {
+        return memberService.queryOne(key, keyType);
     }
 
     @Override

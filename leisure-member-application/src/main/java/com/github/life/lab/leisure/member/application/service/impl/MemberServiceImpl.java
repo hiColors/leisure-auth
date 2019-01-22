@@ -70,4 +70,9 @@ public class MemberServiceImpl implements MemberService {
     public List<Platform> queryPlatformByMemberId(Long id) {
         return null;
     }
+
+    @Override
+    public Member queryOne(String key, String keyType) {
+        return null;
+    }
 }

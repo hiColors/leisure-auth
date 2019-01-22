@@ -105,4 +105,6 @@ public interface MemberService {
      * @return 人员基础信息
      */
     List<Platform> queryPlatformByMemberId(Long id);
+
+    Member queryOne(String key, String keyType);
 }
