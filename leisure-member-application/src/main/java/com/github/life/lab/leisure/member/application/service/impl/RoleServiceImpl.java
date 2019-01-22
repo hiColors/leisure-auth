@@ -12,13 +12,10 @@ import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -74,19 +71,26 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role queryByKey(String key, String keyType) {
+        switch (keyType.toLowerCase()) {
+            case "id":
+                return query(Long.valueOf(key));
+            case "code":
+                return queryByCode(key);
+            default:
+                throw new LeisureMemberException(EnumLeisureMemberCodeMessage.ROLE_QUERY_NON_SUPPORT);
+
+        }
+    }
+
+    @Override
     public Role queryByCode(String code) {
-        ERole eRole = repository.findByCode(code);
-        return transferERole(eRole);
+        return transferERole(repository.findByCode(code));
     }
 
     @Override
     public Page<Role> paging(Pageable pageable, List<ColorsExpression> filters) {
-        Page<ERole> eRolePage = repository.findPage(pageable,filters);
-        List<Role> roles = new ArrayList<>();
-        eRolePage.getContent().forEach(e->roles.add(transferERole(e)));
-        Page<Role> result = new PageImpl(roles);
-        ColorsBeanUtils.copyProperties(eRolePage,result,"content");
-        return result;
+        return repository.findPage(pageable, filters).map(this::transferERole);
     }
 
 

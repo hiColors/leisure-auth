@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2018/10/21
  */
 @Api(tags = "role", description = "对角色的相关操作")
+@RequestMapping("/roles")
 public interface RoleApi {
 
     @ApiOperation("角色 - 创建")
@@ -23,20 +24,16 @@ public interface RoleApi {
     Role create(@RequestBody @Validated RoleModel model);
 
     @ApiOperation("角色 - 删除")
-    @DeleteMapping("/role/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable("id") Long id);
 
     @ApiOperation("角色 - 部分修改")
-    @PatchMapping("/role/{id}")
+    @PatchMapping("/{id}")
     Role modify(@PathVariable("id") Long id, @RequestBody RolePatchModel model);
 
-    @ApiOperation("角色 - 查询(通过 id)")
-    @GetMapping("/role/{id}")
-    Role query(@PathVariable("id") Long id);
-
-    @ApiOperation("角色 - 查询(通过唯一标识码)")
-    @GetMapping("/role")
-    Role queryByCode(@RequestParam("code") String code);
+    @ApiOperation("角色 - 查询，当前支持的 keyType [id(主键，默认值);code(唯一标识码)]")
+    @GetMapping("/{key}")
+    Role query(@PathVariable("key") String key, @RequestParam("key-type") String keyType);
 
 }

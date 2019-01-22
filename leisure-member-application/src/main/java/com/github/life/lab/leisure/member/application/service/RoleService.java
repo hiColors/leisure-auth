@@ -49,6 +49,16 @@ public interface RoleService {
      */
     Role query(Long id);
 
+
+    /**
+     * 角色 - 查询
+     *
+     * @param key     key 值
+     * @param keyType key 类型
+     * @return 角色信息
+     */
+    Role queryByKey(String key, String keyType);
+
     /**
      * 角色 - 查询通过唯一标识码
      *

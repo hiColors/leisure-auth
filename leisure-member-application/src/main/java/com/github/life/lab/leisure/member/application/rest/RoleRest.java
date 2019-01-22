@@ -43,17 +43,12 @@ public class RoleRest implements RoleApi {
     }
 
     @Override
-    public Role query(@PathVariable("id") Long id) {
-        return roleService.query(id);
+    public Role query(@PathVariable("key") String key, @RequestParam(value = "key-type", defaultValue = "id") String keyType) {
+        return roleService.queryByKey(key, keyType);
     }
 
-    @Override
-    public Role queryByCode(@RequestParam("code") String code) {
-        return roleService.queryByCode(code);
-    }
-
-    @GetMapping("/roles")
+    @GetMapping
     public Page<Role> paging(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
-        return roleService.paging(pageable,filters);
+        return roleService.paging(pageable, filters);
     }
 }

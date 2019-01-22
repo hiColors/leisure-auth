@@ -24,7 +24,8 @@ public enum EnumLeisureMemberCodeMessage {
     /********* 角色权限相关 *********/
     ROLE_NAME_EXIST(100001001L, "角色名称已存在"),
     ROLE_CODE_EXIST(100001002L, "角色唯一标识码已存在"),
-    ROLE_NON_EXIST(100001004L, "角色不存在"),
+    ROLE_NON_EXIST(100001003L, "角色不存在"),
+    ROLE_QUERY_NON_SUPPORT(100001004L, "不支持的查询方式"),
 
     /********* 平台相关 *********/
     PLATFORM_NAME_EXIST(100002001L, "平台信息名称已存在"),
