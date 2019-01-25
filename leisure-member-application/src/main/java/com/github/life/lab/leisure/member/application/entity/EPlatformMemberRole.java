@@ -3,6 +3,7 @@ package com.github.life.lab.leisure.member.application.entity;
 import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
 import com.github.life.lab.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ import javax.validation.constraints.Null;
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
 @ToString(of = {"id"})
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class EPlatformMemberRole extends BaseJpaModel {
 
     /**

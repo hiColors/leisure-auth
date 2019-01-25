@@ -6,6 +6,7 @@ import com.github.life.lab.leisure.common.model.validator.ValidatorGroup;
 import com.github.life.lab.leisure.member.application.entity.converter.PlatformStatusConverter;
 import com.github.life.lab.leisure.member.application.entity.enums.EnumPlatformStatus;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ import java.util.List;
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
 @ToString(of = {"id", "name", "status"})
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class EPlatform extends BaseJpaModel {
 
     /**

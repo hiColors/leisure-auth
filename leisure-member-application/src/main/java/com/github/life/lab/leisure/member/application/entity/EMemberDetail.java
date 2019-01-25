@@ -3,12 +3,13 @@ package com.github.life.lab.leisure.member.application.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -25,6 +26,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
 @ToString(of = {"id", "nickName", "name", "birthday"})
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class EMemberDetail extends BaseJpaModel {
 
     /**

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
 import com.github.life.lab.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Where(clause = "delete_flag = 0")
 @ToString(of = {"id", "employeeNumber"})
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class EPlatformMember extends BaseJpaModel {
 
     /**
