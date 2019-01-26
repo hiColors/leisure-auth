@@ -5,9 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * PlatformModel
@@ -21,16 +19,15 @@ import javax.validation.constraints.NotNull;
 public class PlatformPatchModel {
 
     @ApiModelProperty(notes = "名称", required = true)
-    @NotBlank(message = "名称不允许为空")
-    @Length(min = 1, max = 100, message = "名称长度不合法")
+    @Length(min = 1, max = 100, message = "非法的名称长度")
     private String name;
 
     @ApiModelProperty(notes = "状态[0:禁用;1:审核中;2:启用]", required = true)
-    @NotNull(message = "状态不允许为空")
+    @Range(max = 2, message = "非法的状态值")
     private Integer status;
 
     @ApiModelProperty(notes = "备注")
-    @Length(min = 1, max = 255, message = "备注长度不合法")
+    @Length(min = 1, max = 255, message = "非法的备注长度")
     private String comment;
 
 }

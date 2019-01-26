@@ -142,7 +142,7 @@ CREATE TABLE `platform_member`
   `platform_organization_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '平台组织架构',
   `member_id`                BIGINT(20) UNSIGNED NOT NULL COMMENT '人员',
   `name`                     VARCHAR(20)         NOT NULL DEFAULT '' COMMENT '姓名',
-  `email`                   VARCHAR(20)         NOT NULL COMMENT '邮箱',
+  `email`                    VARCHAR(50)         NOT NULL COMMENT '邮箱',
   `platform_job_id`          BIGINT(20) UNSIGNED COMMENT '平台岗位',
   `employee_number`          VARCHAR(32)         NULL COMMENT ' 工号',
   `entry_date`               datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '入职日期',

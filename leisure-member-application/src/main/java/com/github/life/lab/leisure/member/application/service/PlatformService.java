@@ -118,4 +118,29 @@ public interface PlatformService {
      * @return 组织员工信息
      */
     PlatformMember queryMember(Long id, Long mid);
+
+    /**
+     * 检查平台名称是否可用
+     *
+     * @param platformName 平台名称
+     * @param id           指定平台 id
+     */
+    void checkPlatformName(String platformName, Long id);
+
+    /**
+     * 判断平台组织架构关联关系
+     *
+     * @param id  平台id
+     * @param oid 组织架构 id
+     */
+    void checkOrganizationAssociation(Long id, Long oid);
+
+    /**
+     * 判断平台岗位关联关系
+     *
+     * @param id  平台id
+     * @param jid 岗位id
+     */
+    void checkJobAssociation(Long id, Long jid);
+
 }

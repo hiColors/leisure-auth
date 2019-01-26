@@ -70,8 +70,8 @@ warning:
 default:
   value:
     ## 用户默认角色
-    member-role: xxx
+    member-role: normal-member
     ## 员工默认角色
-    platform-member-role: xxx
+    platform-member-role: normal-member
     ## 平台创建者默认角色
-    platform-creator-role: xxx
+    platform-creator-role: platfor-creator

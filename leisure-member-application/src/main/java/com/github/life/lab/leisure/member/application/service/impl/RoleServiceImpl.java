@@ -106,10 +106,8 @@ public class RoleServiceImpl implements RoleService {
         return repository.findPage(pageable, filters).map(EntityTransferUtils::transferERole);
     }
 
-
     private ERole getById(Long id) {
         return repository.findById(id).orElse(null);
     }
-
 
 }

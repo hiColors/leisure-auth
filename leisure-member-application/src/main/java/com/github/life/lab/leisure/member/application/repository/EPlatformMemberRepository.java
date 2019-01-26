@@ -27,4 +27,30 @@ public interface EPlatformMemberRepository extends ColorsRepository<EPlatformMem
     @Query("from EPlatformMember where member_id = :memberId")
     List<EPlatformMember> findPlatformByMemberId(@Param("memberId") Long memberId);
 
+    /**
+     * 根据 人员 id 和 平台 id 判断是否存在
+     *
+     * @param mid 人员 id
+     * @param pid 平台 id
+     * @return if exist true,else false
+     */
+    boolean existsByMemberIdAndPlatformId(Long mid, Long pid);
+
+    /**
+     * 根据 岗位 id 和 平台 id 判断是否存在
+     *
+     * @param jid 岗位 id
+     * @param pid 平台 id
+     * @return if exist true,else false
+     */
+    boolean existsByPlatformJobIdAndPlatformId(Long jid, Long pid);
+
+    /**
+     * 根据 组织 id 和 平台 id 判断是否存在
+     *
+     * @param oid 组织 id
+     * @param pid 平台 id
+     * @return if exist true,else false
+     */
+    boolean existsByPlatformOrganizationIdAndPlatformId(Long oid, Long pid);
 }

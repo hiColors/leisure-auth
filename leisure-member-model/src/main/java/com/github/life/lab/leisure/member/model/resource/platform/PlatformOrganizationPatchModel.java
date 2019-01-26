@@ -5,10 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * PlatformOrganizationModel
@@ -22,12 +19,10 @@ import javax.validation.constraints.NotNull;
 public class PlatformOrganizationPatchModel {
 
     @ApiModelProperty(notes = "父级节点 id ", required = true)
-    @NotNull(message = "父级节点 id 不允许为空")
     @Range(min = 1, message = "父级节点 id 不合法")
     private Long parent;
 
     @ApiModelProperty(notes = "名称", required = true)
-    @NotBlank(message = "名称不允许为空")
     @Length(min = 1, max = 100, message = "名称长度不合法")
     private String name;
 

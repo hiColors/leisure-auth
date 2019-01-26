@@ -21,4 +21,13 @@ public interface EPlatformJobRepository extends ColorsRepository<EPlatformJob, L
      * @return 平台岗位
      */
     EPlatformJob findByPlatformIdAndTitle(Long platformId, String title);
+
+    /**
+     * 根据 id 和 平台 id 判断是否存在
+     *
+     * @param id  id
+     * @param jid 平台 id
+     * @return if exist true,else false
+     */
+    boolean existsByIdAndPlatformId(Long id, Long jid);
 }

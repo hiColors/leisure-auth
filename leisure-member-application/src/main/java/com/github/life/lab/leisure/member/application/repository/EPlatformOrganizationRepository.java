@@ -44,4 +44,13 @@ public interface EPlatformOrganizationRepository extends ColorsRepository<EPlatf
      * @return 组织架构信息
      */
     EPlatformOrganization findByPlatformIdAndName(Long pid, String name);
+
+    /**
+     * 根据 id 和 平台 id 判断是否存在
+     *
+     * @param id  id
+     * @param pid 平台 id
+     * @return if exist true,else false
+     */
+    boolean existsByIdAndPlatformId(Long id, Long pid);
 }

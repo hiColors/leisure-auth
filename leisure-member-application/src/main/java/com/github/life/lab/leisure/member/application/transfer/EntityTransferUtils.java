@@ -106,6 +106,9 @@ public class EntityTransferUtils {
             pm.setOrganizationId(ePlatformMember.getPlatformOrganization().getId());
             pm.setOrganizationName(ePlatformMember.getPlatformOrganization().getName());
         }
+        if (Objects.nonNull(ePlatformMember.getMember())) {
+            pm.setMobile(ePlatformMember.getMember().getMobile());
+        }
         return pm;
     }
 }

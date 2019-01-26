@@ -21,6 +21,9 @@ public enum EnumLeisureMemberCodeMessage {
      * 001 -> 后三位，代表具体异常码。
      */
 
+    /****/
+    ENUM_NOT_SUPPORT_VALUEOF(100000001L, "非法枚举值！"),
+
     /********* 角色权限相关 *********/
     ROLE_NAME_EXIST(100001001L, "角色名称已存在"),
     ROLE_CODE_EXIST(100001002L, "角色唯一标识码已存在"),
@@ -28,7 +31,8 @@ public enum EnumLeisureMemberCodeMessage {
     ROLE_QUERY_NON_SUPPORT(100001004L, "不支持的查询方式"),
 
     /********* 平台相关 *********/
-    PLATFORM_NAME_EXIST(100002001L, "平台信息名称已存在"),
+    PLATFORM_NAME_EXIST(100002001L, "平台名称已存在"),
+    PLATFORM_NON_EXIST(100002001L, "平台不存在"),
     PLATFORM_PARENT_ORGANIZATION_NON_EXIST(100002002L, "父级的平台组织架构信息不存在"),
     PLATFORM_ORGANIZATION_NAME_EXIST(100002003L, "该平台下已存在同名组织架构"),
     PLATFORM_ORGANIZATION_MISMATCHES(100002004L, "该平台和该组织架构信息不匹配"),
@@ -37,6 +41,9 @@ public enum EnumLeisureMemberCodeMessage {
     PLATFORM_JOB_NON_EXIST(100002007L, "平台岗位信息不存在"),
     PLATFORM_MEMBER_MISMATCHES(100002008L, "该员工不属于该平台"),
     PLATFORM_ORGANIZATION_NON_EXIST(100002009L, "该组织机构不存在"),
+    PLATFORM_ORGANIZATION_CHILDREN_EXIST(100002010L, "该组织机构下存在子节点"),
+    PLATFORM_ORGANIZATION_ROOT_DENY_DELETE(100002011L, "顶级节点禁止删除"),
+    PLATFORM_ORGANIZATION_MEMBER_EXIST(100002012L, "该组织架构下存在人员"),
 
     /********* 人员相关 *********/
     MEMBER_NON_EXIST(100003001L, "人员不存在"),

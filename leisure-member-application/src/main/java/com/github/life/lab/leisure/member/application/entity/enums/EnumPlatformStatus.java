@@ -1,5 +1,8 @@
 package com.github.life.lab.leisure.member.application.entity.enums;
 
+import com.github.life.lab.leisure.member.model.exception.EnumLeisureMemberCodeMessage;
+import com.github.life.lab.leisure.member.model.exception.LeisureMemberException;
+
 /**
  * EnumCompanyStatus
  *
@@ -25,6 +28,15 @@ public enum EnumPlatformStatus {
     EnumPlatformStatus(int value, String desc) {
         this.value = value;
         this.desc = desc;
+    }
+
+    public static EnumPlatformStatus valueOfValue(Integer value) {
+        for (EnumPlatformStatus e : values()) {
+            if (value.equals(e.getValue())) {
+                return e;
+            }
+        }
+        throw new LeisureMemberException(EnumLeisureMemberCodeMessage.ENUM_NOT_SUPPORT_VALUEOF);
     }
 
     public int getValue() {

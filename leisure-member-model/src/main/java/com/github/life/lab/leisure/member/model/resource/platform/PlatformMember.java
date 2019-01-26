@@ -23,6 +23,9 @@ public class PlatformMember {
     @ApiModelProperty(notes = "员工 id")
     private Long id;
 
+    @ApiModelProperty(notes = "邮箱")
+    private String email;
+
     @ApiModelProperty(notes = "手机号")
     private String mobile;
 
