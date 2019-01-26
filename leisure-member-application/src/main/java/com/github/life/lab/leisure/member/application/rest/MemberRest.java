@@ -1,16 +1,17 @@
 package com.github.life.lab.leisure.member.application.rest;
 
+import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.application.service.MemberService;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.intf.MemberApi;
 import com.github.life.lab.leisure.member.model.resource.member.*;
 import com.github.life.lab.leisure.member.model.resource.platform.Platform;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -66,4 +67,8 @@ public class MemberRest implements MemberApi {
         return memberService.queryPlatformByMemberId(id);
     }
 
+    @GetMapping
+    public Page<Member> paging(@PageableDefault Pageable pageable, List<ColorsExpression> filters) {
+        return memberService.paging(pageable, filters);
+    }
 }

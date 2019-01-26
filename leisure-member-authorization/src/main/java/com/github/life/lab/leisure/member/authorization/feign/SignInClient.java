@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "leisure-member", path = "/leisure-member")
 public interface SignInClient {
 
-
     @ApiOperation("人员 - 获取人员信息通过 id")
     @GetMapping("/member/{id}")
     Member queryOneById(@PathVariable("id") Long id);

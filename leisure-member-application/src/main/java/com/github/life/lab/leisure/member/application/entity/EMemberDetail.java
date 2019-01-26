@@ -5,11 +5,11 @@ import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
 import lombok.*;
 import org.hibernate.annotations.*;
 
-import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**

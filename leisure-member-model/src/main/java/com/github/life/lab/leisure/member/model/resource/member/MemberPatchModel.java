@@ -46,7 +46,7 @@ public class MemberPatchModel {
     private String description;
 
     @ApiModelProperty(notes = "主页")
-    @Length(min = 10, max = 50, message = "主页长度不合法")
+    @Length(min = 2, max = 50, message = "主页长度不合法")
     private String website;
 
     @ApiModelProperty(notes = "头像")

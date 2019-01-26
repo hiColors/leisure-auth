@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
@@ -20,13 +21,15 @@ import java.util.Date;
 public class MemberModel {
 
     @ApiModelProperty(notes = "手机号", required = true)
-    @NotBlank(message = "手机号不允许为空")
-    @Length(min = 10, max = 20, message = "手机号长度不合法")
+    @Length(min = 11, max = 11, message = "手机号长度不合法")
+    @Pattern(
+            regexp = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$",
+            message = "手机号不合法")
     private String mobile;
 
     @ApiModelProperty(notes = "邮箱", required = true)
     @NotBlank(message = "邮箱不允许为空")
-    @Email(message = "新邮箱不合法")
+    @Email(message = "邮箱不合法")
     private String email;
 
     @ApiModelProperty(notes = "昵称")

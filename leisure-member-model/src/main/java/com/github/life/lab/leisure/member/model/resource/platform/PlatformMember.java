@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * PlatformMember
  *
@@ -26,6 +28,15 @@ public class PlatformMember {
 
     @ApiModelProperty(notes = "姓名")
     private String name;
+
+    @ApiModelProperty(notes = "工号")
+    private String employeeNumber;
+
+    @ApiModelProperty(notes = "入职日期")
+    private Date entryDate;
+
+    @ApiModelProperty(notes = "备注")
+    private String comment;
 
     @ApiModelProperty(notes = "平台 id")
     private Long platformId;

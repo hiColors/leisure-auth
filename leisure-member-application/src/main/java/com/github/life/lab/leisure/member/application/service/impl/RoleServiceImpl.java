@@ -5,6 +5,7 @@ import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.entity.ERole;
 import com.github.life.lab.leisure.member.application.repository.ERoleRepository;
 import com.github.life.lab.leisure.member.application.service.RoleService;
+import com.github.life.lab.leisure.member.application.transfer.EntityTransferUtils;
 import com.github.life.lab.leisure.member.model.exception.EnumLeisureMemberCodeMessage;
 import com.github.life.lab.leisure.member.model.exception.LeisureMemberException;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
@@ -46,7 +47,7 @@ public class RoleServiceImpl implements RoleService {
         //默认为启用
         eRole.setStatus(true);
         eRole = repository.save(eRole);
-        return transferERole(eRole);
+        return EntityTransferUtils.transferERole(eRole);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class RoleServiceImpl implements RoleService {
         }
         ColorsBeanUtils.copyPropertiesNonNull(model, eRole);
         eRole = repository.saveAndFlush(eRole);
-        return transferERole(eRole);
+        return EntityTransferUtils.transferERole(eRole);
     }
 
     @Override
@@ -74,12 +75,12 @@ public class RoleServiceImpl implements RoleService {
         }
         eRole.setStatus(model.getStatus());
         eRole = repository.saveAndFlush(eRole);
-        return transferERole(eRole);
+        return EntityTransferUtils.transferERole(eRole);
     }
 
     @Override
     public Role query(Long id) {
-        return transferERole(getById(id));
+        return EntityTransferUtils.transferERole(getById(id));
     }
 
     @Override
@@ -97,12 +98,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role queryByCode(String code) {
-        return transferERole(repository.findByCode(code));
+        return EntityTransferUtils.transferERole(repository.findByCode(code));
     }
 
     @Override
     public Page<Role> paging(Pageable pageable, List<ColorsExpression> filters) {
-        return repository.findPage(pageable, filters).map(this::transferERole);
+        return repository.findPage(pageable, filters).map(EntityTransferUtils::transferERole);
     }
 
 
@@ -110,13 +111,5 @@ public class RoleServiceImpl implements RoleService {
         return repository.findById(id).orElse(null);
     }
 
-    private Role transferERole(ERole eRole) {
-        if (Objects.isNull(eRole)) {
-            return null;
-        }
-        Role role = new Role();
-        ColorsBeanUtils.copyPropertiesNonNull(eRole, role);
-        return role;
-    }
 
 }

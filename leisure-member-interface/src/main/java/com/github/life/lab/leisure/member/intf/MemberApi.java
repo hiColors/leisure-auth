@@ -43,7 +43,7 @@ public interface MemberApi {
     Member modifyEmail(@PathVariable("id") Long id, @RequestBody @Validated MemberEmailModel model);
 
     @ApiOperation(value = "人员 - 获取人员信息",
-            notes = "当前支持的 keyType : 【id - 主键，默认值】;【username - 用户名;【mobile - 手机号】;【email - 邮箱】;【up - 用户名和密码(key 使用半角冒号分割,示例：key=liweichao:123456,keyType=up)】")
+            notes = "当前支持的 keyType : 【id - 主键，默认值】;【username - 用户名;【mobile - 手机号】;【email - 邮箱】】")
     @GetMapping("/{key}")
     Member queryOne(@PathVariable("key") String key, @RequestParam(value = "key-type", defaultValue = "id") String keyType);
 

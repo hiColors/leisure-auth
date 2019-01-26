@@ -20,7 +20,7 @@ import java.util.Date;
 @Entity
 @Table(name = "platform_member", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"platform_id", "member_id"}),
-        @UniqueConstraint(columnNames = {"platform_id", "mobile"}),
+        @UniqueConstraint(columnNames = {"platform_id", "email"}),
 })
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -81,9 +81,9 @@ public class EPlatformMember extends BaseJpaModel {
     private String name;
 
     /**
-     * 手机号
+     * 员工 邮箱
      */
-    private String mobile;
+    private String email;
 
     /**
      * 工号

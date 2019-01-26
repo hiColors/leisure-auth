@@ -3,7 +3,6 @@ package com.github.life.lab.leisure.member.intf;
 import com.github.life.lab.leisure.member.model.resource.platform.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ResponseHeader;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

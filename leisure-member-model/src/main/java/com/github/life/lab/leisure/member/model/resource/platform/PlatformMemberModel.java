@@ -28,11 +28,6 @@ public class PlatformMemberModel {
     @Length(min = 10, max = 20, message = "手机号长度不合法")
     private String mobile;
 
-    @ApiModelProperty(notes = "邮箱", required = true)
-    @NotBlank(message = "邮箱不允许为空")
-    @Email(message = "新邮箱不合法")
-    private String email;
-
     @ApiModelProperty(notes = "姓名")
     @Length(max = 20, message = "姓名长度不合法")
     private String name;

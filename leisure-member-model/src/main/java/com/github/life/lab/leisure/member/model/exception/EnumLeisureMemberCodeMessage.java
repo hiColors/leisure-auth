@@ -45,8 +45,9 @@ public enum EnumLeisureMemberCodeMessage {
     MEMBER_USERNAME_EXIST(100003004L, "该用户名已存在"),
     MEMBER_UNIQUE_KEY_NON_EXIST(100003005L, "该 [{0}] 对应的人员不存在"),
 
-    MEMBER_USERNAME_PASSWORD_NON_EXIST(100003005L, "用户名密码不匹配"),
-
+    MEMBER_USERNAME_PASSWORD_NON_EXIST(100003006L, "用户名密码不匹配"),
+    MEMBER_QUERY_NON_SUPPORT(1000010047L, "不支持的查询方式"),
+    MEMBER_MODIFY_FAIL(1000010048L, "用户信息修改失败，请稍后重试！"),
 
     /************* 100100xxx 认证模块占用请跳过此段异常码 *********/
     ;

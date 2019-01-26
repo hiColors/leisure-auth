@@ -1,6 +1,7 @@
 package com.github.life.lab.leisure.member.application.repository.listeners;
 
 import com.github.life.lab.leisure.common.jpa.customiz.listener.AbstractListener;
+import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.application.amqp.MqProperties;
 import com.github.life.lab.leisure.member.application.entity.EMember;
 import lombok.extern.slf4j.Slf4j;
@@ -48,9 +49,11 @@ public class EMemberListener extends AbstractListener implements PersistEventLis
     }
 
     @Override
+    @Async
     public void onPersist(PersistEvent event) throws HibernateException {
         if (event.getObject() instanceof EMember) {
-
+            EMember eMember = (EMember) event.getObject();
+            log.info(JsonUtils.serialize(eMember));
         }
     }
 

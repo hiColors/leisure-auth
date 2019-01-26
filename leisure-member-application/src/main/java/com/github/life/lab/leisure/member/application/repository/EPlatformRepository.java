@@ -13,6 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EPlatformRepository extends ColorsRepository<EPlatform, Long> {
 
+    /**
+     * 通过名称查询平台信息
+     *
+     * @param name 名称
+     * @return 平台信息
+     */
     EPlatform findByName(String name);
 
 }

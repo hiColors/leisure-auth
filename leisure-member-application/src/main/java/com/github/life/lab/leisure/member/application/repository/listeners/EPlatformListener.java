@@ -42,7 +42,7 @@ public class EPlatformListener extends AbstractListener implements PersistEventL
     @Autowired
     private EPlatformMemberRoleRepository pmrrepository;
 
-    @Value("${platform.creator.default-role-name}")
+    @Value("${default.value.platform-creator-role}")
     private String creatorDefaultRoleName;
 
     @Override

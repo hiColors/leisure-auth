@@ -2,6 +2,9 @@ package com.github.life.lab.leisure.member.application.repository;
 
 import com.github.life.lab.leisure.common.jpa.customiz.repository.ColorsRepository;
 import com.github.life.lab.leisure.member.application.entity.EMember;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -47,6 +50,40 @@ public interface EMemberRepository extends ColorsRepository<EMember, Long> {
      * @return 用户详细信息 entity
      */
     EMember findByEmail(String email);
+
+
+    /**
+     * 修改用户用户名
+     *
+     * @param id       主键
+     * @param username 用户名
+     * @return 影响行数
+     */
+    @Query("update EMember set username = :username where id = :id")
+    @Modifying
+    int updateUsernameById(@Param("id") Long id, @Param("username") String username);
+
+    /**
+     * 修改用户手机号
+     *
+     * @param id     主键
+     * @param mobile 用户名
+     * @return 影响行数
+     */
+    @Query("update EMember set mobile = :mobile where id = :id")
+    @Modifying
+    int updateMobileById(@Param("id") Long id, @Param("mobile") String mobile);
+
+    /**
+     * 修改用户邮箱
+     *
+     * @param id    主键
+     * @param email 邮箱
+     * @return 影响行数
+     */
+    @Query("update EMember set email = :email where id = :id")
+    @Modifying
+    int updateEmailById(@Param("id") Long id, @Param("email") String email);
 
 
 }
