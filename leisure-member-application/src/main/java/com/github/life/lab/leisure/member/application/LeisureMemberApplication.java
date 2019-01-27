@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 人员管理服务
  *
  * @author weichao.li (liweichao0102@gmail.com)
- * @date 2018/10/2
+ * @since 2018/10/2
  */
 @SpringBootApplication
 @Slf4j
