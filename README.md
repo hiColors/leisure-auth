@@ -8,8 +8,6 @@
 
 ## UML 图
 
-![ UML 图](https://raw.githubusercontent.com/hiColors/resources/master/20181029225138.png)
-
 
 
 ## 数据库 DDL
