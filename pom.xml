@@ -15,7 +15,7 @@
         <groupId>com.github.life-lab</groupId>
         <artifactId>leisure</artifactId>
         <version>0.0.8-RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <modules>
