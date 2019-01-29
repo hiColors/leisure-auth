@@ -1,8 +1,5 @@
 package com.github.life.lab.leisure.member.authorization.token;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 用户信息接口
  *
@@ -25,31 +22,7 @@ public interface UserInfo {
      */
     String getNickName();
 
-    /**
-     * 获取主平台 id
-     *
-     * @return 主平台 id
-     */
-    Long getPlatformId();
 
-    /**
-     * 获取主平台 名称
-     *
-     * @return 主平台 名称
-     */
-    String getPlatformName();
 
-    /**
-     * 获取用户自身的权限
-     *
-     * @return 用户自身的权限
-     */
-    List<String> getMemberRoles();
 
-    /**
-     * 获取用户在某平台下的权限
-     *
-     * @return 用户在某平台下的权限
-     */
-    Map<Long, List<String>> getPlatformRoles();
 }

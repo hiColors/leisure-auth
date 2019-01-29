@@ -28,13 +28,13 @@ public interface EPlatformMemberRepository extends ColorsRepository<EPlatformMem
     List<EPlatformMember> findPlatformByMemberId(@Param("memberId") Long memberId);
 
     /**
-     * 根据 人员 id 和 平台 id 判断是否存在
+     * 根据 员工 id 和 平台 id 判断是否存在
      *
-     * @param mid 人员 id
-     * @param pid 平台 id
+     * @param pmid 员工 id
+     * @param pid  平台 id
      * @return if exist true,else false
      */
-    boolean existsByMemberIdAndPlatformId(Long mid, Long pid);
+    boolean existsByIdAndPlatformId(Long pmid, Long pid);
 
     /**
      * 根据 岗位 id 和 平台 id 判断是否存在

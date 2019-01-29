@@ -23,12 +23,6 @@ public class AuthToken {
     @ApiModelProperty("昵称")
     private String nickname;
 
-    @ApiModelProperty("主平台 id")
-    private Long platformId;
-
-    @ApiModelProperty("主平台 名称")
-    private String platformName;
-
     @ApiModelProperty("访问 token")
     private String accessToken;
 

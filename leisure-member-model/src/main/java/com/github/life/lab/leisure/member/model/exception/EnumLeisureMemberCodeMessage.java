@@ -44,6 +44,7 @@ public enum EnumLeisureMemberCodeMessage {
     PLATFORM_ORGANIZATION_CHILDREN_EXIST(100002010L, "该组织机构下存在子节点"),
     PLATFORM_ORGANIZATION_ROOT_DENY_DELETE(100002011L, "顶级节点禁止删除"),
     PLATFORM_ORGANIZATION_MEMBER_EXIST(100002012L, "该组织架构下存在人员"),
+    PLATFORM_JOB_MEMBER_EXIST(100002013L, "该岗位信息下存在人员"),
 
     /********* 人员相关 *********/
     MEMBER_NON_EXIST(100003001L, "人员不存在"),

@@ -87,17 +87,17 @@ public class PlatformRest implements PlatformApi {
     }
 
     @Override
-    public void deleteMember(@PathVariable("id") Long id, @PathVariable("mid") Long mid) {
-        platformService.deleteMember(id, mid);
+    public void deleteMember(@PathVariable("id") Long id, @PathVariable("pmid") Long pmid) {
+        platformService.deleteMember(id, pmid);
     }
 
     @Override
-    public PlatformMember modifyMember(@PathVariable("id") Long id, @PathVariable("mid") Long mid, @RequestBody @Validated PlatformMemberPatchModel model) {
-        return platformService.modifyMember(id, mid, model);
+    public PlatformMember modifyMember(@PathVariable("id") Long id, @PathVariable("pmid") Long pmid, @RequestBody @Validated PlatformMemberPatchModel model) {
+        return platformService.modifyMember(id, pmid, model);
     }
 
     @Override
-    public PlatformMember queryMember(@PathVariable("id") Long id, @PathVariable("mid") Long mid) {
-        return platformService.queryMember(id, mid);
+    public PlatformMember queryMember(@PathVariable("id") Long id, @PathVariable("pmid") Long pmid) {
+        return platformService.queryMember(id, pmid);
     }
 }

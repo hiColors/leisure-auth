@@ -8,6 +8,7 @@ import com.github.life.lab.leisure.member.application.entity.value.EMemberDefaul
 import com.github.life.lab.leisure.member.application.repository.EMemberDetailRepository;
 import com.github.life.lab.leisure.member.application.repository.EMemberRepository;
 import com.github.life.lab.leisure.member.application.service.MemberService;
+import com.github.life.lab.leisure.member.application.service.PlatformService;
 import com.github.life.lab.leisure.member.application.transfer.EntityTransferUtils;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.model.exception.EnumLeisureMemberCodeMessage;
@@ -35,6 +36,9 @@ public class MemberServiceImpl implements MemberService {
     private final EMemberRepository memberRepository;
 
     private final EMemberDetailRepository memberDetailRepository;
+
+    @Autowired
+    private PlatformService platformService;
 
     @Autowired
     public MemberServiceImpl(EMemberDetailRepository memberDetailRepository, EMemberRepository memberRepository) {
@@ -132,7 +136,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<Platform> queryPlatformByMemberId(Long id) {
-        return null;
+        return platformService.findPlatformByMemberId(id);
     }
 
     @Override

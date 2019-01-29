@@ -24,14 +24,6 @@ public class MemberAuthorization implements UserInfo {
     @ApiModelProperty("昵称")
     private String nickName;
 
-    @ApiModelProperty("主平台 id")
-    private Long platformId;
-
-    @ApiModelProperty("主平台 名称")
-    private String platformName;
-
-    @ApiModelProperty("用户自身的角色信息")
-    private List<String> memberRoles;
 
     @ApiModelProperty("用户在某平台下的角色信息")
     private Map<Long, List<String>> platformRoles;

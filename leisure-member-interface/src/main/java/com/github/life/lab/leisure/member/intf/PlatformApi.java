@@ -72,16 +72,16 @@ public interface PlatformApi {
     PlatformMember createMember(@PathVariable("id") Long id, @RequestBody PlatformMemberModel model);
 
     @ApiOperation("平台 - 删除员工")
-    @DeleteMapping("/{id}/members/{mid}")
+    @DeleteMapping("/{id}/members/{pmid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteMember(@PathVariable("id") Long id, @PathVariable("mid") Long mid);
+    void deleteMember(@PathVariable("id") Long id, @PathVariable("pmid") Long pmid);
 
     @ApiOperation("平台 - 修改员工信息")
-    @PatchMapping("/{id}/members/{mid}")
-    PlatformMember modifyMember(@PathVariable("id") Long id, @PathVariable("mid") Long mid, @RequestBody PlatformMemberPatchModel model);
+    @PatchMapping("/{id}/members/{pmid}")
+    PlatformMember modifyMember(@PathVariable("id") Long id, @PathVariable("pmid") Long pmid, @RequestBody PlatformMemberPatchModel model);
 
     @ApiOperation("平台 - 查询员工信息")
-    @GetMapping("/{id}/members/{mid}")
-    PlatformMember queryMember(@PathVariable("id") Long id, @PathVariable("mid") Long mid);
+    @GetMapping("/{id}/members/{pmid}")
+    PlatformMember queryMember(@PathVariable("id") Long id, @PathVariable("pmid") Long pmid);
 
 }

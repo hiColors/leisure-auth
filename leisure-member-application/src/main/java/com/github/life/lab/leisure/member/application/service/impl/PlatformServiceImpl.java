@@ -1,10 +1,7 @@
 package com.github.life.lab.leisure.member.application.service.impl;
 
 import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
-import com.github.life.lab.leisure.member.application.entity.EPlatform;
-import com.github.life.lab.leisure.member.application.entity.EPlatformJob;
-import com.github.life.lab.leisure.member.application.entity.EPlatformMember;
-import com.github.life.lab.leisure.member.application.entity.EPlatformOrganization;
+import com.github.life.lab.leisure.member.application.entity.*;
 import com.github.life.lab.leisure.member.application.entity.enums.EnumPlatformStatus;
 import com.github.life.lab.leisure.member.application.repository.EPlatformJobRepository;
 import com.github.life.lab.leisure.member.application.repository.EPlatformMemberRepository;
@@ -21,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -148,44 +147,86 @@ public class PlatformServiceImpl implements PlatformService {
         if (Objects.isNull(ePlatform)) {
             throw new LeisureMemberException(EnumLeisureMemberCodeMessage.PLATFORM_NON_EXIST);
         }
-        return null;
+        EPlatformJob epjb = new EPlatformJob();
+        epjb.setPlatform(ePlatform);
+        ColorsBeanUtils.copyPropertiesNonNull(model, epjb);
+        jobRepository.save(epjb);
+        return EntityTransferUtils.transferEPlatformJob(epjb);
     }
 
     @Override
     public void deleteJob(Long id, Long jid) {
-
+        checkJobAssociation(id, jid);
+        if (memberRepository.existsByPlatformJobIdAndPlatformId(jid, id)) {
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.PLATFORM_JOB_MEMBER_EXIST);
+        } else {
+            jobRepository.deleteById(id);
+        }
     }
 
     @Override
     public PlatformJob modifyJob(Long id, Long jid, PlatformJobPatchModel model) {
-        return null;
+        checkJobAssociation(id, jid);
+        EPlatformJob epjb = getJobById(jid);
+        ColorsBeanUtils.copyPropertiesNonNull(model, epjb);
+        return EntityTransferUtils.transferEPlatformJob(jobRepository.saveAndFlush(epjb));
     }
 
     @Override
     public PlatformJob queryJob(Long id, Long jid) {
-
-
-        return null;
+        checkJobAssociation(id, jid);
+        return EntityTransferUtils.transferEPlatformJob(getJobById(jid));
     }
 
     @Override
     public PlatformMember createMember(Long id, PlatformMemberModel model) {
-        return null;
+        EPlatform ePlatform = getPlatformById(id);
+        if (Objects.isNull(ePlatform)) {
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.PLATFORM_NON_EXIST);
+        }
+        Member member = memberService.queryOneByMobile(model.getMobile());
+        if (Objects.isNull(member)) {
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.MEMBER_NON_EXIST);
+        }
+        checkJobAssociation(id, model.getJobId());
+        checkOrganizationAssociation(id, model.getOrganizationId());
+        EPlatformMember epm = new EPlatformMember();
+        ColorsBeanUtils.copyPropertiesNonNull(model, epm);
+        epm.setPlatformJob(getJobById(model.getJobId()));
+        epm.setPlatformOrganization(getOrganizationById(model.getOrganizationId()));
+        epm.setPlatform(ePlatform);
+        EMember eMember = new EMember();
+        eMember.setId(member.getId());
+        epm.setMember(eMember);
+        return EntityTransferUtils.transferEPlatformMember(memberRepository.save(epm));
     }
 
     @Override
-    public void deleteMember(Long id, Long mid) {
-
+    public void deleteMember(Long id, Long pmid) {
+        checkMemberAssociation(id, pmid);
+        memberRepository.deleteById(pmid);
     }
 
     @Override
-    public PlatformMember modifyMember(Long id, Long mid, PlatformMemberPatchModel model) {
-        return null;
+    public PlatformMember modifyMember(Long id, Long pmid, PlatformMemberPatchModel model) {
+        checkMemberAssociation(id, pmid);
+        EPlatformMember epm = getMemberById(pmid);
+        ColorsBeanUtils.copyPropertiesNonNull(model, epm);
+        if (Objects.nonNull(model.getJobId())) {
+            checkJobAssociation(id, model.getJobId());
+            epm.setPlatformJob(getJobById(model.getJobId()));
+        }
+        if (Objects.nonNull(model.getOrganizationId())) {
+            checkOrganizationAssociation(id, model.getOrganizationId());
+            epm.setPlatformOrganization(getOrganizationById(model.getOrganizationId()));
+        }
+        return EntityTransferUtils.transferEPlatformMember(memberRepository.saveAndFlush(epm));
     }
 
     @Override
-    public PlatformMember queryMember(Long id, Long mid) {
-        return null;
+    public PlatformMember queryMember(Long id, Long pmid) {
+        checkMemberAssociation(id, pmid);
+        return EntityTransferUtils.transferEPlatformMember(getMemberById(pmid));
     }
 
     @Override
@@ -208,6 +249,23 @@ public class PlatformServiceImpl implements PlatformService {
         if (!jobRepository.existsByIdAndPlatformId(jid, id)) {
             throw new LeisureMemberException(EnumLeisureMemberCodeMessage.PLATFORM_JOB_MISMATCHES);
         }
+    }
+
+    @Override
+    public void checkMemberAssociation(Long id, Long pmid) {
+        if (!memberRepository.existsByIdAndPlatformId(pmid, id)) {
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.PLATFORM_MEMBER_MISMATCHES);
+        }
+    }
+
+    @Override
+    public List<Platform> findPlatformByMemberId(Long memberId) {
+        List<EPlatformMember> pms = memberRepository.findPlatformByMemberId(memberId);
+        List<Platform> platforms = new ArrayList<>();
+        pms.forEach(e->{
+            platforms.add(EntityTransferUtils.transferEPlatform(e.getPlatform()));
+        });
+        return platforms;
     }
 
     private EPlatform getPlatformById(Long id) {

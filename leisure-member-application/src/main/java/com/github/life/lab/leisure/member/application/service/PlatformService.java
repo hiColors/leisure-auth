@@ -2,6 +2,8 @@ package com.github.life.lab.leisure.member.application.service;
 
 import com.github.life.lab.leisure.member.model.resource.platform.*;
 
+import java.util.List;
+
 /**
  * PlatformService
  *
@@ -99,25 +101,25 @@ public interface PlatformService {
     PlatformMember createMember(Long id, PlatformMemberModel model);
 
     /**
-     * @param id  平台 id
-     * @param mid 用户 id
+     * @param id   平台 id
+     * @param pmid 员工 id
      */
-    void deleteMember(Long id, Long mid);
+    void deleteMember(Long id, Long pmid);
 
     /**
      * @param id    平台 id
-     * @param mid   用户 ID
+     * @param pmid  员工 ID
      * @param model 对应模型
      * @return 组织员工信息
      */
-    PlatformMember modifyMember(Long id, Long mid, PlatformMemberPatchModel model);
+    PlatformMember modifyMember(Long id, Long pmid, PlatformMemberPatchModel model);
 
     /**
-     * @param id  平台 id
-     * @param mid 用户 id
+     * @param id   平台 id
+     * @param pmid 员工 id
      * @return 组织员工信息
      */
-    PlatformMember queryMember(Long id, Long mid);
+    PlatformMember queryMember(Long id, Long pmid);
 
     /**
      * 检查平台名称是否可用
@@ -142,5 +144,15 @@ public interface PlatformService {
      * @param jid 岗位id
      */
     void checkJobAssociation(Long id, Long jid);
+
+    /**
+     * 判断平台员工关联关系
+     *
+     * @param id
+     * @param pmid
+     */
+    void checkMemberAssociation(Long id, Long pmid);
+
+    List<Platform> findPlatformByMemberId(Long memberId);
 
 }
