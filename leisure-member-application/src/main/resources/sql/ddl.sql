@@ -154,7 +154,7 @@ CREATE TABLE `platform_member`
   `delete_flag`              bit(1)              NOT NULL DEFAULT 0 COMMENT '删除状态[0:未删除;1:已删除]',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `uk_platform_member` (`platform_id`, `member_id`) USING BTREE,
-  UNIQUE KEY `uk_platform_mobile` (`platform_id`, `mobile`) USING BTREE,
+  UNIQUE KEY `uk_platform_email` (`platform_id`, `email`) USING BTREE,
   KEY `idx_member_id` (`member_id`) USING BTREE,
   KEY `idx_create_time` (`create_time`) USING BTREE
 ) ENGINE = INNODB
