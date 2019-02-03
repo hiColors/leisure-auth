@@ -4,9 +4,13 @@ import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.entity.EMember;
 import com.github.life.lab.leisure.member.application.entity.EMemberDetail;
+import com.github.life.lab.leisure.member.application.entity.EMemberRole;
+import com.github.life.lab.leisure.member.application.entity.ERole;
 import com.github.life.lab.leisure.member.application.entity.value.EMemberDefaultValue;
 import com.github.life.lab.leisure.member.application.repository.EMemberDetailRepository;
 import com.github.life.lab.leisure.member.application.repository.EMemberRepository;
+import com.github.life.lab.leisure.member.application.repository.EMemberRoleRepository;
+import com.github.life.lab.leisure.member.application.repository.ERoleRepository;
 import com.github.life.lab.leisure.member.application.service.MemberService;
 import com.github.life.lab.leisure.member.application.service.PlatformService;
 import com.github.life.lab.leisure.member.application.transfer.EntityTransferUtils;
@@ -16,6 +20,7 @@ import com.github.life.lab.leisure.member.model.exception.LeisureMemberException
 import com.github.life.lab.leisure.member.model.resource.member.*;
 import com.github.life.lab.leisure.member.model.resource.platform.Platform;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -37,13 +42,23 @@ public class MemberServiceImpl implements MemberService {
 
     private final EMemberDetailRepository memberDetailRepository;
 
+    private final EMemberRoleRepository memberRoleRepository;
+
+    private final ERoleRepository roleRepository;
+
+    @Value("${default.value.member-role}")
+    private String memberDefaultRole;
+
+
     @Autowired
     private PlatformService platformService;
 
     @Autowired
-    public MemberServiceImpl(EMemberDetailRepository memberDetailRepository, EMemberRepository memberRepository) {
+    public MemberServiceImpl(EMemberDetailRepository memberDetailRepository, EMemberRepository memberRepository, EMemberRoleRepository memberRoleRepository, ERoleRepository roleRepository) {
         this.memberDetailRepository = memberDetailRepository;
         this.memberRepository = memberRepository;
+        this.memberRoleRepository = memberRoleRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -58,6 +73,16 @@ public class MemberServiceImpl implements MemberService {
         memberDetailRepository.save(eMemberDetail);
         //初次插入未关联对象
         eMember.setMemberDetail(eMemberDetail);
+        //赋值默认角色
+        ERole eRole = roleRepository.findByCode(memberDefaultRole);
+        if (Objects.isNull(eRole)) {
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.ROLE_NON_EXIST);
+        }
+        EMemberRole eMemberRole = new EMemberRole();
+        eMemberRole.setStatus(true);
+        eMemberRole.setMember(eMember);
+        eMemberRole.setRole(eRole);
+        memberRoleRepository.save(eMemberRole);
         return EntityTransferUtils.transferEMember(eMember);
     }
 

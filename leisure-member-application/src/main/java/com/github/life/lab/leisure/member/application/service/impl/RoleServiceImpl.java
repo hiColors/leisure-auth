@@ -3,6 +3,8 @@ package com.github.life.lab.leisure.member.application.service.impl;
 import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.entity.ERole;
+import com.github.life.lab.leisure.member.application.repository.EMemberRoleRepository;
+import com.github.life.lab.leisure.member.application.repository.EPlatformMemberRoleRepository;
 import com.github.life.lab.leisure.member.application.repository.ERoleRepository;
 import com.github.life.lab.leisure.member.application.service.RoleService;
 import com.github.life.lab.leisure.member.application.transfer.EntityTransferUtils;
@@ -30,8 +32,19 @@ import java.util.Objects;
 @Service
 public class RoleServiceImpl implements RoleService {
 
+    private final ERoleRepository repository;
+
+    private final EMemberRoleRepository memberRoleRepository;
+
+    private final EPlatformMemberRoleRepository platformMemberRoleRepository;
+
     @Autowired
-    private ERoleRepository repository;
+    public RoleServiceImpl(ERoleRepository repository, EMemberRoleRepository memberRoleRepository,
+                           EPlatformMemberRoleRepository platformMemberRoleRepository) {
+        this.repository = repository;
+        this.memberRoleRepository = memberRoleRepository;
+        this.platformMemberRoleRepository = platformMemberRoleRepository;
+    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -53,6 +66,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
+        //判断是否已经有人员、员工赋值了该角色
+        if(memberRoleRepository.existsByRoleId(id)||platformMemberRoleRepository.existsByRoleId(id)){
+            throw new LeisureMemberException(EnumLeisureMemberCodeMessage.ROLE_USED_DENY_DELETE);
+        }
         repository.deleteByPrimaryKey(id);
     }
 

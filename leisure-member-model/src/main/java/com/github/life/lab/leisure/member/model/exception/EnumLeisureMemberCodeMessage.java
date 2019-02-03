@@ -29,7 +29,7 @@ public enum EnumLeisureMemberCodeMessage {
     ROLE_CODE_EXIST(100001002L, "角色唯一标识码已存在"),
     ROLE_NON_EXIST(100001003L, "角色不存在"),
     ROLE_QUERY_NON_SUPPORT(100001004L, "不支持的查询方式"),
-
+    ROLE_USED_DENY_DELETE(100001005L, "角色已被使用，不允许删除！"),
     /********* 平台相关 *********/
     PLATFORM_NAME_EXIST(100002001L, "平台名称已存在"),
     PLATFORM_NON_EXIST(100002001L, "平台不存在"),

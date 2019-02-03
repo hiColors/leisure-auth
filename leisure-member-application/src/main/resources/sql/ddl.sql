@@ -1,7 +1,7 @@
 CREATE TABLE `role`
 (
   `id`          BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `code`        VARCHAR(20)         NOT NULL COMMENT '唯一标识码',
+  `code`        VARCHAR(64)         NOT NULL COMMENT '唯一标识码',
   `name`        VARCHAR(100)        NOT NULL COMMENT '名称',
   `status`      bit(1)              NOT NULL DEFAULT 1 COMMENT '状态[0:未启用;1:启用]',
   `description` VARCHAR(255)        NOT NULL DEFAULT '' COMMENT '说明',
@@ -176,27 +176,49 @@ CREATE TABLE `platform_member_role`
 ) ENGINE = INNODB
   AUTO_INCREMENT = 100000 COMMENT = '平台员工角色信息';
 
-INSERT INTO `member` (`id`, `username`, `email`, `mobile`, `password`, `enabled`, `lock_status`, `expired_date`,
-                      `credentials_expired_date`, `create_time`, `creator`, `modify_time`, `modifier`, `delete_flag`)
-VALUES (1, 'admin', 'admin@life-lab.onaliyun.com', '10000000000', '000000', 1, 0, '9999-12-31 23:59:59',
-        '9999-12-31 23:59:59', '2018-10-01 00:00:00', 1, '2018-11-26 14:44:15', 1, 0);
-
-INSERT INTO `member_detail`
-(`id`, `default_platform_id`, `nick_name`, `name`, `birthday`, `description`, `website`, `avatar`,
- `create_time`, `creator`, `modify_time`, `modifier`, `delete_flag`)
-
-VALUES (1, null, '系统管理员', '系统管理员', '1970-01-01 00:00:00', '', '', '',
-        '1970-01-01 00:00:00', 1, '1970-01-01 00:00:00', 1, b'0');
-
-
-INSERT INTO `member` (`id`, `username`, `email`, `mobile`, `password`, `enabled`, `lock_status`, `expired_date`,
-                      `credentials_expired_date`, `create_time`, `creator`, `modify_time`, `modifier`, `delete_flag`)
-VALUES (100000, 'liweichao', 'liweichao@life-lab.onaliyun.com', '18395202205', '000000', 1, 0, '9999-12-31 23:59:59',
-        '9999-12-31 23:59:59', '2018-10-01 00:00:00', 1, '2018-11-26 14:44:15', 1, 0);
-
-INSERT INTO `member_detail`
-(`id`, `default_platform_id`, `nick_name`, `name`, `birthday`, `description`, `website`, `avatar`,
- `create_time`, `creator`, `modify_time`, `modifier`, `delete_flag`)
-
-VALUES (100000, null, '风再起时', '李伟超', '1992-01-02 00:00:00', '', '', '',
-        '2018-11-03 18:31:53', 1, '2018-11-26 14:55:50', 1, b'0');
+INSERT INTO `l_member`.`role`(`id`, `code`, `name`, `status`, `description`, `comment`, `create_time`, `creator`,
+                              `modify_time`, `modifier`, `delete_flag`)
+VALUES (1, 'root', '超级管理员', b'1', '超级管理员，拥有系统最高权限。', '系统超级管理员', '2019-02-02 23:33:43', 1, '2019-02-02 23:33:43', 1,
+        b'0');
+INSERT INTO `l_member`.`role`(`id`, `code`, `name`, `status`, `description`, `comment`, `create_time`, `creator`,
+                              `modify_time`, `modifier`, `delete_flag`)
+VALUES (2, 'platform_admin_master', '平台主管理员', b'1', '平台主管理员，拥有所属平台最高权限。', '平台主管理员', '2019-02-02 23:38:20', 1,
+        '2019-02-02 15:46:10', 1, b'0');
+INSERT INTO `l_member`.`role`(`id`, `code`, `name`, `status`, `description`, `comment`, `create_time`, `creator`,
+                              `modify_time`, `modifier`, `delete_flag`)
+VALUES (3, 'platform_admin_slave', '平台管理员', b'1', '平台管理员，拥有所属平台部分权限。', '平台管理员', '2019-02-02 23:39:15', 1,
+        '2019-02-02 15:46:15', 1, b'0');
+INSERT INTO `l_member`.`role`(`id`, `code`, `name`, `status`, `description`, `comment`, `create_time`, `creator`,
+                              `modify_time`, `modifier`, `delete_flag`)
+VALUES (4, 'member_partner', '普通用户', b'1', '普通用户，人员创建默认所属角色。', '普通用户', '2019-02-02 23:41:05', 1, '2019-02-02 23:45:17',
+        1, b'0');
+INSERT INTO `l_member`.`role`(`id`, `code`, `name`, `status`, `description`, `comment`, `create_time`, `creator`,
+                              `modify_time`, `modifier`, `delete_flag`)
+VALUES (5, 'platform_employee', '平台员工', b'1', '平台员工，人员加入平台后默认所属该平台下的角色。', '平台员工', '2019-02-02 23:47:52', 1,
+        '2019-02-02 15:48:14', 1, b'0');
+INSERT INTO `l_member`.`member`(`id`, `username`, `email`, `mobile`, `password`, `enabled`, `lock_status`,
+                                `expired_date`, `credentials_expired_date`, `create_time`, `creator`, `modify_time`,
+                                `modifier`, `delete_flag`)
+VALUES (1, 'admin', 'admin@life-lab.onaliyun.com', '10000000000', '000000', b'1', b'0', '9999-12-31 23:59:59',
+        '9999-12-31 23:59:59', '2018-10-01 00:00:00', 1, '2018-11-26 14:44:15', 1, b'0');
+INSERT INTO `l_member`.`member`(`id`, `username`, `email`, `mobile`, `password`, `enabled`, `lock_status`,
+                                `expired_date`, `credentials_expired_date`, `create_time`, `creator`, `modify_time`,
+                                `modifier`, `delete_flag`)
+VALUES (100000, 'liweichao', 'liweichao@life-lab.onaliyun.com', '18395202205', '000000', b'1', b'0',
+        '9999-12-31 23:59:59', '9999-12-31 23:59:59', '2018-10-01 00:00:00', 1, '2018-11-26 14:44:15', 1, b'0');
+INSERT INTO `l_member`.`member_detail`(`id`, `default_platform_id`, `nick_name`, `name`, `birthday`, `description`,
+                                       `website`, `avatar`, `create_time`, `creator`, `modify_time`, `modifier`,
+                                       `delete_flag`)
+VALUES (1, NULL, '系统管理员', '系统管理员', '1970-01-01 00:00:00', '', '', '', '1970-01-01 00:00:00', 1, '1970-01-01 00:00:00',
+        1, b'0');
+INSERT INTO `l_member`.`member_detail`(`id`, `default_platform_id`, `nick_name`, `name`, `birthday`, `description`,
+                                       `website`, `avatar`, `create_time`, `creator`, `modify_time`, `modifier`,
+                                       `delete_flag`)
+VALUES (100000, NULL, '风再起时', '李伟超', '1992-01-02 00:00:00', '', '', '', '2018-11-03 18:31:53', 1, '2018-11-26 14:55:50',
+        1, b'0');
+INSERT INTO `l_member`.`member_role`(`id`, `member_id`, `role_id`, `status`, `create_time`, `creator`, `modify_time`,
+                                     `modifier`, `delete_flag`)
+VALUES (1, 1, 1, b'1', '2019-02-03 01:12:06', 1, '2019-02-03 01:12:14', 1, b'0');
+INSERT INTO `l_member`.`member_role`(`id`, `member_id`, `role_id`, `status`, `create_time`, `creator`, `modify_time`,
+                                     `modifier`, `delete_flag`)
+VALUES (100000, 100001, 1, b'1', '2019-02-03 01:12:56', 1, '2019-02-03 01:12:56', 1, b'0');

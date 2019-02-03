@@ -23,4 +23,12 @@ public interface EMemberRoleRepository extends ColorsRepository<EMemberRole, Lon
      */
     List<EMemberRole> findByMemberId(Long memberId);
 
+    /**
+     * 判断是否有员工赋值了指定角色
+     *
+     * @param roleId 角色 id
+     * @return true or else
+     */
+    boolean existsByRoleId(Long roleId);
+
 }

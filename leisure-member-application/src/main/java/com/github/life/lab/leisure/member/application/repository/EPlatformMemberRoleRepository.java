@@ -16,13 +16,21 @@ import java.util.List;
 public interface EPlatformMemberRoleRepository extends ColorsRepository<EPlatformMemberRole, Long> {
 
     /**
-     * 通过 memberId 去查询 PlatformMemberRole
+     * 通过 platformMemberId 去查询 PlatformMemberRole
      * <p>
-     * 设想一个员工可能属于多个平台 故返回值为list
-     * TODO 这里应该通过platformMemberId去查
+     * 一个员工可能拥有多种角色 故返回值为list
      *
-     * @param memberId
-     * @return
+     * @param platformMemberId 员工 id
+     * @return 员工角色集合
      */
-    List<EPlatformMemberRole> findByPlatformMemberMemberId(Long memberId);
+    List<EPlatformMemberRole> findByPlatformMemberId(Long platformMemberId);
+
+
+    /**
+     * 判断是否有员工赋值了指定角色
+     *
+     * @param roleId 角色 id
+     * @return true or else
+     */
+    boolean existsByRoleId(Long roleId);
 }

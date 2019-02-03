@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>leisure-member</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <name>leisure-member</name>
     <description>leisure member</description>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.github.life-lab</groupId>
         <artifactId>leisure</artifactId>
-        <version>0.0.9-RELEASE</version>
+        <version>0.0.10-RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -28,8 +28,6 @@
 
     <properties>
 
-        <leisure-member.version>1.0-SNAPSHOT</leisure-member.version>
-
     </properties>
 
     <packaging>pom</packaging>
@@ -41,25 +39,25 @@
             <dependency>
                 <groupId>com.github.life-lab</groupId>
                 <artifactId>leisure-member-model</artifactId>
-                <version>${leisure-member.version}</version>
+                <version>${version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.life-lab</groupId>
                 <artifactId>leisure-member-authorization</artifactId>
-                <version>${leisure-member.version}</version>
+                <version>${version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.life-lab</groupId>
                 <artifactId>leisure-member-interface</artifactId>
-                <version>${leisure-member.version}</version>
+                <version>${version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.life-lab</groupId>
                 <artifactId>leisure-member-sdk</artifactId>
-                <version>${leisure-member.version}</version>
+                <version>${version}</version>
             </dependency>
 
         </dependencies>

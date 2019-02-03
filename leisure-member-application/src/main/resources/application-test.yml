@@ -9,7 +9,6 @@ spring:
     port: 5672
     username: leisure
     password: leisure
-    publisher-confirms: true
 
   redis:
     host: 47.105.97.16
