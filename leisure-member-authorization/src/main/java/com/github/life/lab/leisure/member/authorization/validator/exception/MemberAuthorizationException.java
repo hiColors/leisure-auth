@@ -1,7 +1,7 @@
 package com.github.life.lab.leisure.member.authorization.validator.exception;
 
 
-import com.github.life.lab.leisure.common.exception.BusinessException;
+import com.github.lifelab.leisure.common.exception.BusinessException;
 
 /**
  * exception

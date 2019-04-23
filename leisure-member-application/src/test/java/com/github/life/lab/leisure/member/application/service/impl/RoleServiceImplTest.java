@@ -1,9 +1,9 @@
 package com.github.life.lab.leisure.member.application.service.impl;
 
-import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.application.service.RoleService;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
+import com.github.lifelab.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

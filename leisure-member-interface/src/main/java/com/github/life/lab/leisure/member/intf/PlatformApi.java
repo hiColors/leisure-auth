@@ -42,7 +42,7 @@ public interface PlatformApi {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteOrganization(@PathVariable("id") Long id, @PathVariable("oid") Long oid);
 
-    @ApiOperation("平台 - 查询基层组织架构")
+    @ApiOperation("平台 - 查询顶级组织架构")
     @GetMapping("/{id}/organizations")
     PlatformOrganization queryBaseOrganization(@PathVariable("id") Long id);
 

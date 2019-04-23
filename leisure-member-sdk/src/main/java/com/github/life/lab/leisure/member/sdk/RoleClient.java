@@ -1,8 +1,8 @@
 package com.github.life.lab.leisure.member.sdk;
 
-import com.github.life.lab.leisure.common.model.BasePage;
 import com.github.life.lab.leisure.member.intf.RoleApi;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
+import com.github.lifelab.leisure.common.model.BasePage;
 import feign.Headers;
 import feign.QueryMap;
 import org.springframework.cloud.openfeign.FeignClient;

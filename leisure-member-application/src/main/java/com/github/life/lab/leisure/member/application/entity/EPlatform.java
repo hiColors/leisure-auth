@@ -1,10 +1,10 @@
 package com.github.life.lab.leisure.member.application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
-import com.github.life.lab.leisure.common.model.validator.ValidatorGroup;
 import com.github.life.lab.leisure.member.application.entity.converter.PlatformStatusConverter;
 import com.github.life.lab.leisure.member.application.entity.enums.EnumPlatformStatus;
+import com.github.lifelab.leisure.common.jpa.customiz.model.BaseJpaModel;
+import com.github.lifelab.leisure.common.model.validator.ValidatorGroup;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;

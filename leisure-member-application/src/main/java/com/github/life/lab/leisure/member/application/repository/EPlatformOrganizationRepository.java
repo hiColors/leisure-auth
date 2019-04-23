@@ -1,7 +1,7 @@
 package com.github.life.lab.leisure.member.application.repository;
 
-import com.github.life.lab.leisure.common.jpa.customiz.repository.ColorsRepository;
 import com.github.life.lab.leisure.member.application.entity.EPlatformOrganization;
+import com.github.lifelab.leisure.common.jpa.customiz.repository.ColorsRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

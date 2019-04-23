@@ -1,11 +1,11 @@
 package com.github.life.lab.leisure.member.application.rest;
 
-import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.application.service.MemberService;
 import com.github.life.lab.leisure.member.authorization.token.impl.MemberAuthorization;
 import com.github.life.lab.leisure.member.intf.MemberApi;
 import com.github.life.lab.leisure.member.model.resource.member.*;
 import com.github.life.lab.leisure.member.model.resource.platform.Platform;
+import com.github.lifelab.leisure.common.model.expression.ColorsExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

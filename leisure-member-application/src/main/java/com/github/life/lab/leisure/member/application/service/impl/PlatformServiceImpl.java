@@ -1,6 +1,5 @@
 package com.github.life.lab.leisure.member.application.service.impl;
 
-import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.entity.*;
 import com.github.life.lab.leisure.member.application.entity.enums.EnumPlatformStatus;
 import com.github.life.lab.leisure.member.application.repository.EPlatformJobRepository;
@@ -14,6 +13,7 @@ import com.github.life.lab.leisure.member.model.exception.EnumLeisureMemberCodeM
 import com.github.life.lab.leisure.member.model.exception.LeisureMemberException;
 import com.github.life.lab.leisure.member.model.resource.member.Member;
 import com.github.life.lab.leisure.member.model.resource.platform.*;
+import com.github.lifelab.leisure.common.utils.ColorsBeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

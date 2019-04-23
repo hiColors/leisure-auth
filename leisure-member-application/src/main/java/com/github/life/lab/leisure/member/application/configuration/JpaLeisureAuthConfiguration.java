@@ -1,7 +1,7 @@
 package com.github.life.lab.leisure.member.application.configuration;
 
 
-import com.github.life.lab.leisure.common.jpa.customiz.repository.ColorsComplexRepository;
+import com.github.lifelab.leisure.common.jpa.customiz.repository.ColorsComplexRepository;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

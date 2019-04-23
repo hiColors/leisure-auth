@@ -1,8 +1,8 @@
 package com.github.life.lab.leisure.member.authorization.token.impl;
 
-import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.authorization.token.TokenStore;
 import com.github.life.lab.leisure.member.authorization.token.UserInfo;
+import com.github.lifelab.leisure.common.utils.JsonUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

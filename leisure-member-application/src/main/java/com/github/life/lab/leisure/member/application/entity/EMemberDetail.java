@@ -1,7 +1,7 @@
 package com.github.life.lab.leisure.member.application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.life.lab.leisure.common.jpa.customiz.model.BaseJpaModel;
+import com.github.lifelab.leisure.common.jpa.customiz.model.BaseJpaModel;
 import lombok.*;
 import org.hibernate.annotations.*;
 

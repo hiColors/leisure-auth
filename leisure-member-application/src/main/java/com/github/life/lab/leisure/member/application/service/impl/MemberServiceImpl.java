@@ -1,7 +1,5 @@
 package com.github.life.lab.leisure.member.application.service.impl;
 
-import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
-import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.entity.EMember;
 import com.github.life.lab.leisure.member.application.entity.EMemberDetail;
 import com.github.life.lab.leisure.member.application.entity.EMemberRole;
@@ -19,6 +17,8 @@ import com.github.life.lab.leisure.member.model.exception.EnumLeisureMemberCodeM
 import com.github.life.lab.leisure.member.model.exception.LeisureMemberException;
 import com.github.life.lab.leisure.member.model.resource.member.*;
 import com.github.life.lab.leisure.member.model.resource.platform.Platform;
+import com.github.lifelab.leisure.common.model.expression.ColorsExpression;
+import com.github.lifelab.leisure.common.utils.ColorsBeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;

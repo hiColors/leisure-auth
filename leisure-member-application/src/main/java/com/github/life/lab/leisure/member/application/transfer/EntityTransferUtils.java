@@ -1,6 +1,5 @@
 package com.github.life.lab.leisure.member.application.transfer;
 
-import com.github.life.lab.leisure.common.utils.ColorsBeanUtils;
 import com.github.life.lab.leisure.member.application.entity.*;
 import com.github.life.lab.leisure.member.model.resource.member.Member;
 import com.github.life.lab.leisure.member.model.resource.platform.Platform;
@@ -8,6 +7,7 @@ import com.github.life.lab.leisure.member.model.resource.platform.PlatformJob;
 import com.github.life.lab.leisure.member.model.resource.platform.PlatformMember;
 import com.github.life.lab.leisure.member.model.resource.platform.PlatformOrganization;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
+import com.github.lifelab.leisure.common.utils.ColorsBeanUtils;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;

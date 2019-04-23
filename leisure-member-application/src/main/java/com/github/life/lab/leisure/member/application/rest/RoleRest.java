@@ -1,12 +1,12 @@
 package com.github.life.lab.leisure.member.application.rest;
 
-import com.github.life.lab.leisure.common.model.expression.ColorsExpression;
 import com.github.life.lab.leisure.member.application.service.RoleService;
 import com.github.life.lab.leisure.member.intf.RoleApi;
 import com.github.life.lab.leisure.member.model.resource.role.Role;
 import com.github.life.lab.leisure.member.model.resource.role.RoleModel;
 import com.github.life.lab.leisure.member.model.resource.role.RolePatchModel;
 import com.github.life.lab.leisure.member.model.resource.role.RoleStatusModel;
+import com.github.lifelab.leisure.common.model.expression.ColorsExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

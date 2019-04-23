@@ -1,6 +1,6 @@
 package com.github.life.lab.leisure.member.application.configuration;
 
-import com.github.life.lab.leisure.common.framework.utils.SpringContextUtils;
+import com.github.lifelab.leisure.common.framework.utils.SpringContextUtils;
 import org.redisson.api.RedissonClient;
 import org.redisson.hibernate.RedissonRegionFactory;
 

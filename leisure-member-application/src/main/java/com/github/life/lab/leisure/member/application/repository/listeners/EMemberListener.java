@@ -1,9 +1,9 @@
 package com.github.life.lab.leisure.member.application.repository.listeners;
 
-import com.github.life.lab.leisure.common.jpa.customiz.listener.AbstractListener;
-import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.application.amqp.MqProperties;
 import com.github.life.lab.leisure.member.application.entity.EMember;
+import com.github.lifelab.leisure.common.jpa.customiz.listener.AbstractListener;
+import com.github.lifelab.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.event.spi.MergeEvent;

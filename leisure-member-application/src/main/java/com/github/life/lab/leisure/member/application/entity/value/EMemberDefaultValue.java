@@ -1,8 +1,8 @@
 package com.github.life.lab.leisure.member.application.entity.value;
 
-import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.application.entity.EMember;
 import com.github.life.lab.leisure.member.application.entity.EMemberDetail;
+import com.github.lifelab.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.time.DateUtils;

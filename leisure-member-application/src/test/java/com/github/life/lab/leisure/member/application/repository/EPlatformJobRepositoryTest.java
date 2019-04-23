@@ -1,7 +1,7 @@
 package com.github.life.lab.leisure.member.application.repository;
 
-import com.github.life.lab.leisure.common.utils.JsonUtils;
 import com.github.life.lab.leisure.member.application.entity.EPlatformJob;
+import com.github.lifelab.leisure.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
