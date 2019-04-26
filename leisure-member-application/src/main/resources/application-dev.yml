@@ -2,15 +2,15 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/l_member?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
-    password: root
+    password: FCBfcb1197691639@
   #  jpa:
   #    properties:
   #      hibernate.show_sql: true
   rabbitmq:
     addresses: 127.0.0.1
-    port: 5672
-    username: root
-    password: root
+    port: 15672
+    username: guest
+    password: guest
 
   redis:
     host: 127.0.0.1
