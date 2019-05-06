@@ -33,7 +33,7 @@
             <dependency>
                 <groupId>com.github.life-lab</groupId>
                 <artifactId>common-dependencies</artifactId>
-                <version>0.0.12-SNAPSHOT</version>
+                <version>0.0.13-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -147,5 +147,56 @@
         </plugins>
 
     </build>
+    <profiles>
+        <profile>
+            <id>maven2</id>
+            <repositories>
+                <repository>
+                    <id>maven-snapshots</id>
+                    <name>OSS Snapshots Repository</name>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                </repository>
 
+                <repository>
+                    <id>maven-releases</id>
+                    <name>OSS Staging Repository</name>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+
+            <pluginRepositories>
+
+                <pluginRepository>
+                    <id>maven-snapshots</id>
+                    <name>OSS Snapshots Repository</name>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>maven-releases</id>
+                    <name>OSS Staging Repository</name>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+
+        </profile>
+    </profiles>
 </project>
