@@ -14,3 +14,27 @@ spring:
     host: 47.105.97.16
     port: 16379
     database: 0
+
+  freemarker:
+    request-context-attribute: request
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+
+
+#server:
+#  servlet:
+#    context-path: /xxl-sso-web-sample-springboot
+
+
+xxl:
+  sso:
+    server: http://xxlssoserver.com:8080/xxl-sso-server
+    logout:
+      path: /logout
+    excluded:
+      paths:
+
+
