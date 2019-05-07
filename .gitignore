@@ -11,3 +11,5 @@ gen
 .idea/**
 
 **/pom.xml.versionsBackup
+
+**/application-dev.yml

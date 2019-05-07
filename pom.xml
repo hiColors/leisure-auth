@@ -16,8 +16,8 @@
         <module>leisure-member-model</module>
         <module>leisure-member-interface</module>
         <module>leisure-member-sdk</module>
-        <module>leisure-member-authorization</module>
         <module>leisure-member-application</module>
+        <module>leisure-member-authorization</module>
     </modules>
 
     <properties>
@@ -33,7 +33,7 @@
             <dependency>
                 <groupId>com.github.life-lab</groupId>
                 <artifactId>common-dependencies</artifactId>
-                <version>0.0.13-SNAPSHOT</version>
+                <version>0.0.13.BUILD-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -147,6 +147,7 @@
         </plugins>
 
     </build>
+
     <profiles>
         <profile>
             <id>maven2</id>
@@ -199,4 +200,5 @@
 
         </profile>
     </profiles>
+
 </project>
