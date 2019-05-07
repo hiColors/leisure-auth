@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.life-lab</groupId>
+    <groupId>com.github.life-lab.application</groupId>
     <artifactId>leisure-member</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1.BUILD-SNAPSHOT</version>
 
     <name>leisure-member</name>
     <description>leisure member</description>
@@ -40,25 +40,25 @@
 
 
             <dependency>
-                <groupId>com.github.life-lab</groupId>
+                <groupId>com.github.life-lab.application</groupId>
                 <artifactId>leisure-member-model</artifactId>
                 <version>${version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.github.life-lab</groupId>
+                <groupId>com.github.life-lab.application</groupId>
                 <artifactId>leisure-member-authorization</artifactId>
                 <version>${version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.github.life-lab</groupId>
+                <groupId>com.github.life-lab.application</groupId>
                 <artifactId>leisure-member-interface</artifactId>
                 <version>${version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.github.life-lab</groupId>
+                <groupId>com.github.life-lab.application</groupId>
                 <artifactId>leisure-member-sdk</artifactId>
                 <version>${version}</version>
             </dependency>

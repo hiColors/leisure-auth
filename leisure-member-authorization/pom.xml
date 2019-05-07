@@ -2,12 +2,14 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>leisure-member</artifactId>
-        <groupId>com.github.life-lab</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.github.life-lab.application</groupId>
+        <version>0.0.1.BUILD-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>leisure-member-authorization</artifactId>
@@ -15,7 +17,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.github.life-lab</groupId>
+            <groupId>com.github.life-lab.application</groupId>
             <artifactId>leisure-member-model</artifactId>
         </dependency>
 

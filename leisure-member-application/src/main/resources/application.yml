@@ -59,7 +59,7 @@ spring:
       hibernate.cache.use_second_level_cache: true
       hibernate.cache.use_query_cache: true
       hibernate.cache.use_structured_entries: true
-      hibernate.cache.region.factory_class: com.github.life.lab.leisure.member.application.configuration.ColorsRedissonRegionFactory
+      hibernate.cache.region.factory_class: com.github.lifelab.leisure.member.application.configuration.ColorsRedissonRegionFactory
       hibernate.cache.region_prefix: cache_
   rabbitmq:
     publisher-confirms: true
@@ -75,3 +75,7 @@ default:
     platform-member-role: platform_employee
     ## 平台创建者默认角色
     platform-creator-role: platform_admin_master
+
+swagger:
+  title: 基础人员服务
+  version: 0.0.1.BUILD-SNAPSHOT
