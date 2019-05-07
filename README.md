@@ -1,3 +1,26 @@
+# 基础设施依赖
+
+## MySQL && Redis && RabbitMQ
+
+- MySQL
+
+```
+docker run --name mysql --restart=always -p 3306:3306 -v ~/Workspaces/docker/mysql/5.7:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+```
+
+- Redis
+
+```
+docker run --name redis --restart=always -p 6379:6379  -v ~/Workspaces/docker/redis/4.x:/data -d redis:4 redis-server --appendonly yes
+```
+
+- RabbitMQ
+
+```
+docker run --name rabbitmq --restart=always -d -p 5672:5672 -p 15672:15672 -v ~/Workspaces/docker/rabbitmq:/var/lib/rabbitmq  -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=root rabbitmq:3-management
+```
+
+
 # 项目简介
 
 > 人员管理服务，对基础的人员信息进行维护。
